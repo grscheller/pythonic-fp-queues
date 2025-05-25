@@ -1,14 +1,14 @@
-# Developer Tools - Queues
+# Pythonic FP - Queues
 
-Python package containing modules implementing queue-like data
-structures. This project is part of the [Developer Tools for Python][4]
-**dtools.** namespace project.
+Python package implementing 3 types of queue data structures. This
+project is part of the [Developer Tools for Python][1] **pythonic-fp**
+namespace projects.
 
 - **Repositories**
-  - [dtools.queues][1] project on *PyPI*
-  - [Source code][2] on *GitHub*
+  - [dtools.queues][2] project on *PyPI*
+  - [Source code][3] on *GitHub*
 - **Detailed documentation**
-  - [Detailed API documentation][3] on *GH-Pages*
+  - [Detailed API documentation][4] on *GH-Pages*
 
 ## Overview
 
@@ -32,7 +32,7 @@ Sometimes the real power of a data structure comes not from what it
 empowers you to do, but from what it prevents you from doing to
 yourself.
 
-[1]: https://pypi.org/project/dtools.queues/
-[2]: https://github.com/grscheller/dtools-queues/
-[3]: https://grscheller.github.io/dtools-namespace-projects/queues/
-[4]: https://github.com/grscheller/dtools-namespace-projects/blob/main/README.md
+[1]: https://github.com/grscheller/pythonic-fp/blob/main/README.md
+[2]: https://pypi.org/project/pythonic-fp.queues/
+[3]: https://github.com/grscheller/pythonic-fp-queues/
+[4]: https://grscheller.github.io/pythonic-fp/maintained/queues/

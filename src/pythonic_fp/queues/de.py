@@ -26,8 +26,8 @@ from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Iterator, Sequence
 from typing import Never, overload, TypeVar
-from dtools.circular_array import CA
-from dtools.containers.maybe import MayBe as MB
+from pythonic_fp.circulararray import CA
+from pythonic_fp.containers.maybe import MayBe as MB
 
 __all__ = ['DEQueue', 'de_queue']
 

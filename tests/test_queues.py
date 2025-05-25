@@ -14,14 +14,14 @@
 
 from __future__ import annotations
 from typing import Optional
-from dtools.circular_array import ca
-from dtools.queues.de import DEQueue as DQ
-from dtools.queues.de import de_queue as dq
-from dtools.queues.fifo import FIFOQueue as FQ
-from dtools.queues.fifo import fifo_queue as fq
-from dtools.queues.lifo import LIFOQueue as LQ
-from dtools.queues.lifo import lifo_queue as lq
-from dtools.containers.maybe import MayBe as MB
+from pythonic_fp.circulararray import ca
+from pythonic_fp.queues.de import DEQueue as DQ
+from pythonic_fp.queues.de import de_queue as dq
+from pythonic_fp.queues.fifo import FIFOQueue as FQ
+from pythonic_fp.queues.fifo import fifo_queue as fq
+from pythonic_fp.queues.lifo import LIFOQueue as LQ
+from pythonic_fp.queues.lifo import lifo_queue as lq
+from pythonic_fp.containers.maybe import MayBe as MB
 
 class TestQueueTypes:
     def test_mutate_map(self) -> None:

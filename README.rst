@@ -3,7 +3,7 @@ Pythonic FP - Queues
 ====================
 
 Three types of classic queue data structures, part of the
-`PyPI pythonic-fp Namespace Projects <https://github.com/grscheller/pythonic-fp/blob/main/README.md>`_.
+`PyPI pythonic-fp Namespace Projects <https://github.com/grscheller/pythonic-fp/blob/main/README.rst>`_.
 
 Detailed API documentation
 `documentation <https://grscheller.github.io/pythonic-fp/maintained/fptools>`_

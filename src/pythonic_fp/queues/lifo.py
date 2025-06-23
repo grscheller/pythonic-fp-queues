@@ -25,7 +25,8 @@
 from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Iterator, Sequence
-from typing import Never, overload, TypeVar
+from typing import Never, TypeVar, overload
+
 from pythonic_fp.circulararray import CA
 from pythonic_fp.containers.maybe import MayBe as MB
 from pythonic_fp.fptools.function import swap

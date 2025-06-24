@@ -1,14 +1,11 @@
-[build-system]
-requires = ["flit_core>=3.4,<4"]
-build-backend = "flit_core.buildapi"
-
 [project]
 name = "pythonic-fp.queues"
 version = "3.0.0"
-authors = [{ name = "Geoffrey R. Scheller", email = "geoffrey@scheller.com" }]
-license = { file = "LICENSE" }
 readme = "README.rst"
 requires-python = ">=3.12"
+license = { file = "LICENSE" }
+authors = [{ name = "Geoffrey R. Scheller", email = "geoffrey@scheller.com" }]
+keywords = ["dqueue", "fifo", "lifo", "queue"]
 classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Framework :: Pytest",
@@ -18,39 +15,28 @@ classifiers = [
   "Programming Language :: Python :: 3.13",
   "Typing :: Typed",
 ]
-dynamic = ["description"]
-keywords = ["queue", "fifo", "lifo", "dqueue"]
 dependencies = [
   "pythonic-fp.circulararray >= 5.1.0, < 5.2",
   "pythonic-fp.containers >=2.0.0, <2.1",
   "pythonic-fp.fptools >=3.0.0, <3.1",
 ]
+dynamic = ["description"]
+
+[project.urls]
+Changelog = "https://github.com/grscheller/pythonic-fp-queues/blob/main/CHANGELOG.rst"
+Documentation = "https://grscheller.github.io/pythonic-fp/maintained/queues"
+Homepage = "https://github.com/grscheller/pythonic-fp/blob/main/README.rst"
+Source = "https://github.com/grscheller/pythonic-fp-queues"
 
 [project.optional-dependencies]
 test = ["pytest >=8.3.5"]
 
-[project.urls]
-Homepage = "https://github.com/grscheller/pythonic-fp/blob/main/README.rst"
-Source = "https://github.com/grscheller/pythonic-fp-queues"
-Changelog = "https://github.com/grscheller/pythonic-fp-queues/blob/main/CHANGELOG.rst"
-Documentation = "https://grscheller.github.io/pythonic-fp/maintained/queues"
+[build-system]
+requires = ["flit_core>=3.4,<4"]
+build-backend = "flit_core.buildapi"
 
 [tool.flit.sdist]
 exclude = ["dist", "tests", ".gitignore", ".mypy_cache", ".pytest_cache"]
-
-[tool.pylsp-mypy]
-enabled = true
-live-mode = true
-strict = true
-report_progress = true
-
-[pylsp]
-python_path = [
-  "/home/grs/devel/pypi/fptools/pythonic-fp-queues/src",
-  "/home/grs/devel/pypi/fptools/pythonic-fp-circulararray/src",
-  "/home/grs/devel/pypi/fptools/pythonic-fp-containers/src",
-  "/home/grs/devel/pypi/fptools/pythonic-fp-fptools/src",
-]
 
 [tool.mypy]
 enable_incomplete_feature = ["NewGenericSyntax"]
@@ -60,8 +46,21 @@ warn_redundant_casts = true
 warn_return_any = true
 warn_unused_configs = true
 
+[tool.pylsp]
+python_path = [
+  "/home/grs/devel/pypi/fptools/pythonic-fp-queues/src",
+  "/home/grs/devel/pypi/fptools/pythonic-fp-circulararray/src",
+  "/home/grs/devel/pypi/fptools/pythonic-fp-containers/src",
+  "/home/grs/devel/pypi/fptools/pythonic-fp-fptools/src",
+]
+
+[tool.pylsp-mypy]
+enabled = true
+live-mode = true
+strict = true
+report_progress = true
+
 [tool.pytest.ini_options]
-testpaths = ["tests"]
 consider_namespace_packages = true
 
 [tool.ruff]
@@ -75,3 +74,4 @@ docstring-quotes = "double"
 
 [tool.ruff.format]
 quote-style = "single"
+docstring-code-line-length = 72

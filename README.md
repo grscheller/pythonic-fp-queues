@@ -9,7 +9,7 @@ Detailed API
 [documentation](https://grscheller.github.io/pythonic-fp/maintained/fptools)
 on *GH-Pages*.
 
-## Features
+## Features:
 
 These queues allow iterators to leisurely iterate over inaccessible
 copies of their current state while the queues themselves are free to
@@ -26,18 +26,18 @@ empowers you to do, but from what it prevents you from doing to
 yourself.
 
 | Class     | Queue Type               |
-|:=========:|:======================== |
+|:---------:|:------------------------ |
 | FIFOQueue | First-In-First-Out Queue |
 | LIFOQueue | Last-In-First-Out Queue  |
 | DEQueue   | Double-Ended Queue       |
 
-## Installation
+## Installation:
 
 ```
     $ pip install pythonic-fp.queues
 ```
 
-## Contribute
+## Contribute:
 
 - Project on PyPI: https://pypi.org/project/pythonic-fp.queues
 - Source Code: https://github.com/grscheller/pythonic-fp-queues
@@ -47,7 +47,7 @@ yourself.
 
 | Contributors | Name | Role |
 |:------------ |:---- |:---- |
-| [@grscheller](https://github.com/grscheller) | Geoffrey R. Scheller | author, maintainer |
+| [grscheller](https://github.com/grscheller) | Geoffrey R. Scheller | author, maintainer |
 
 ### License Information
 

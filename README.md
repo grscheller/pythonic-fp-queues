@@ -31,28 +31,15 @@ yourself.
 | LIFOQueue | Last-In-First-Out Queue  |
 | DEQueue   | Double-Ended Queue       |
 
-## Installation:
+This PyPI project is part of of the grscheller
+[pythonic-fp namespace projects](https://grscheller.github.io/pythonic-fp/).
 
-```
-    $ pip install pythonic-fp.queues
-```
+## Documentation
 
-## Contribute:
+Documentation hosted on
+[GitHub Pages](https://grscheller.github.io/pythonic-fp-queues/).
 
-- Project on PyPI: https://pypi.org/project/pythonic-fp.queues
-- Source Code: https://github.com/grscheller/pythonic-fp-queues
-- Issue Tracker: https://github.com/grscheller/pythonic-fp-queues/issues
-- Pull Requests: https://github.com/grscheller/pythonic-fp-queues/pulls
-- CHANGELOG: https://github.com/grscheller/pythonic-fp-queues/blob/main/CHANGELOG.rst
+## Copyright and License
 
-| Contributors | Name | Role |
-|:------------ |:---- |:---- |
-| [grscheller](https://github.com/grscheller) | Geoffrey R. Scheller | author, maintainer |
-
-### License Information
-
-This project is licensed under the Apache License Version 2.0, January 2004.
-
-See the
-[LICENCE file](https://github.com/grscheller/pythonic-fp-queues/blob/main/LICENSE)
-for details.
+Copyright (c) 2023-2025 Geoffrey R. Scheller. Licensed under the Apache
+License, Version 2.0. See the LICENSE file for details.

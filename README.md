@@ -11,7 +11,7 @@ Implementing 3 types of queue data structures.
 | DEQueue   | Double-Ended Queue       |
 
 This PyPI project is part of of the grscheller
-[pythonic-fp namespace projects](https://grscheller.github.io/pythonic-fp/).
+[pythonic-fp namespace projects](https://github.com/grscheller/pythonic-fp/blob/main/README.md).
 
 ## Documentation
 

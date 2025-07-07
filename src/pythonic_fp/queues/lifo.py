@@ -90,18 +90,18 @@ class LIFOQueue[D]:
         return '|| ' + ' > '.join(map(str, self)) + ' ><'
 
     def copy(self) -> LIFOQueue[D]:
-        """Return a shallow copy of the `LIFOQueue`."""
+        """Return a shallow copy of the ``LIFOQueue``."""
         return LIFOQueue(reversed(self._ca))
 
     def push(self, *ds: D) -> None:
-        """Push data onto `LIFOQueue`, does not return a value."""
+        """Push data onto ``LIFOQueue``, does not return a value."""
         self._ca.pushr(*ds)
 
     def pop(self) -> MB[D]:
-        """Pop data from `LIFOQueue`.
+        """Pop data from ``LIFOQueue``.
 
         - pop item off of queue, return item in a maybe monad
-        - returns an empty `MB()` if queue is empty
+        - returns an empty ``MB()`` if queue is empty
 
         """
         if self._ca:
@@ -109,11 +109,11 @@ class LIFOQueue[D]:
         return MB()
 
     def peak(self) -> MB[D]:
-        """Peak next data out of `LIFOQueue`.
+        """Peak next data out of ``LIFOQueue``.
 
         - return a maybe monad of the next item to be popped from the queue
         - does not consume the item
-        - returns `MB()` if queue is empty
+        - returns ``MB()`` if queue is empty
 
         """
         if self._ca:
@@ -121,11 +121,11 @@ class LIFOQueue[D]:
         return MB()
 
     def fold[T](self, f: Callable[[T, D], T], initial: T | None = None, /) -> MB[T]:
-        """Reduce with `f` with an optional initial value.
+        """Reduce with ``f`` with an optional initial value.
 
         - folds in natural LIFO Order (newest to oldest)
-        - note that when an initial value is not given then `~T = ~D`
-        - if iterable empty & no initial value given, return `MB()`
+        - note that when an initial value is not given then ``~T = ~D``
+        - if iterable empty & no initial value given, return ``MB()``
 
         """
         if initial is None:
@@ -134,11 +134,13 @@ class LIFOQueue[D]:
         return MB(self._ca.foldr(swap(f), initial))
 
     def map[U](self, f: Callable[[D], U], /) -> LIFOQueue[U]:
-        """Map Over the `LIFOQueue`.
+        """Map Over the ``LIFOQueue``.
 
-        - map the function `f` over the queue
+        - map the function ``f`` over the queue
+
           - newest to oldest
           - retain original order
+
         - returns a new instance
 
         """

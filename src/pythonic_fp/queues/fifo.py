@@ -12,15 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""
-### First-In-Last-Out (FIFO) Queue
-
-- stateful FIFO queue data structures with amortized O(1) pushes and pops
-- obtaining length (number of elements) of a queue is an O(1) operation
-- implemented in a "has-a" relationship with a Python list based circular array
-- will resize itself larger as needed
-
-"""
+"""First-In-Last-Out (FIFO) Queue"""
 
 from __future__ import annotations
 
@@ -41,7 +33,6 @@ class FIFOQueue[D]:
 
     - stateful First-In-First-Out (FIFO) data structure
     - initial data pushed on in natural FIFO order
-
     """
 
     __slots__ = ('_ca',)
@@ -90,55 +81,51 @@ class FIFOQueue[D]:
         return '<< ' + ' < '.join(map(str, self)) + ' <<'
 
     def copy(self) -> FIFOQueue[D]:
-        """Return a shallow copy of the `FIFOQueue`."""
+        """Return a shallow copy of the ``FIFOQueue``."""
         return FIFOQueue(self._ca)
 
     def push(self, *ds: D) -> None:
-        """Push data onto `FIFOQueue`, does not return a value."""
+        """Push data onto ``FIFOQueue``, does not return a value."""
         self._ca.pushr(*ds)
 
     def pop(self) -> MB[D]:
-        """Pop data from `FIFOQueue`.
+        """Pop data from ``FIFOQueue``.
 
         - pop item off queue, return item in a maybe monad
-        - returns an empty `MB()` if queue is empty
-
+        - returns an empty ``MB()`` if queue is empty
         """
         if self._ca:
             return MB(self._ca.popl())
         return MB()
 
     def peak_last_in(self) -> MB[D]:
-        """Peak last data into `FIFOQueue`.
+        """Peak last data into ``FIFOQueue``.
 
         - return a maybe monad of the last item pushed to queue
         - does not consume the data
-        - if item already popped, return `MB()`
-
+        - if item already popped, return ``MB()``
         """
         if self._ca:
             return MB(self._ca[-1])
         return MB()
 
     def peak_next_out(self) -> MB[D]:
-        """Peak next data out of `FIFOQueue`.
+        """Peak next data out of ``FIFOQueue``.
 
         - returns a maybe monad of the next item to be popped from the queue.
         - does not consume it the item
-        - returns `MB()` if queue is empty
-
+        - returns ``MB()`` if queue is empty
         """
         if self._ca:
             return MB(self._ca[0])
         return MB()
 
     def fold[T](self, f: Callable[[T, D], T], initial: T | None = None, /) -> MB[T]:
-        """Reduce with `f` with an optional initial value.
+        """Reduce with ``f`` with an optional initial value.
 
         - folds in natural FIFO Order (oldest to newest)
-        - note that when an initial value is not given then `~L = ~D`
-        - if iterable empty & no initial value given, return `MB()`
-
+        - note that when an initial value is not given then ``~L = ~D``
+        - if iterable empty & no initial value given, return ``MB()``
         """
         if initial is None:
             if not self._ca:
@@ -146,13 +133,14 @@ class FIFOQueue[D]:
         return MB(self._ca.foldl(f, initial))
 
     def map[U](self, f: Callable[[D], U], /) -> FIFOQueue[U]:
-        """Map over the `FIFOQueue`.
+        """Map over the ``FIFOQueue``.
 
-        - map function `f` over the queue
+        - map function ``f`` over the queue
+
           - oldest to newest
           - retain original order
-        - returns a new instance
 
+        - returns a new instance
         """
         return FIFOQueue(map(f, self._ca))
 

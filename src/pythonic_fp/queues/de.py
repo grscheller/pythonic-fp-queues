@@ -40,11 +40,8 @@ class DEQueue[D]:
     """Double Ended Queue
 
     - stateful Double-Ended (DEQueue) data structure
-    - order of initial data retained
-      - as if pushed on from the right
-
+    - order of initial data retained, as if pushed on from the right
     """
-
     L = TypeVar('L')
     R = TypeVar('R')
 
@@ -96,78 +93,67 @@ class DEQueue[D]:
         return '>< ' + ' | '.join(map(str, self)) + ' ><'
 
     def copy(self) -> DEQueue[D]:
-        """Return a shallow copy of the `DEQueue`."""
+        """Return a shallow copy of the ``DEQueue``."""
         return DEQueue(self._ca)
 
     def pushl(self, *ds: D) -> None:
-        """Push data onto left side (front) of `DEQueue`.
-
-        - does not return a value
-
-        """
+        """Push data onto left side (front) of ``DEQueue``."""
         self._ca.pushl(*ds)
 
     def pushr(self, *ds: D) -> None:
-        """Push data onto right side (rear) of `DEQueue`.
-
-        - like a Python List, does not return a value
-
+        """Push data onto right side (rear) of ``DEQueue``.
+        Like a Python List, does not return a value.
         """
         self._ca.pushr(*ds)
 
     def popl(self) -> MB[D]:
-        """Pop Data from left side (front) of `DEQueue`.
+        """Pop Data from left side (front) of ``DEQueue``.
 
         - pop left most item off of queue, return item in a maybe monad
-        - returns an empty `MB()` if queue is empty
-
+        - returns an empty ``MB()`` if queue is empty
         """
         if self._ca:
             return MB(self._ca.popl())
         return MB()
 
     def popr(self) -> MB[D]:
-        """Pop Data from right side (rear) of `DEQueue`.
+        """Pop Data from right side (rear) of ``DEQueue``.
 
         - pop right most item off of queue, return item in a maybe monad
-        - returns an empty `MB()` if queue is empty
-
+        - returns an empty ``MB()`` if queue is empty
         """
         if self._ca:
             return MB(self._ca.popr())
         return MB()
 
     def peakl(self) -> MB[D]:
-        """Peak left side of `DEQueue`.
+        """Peak left side of ``DEQueue``.
 
         - return left most value in a maybe monad
         - does not consume the item
-        - returns an empty `MB()` if queue is empty
-
+        - returns an empty ``MB()`` if queue is empty
         """
         if self._ca:
             return MB(self._ca[0])
         return MB()
 
     def peakr(self) -> MB[D]:
-        """Peak right side of `DEQueue`.
+        """Peak right side of ``DEQueue``.
 
         - return right most value in a maybe monad
         - does not consume the item
-        - returns an empty `MB()` if queue is empty
-
+        - returns an empty ``MB()`` if queue is empty
         """
         if self._ca:
             return MB(self._ca[-1])
         return MB()
 
     def foldl[L](self, f: Callable[[L, D], L], initial: L | None = None, /) -> MB[L]:
-        """Reduce left to right with `f` using an optional initial value.
+        """Reduce left to right with ``f`` using an optional initial value.
 
-        - note that when an initial value is not given then `~L = ~D`
-        - if iterable empty & no initial value given, return `MB()`
-        - traditional FP type order given for function `f`
-
+        - note that when an initial value is not given then ``~L = ~D``
+        - if iterable empty & no initial value given, return ``MB()``
+        - traditional FP type order given for function ``f``
         """
         if initial is None:
             if not self._ca:
@@ -175,12 +161,11 @@ class DEQueue[D]:
         return MB(self._ca.foldl(f, initial))
 
     def foldr[R](self, f: Callable[[D, R], R], initial: R | None = None, /) -> MB[R]:
-        """Reduce right to left with `f` using an optional initial value.
+        """Reduce right to left with ``f`` using an optional initial value.
 
-        - note that when an initial value is not given then `~R = ~D`
-        - if iterable empty & no initial value given, return `MB()`
-        - traditional FP type order given for function `f`
-
+        - note that when an initial value is not given then ``~R = ~D``
+        - if iterable empty & no initial value given, return ``MB()``
+        - traditional FP type order given for function ``f``
         """
         if initial is None:
             if not self._ca:
@@ -188,17 +173,18 @@ class DEQueue[D]:
         return MB(self._ca.foldr(f, initial))
 
     def map[U](self, f: Callable[[D], U], /) -> DEQueue[U]:
-        """`Map a function over `DEQueue`.
+        """Map a function over ``DEQueue``.
 
-        - map the function `f` over the `DEQueue`
+        - map the function ``f`` over the ``DEQueue``
+
           - left to right
           - retain original order
-        - returns a new instance
 
+        - returns a new instance
         """
         return DEQueue(map(f, self._ca))
 
 
 def de_queue[D](*ds: D) -> DEQueue[D]:
-    """Create a DEQueue from the function arguments."""
+    """Create a ``DEQueue`` from the function arguments."""
     return DEQueue(ds)

@@ -5,11 +5,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>pythonic-fp.circulararray API &#8212; Pythonic FP - Queues 3.0.0 documentation</title>
+    <title>pythonic-fp.queues API &#8212; Pythonic FP - Queues 3.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="_static/basic_mod.css?v=9b2032db" />
     <link rel="stylesheet" type="text/css" href="_static/css/sphinx-toolbox.css" />
-    <script src="_static/documentation_options.js?v=acc74ff5"></script>
+    <script src="_static/documentation_options.js?v=08bfcbec"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
@@ -31,7 +31,7 @@
         <p id="toggle_sidebar">
             <a href="#" title="Toggle sidebar">|||</a>
         </p>
-        <h1><a href="index.html" title="Go to homepage">Pythonic FP - Queues 3.0.0 documentation</a></h1>
+        <h1><a href="index.html" title="Go to homepage">Pythonic FP - Queues 3.0.1 documentation</a></h1>
 
         <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
     <template v-if="mode == 'light'">
@@ -123,7 +123,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installing.html">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api_pypi.html">PyPI release docs</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">pythonic-fp.circulararray API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">pythonic-fp.queues API</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Development</span></p>
 <ul>
@@ -143,10 +143,10 @@
         <div class="bodywrapper">
           <div class="body" role="main">
             
-  <section id="pythonic-fp-circulararray-api">
-<h1>pythonic-fp.circulararray API<a class="headerlink" href="#pythonic-fp-circulararray-api" title="Link to this heading">¶</a></h1>
+  <section id="pythonic-fp-queues-api">
+<h1>pythonic-fp.queues API<a class="headerlink" href="#pythonic-fp-queues-api" title="Link to this heading">¶</a></h1>
 <section id="module-pythonic_fp.queues">
-<span id="detailed-documentation"></span><h2>Detailed Documentation<a class="headerlink" href="#module-pythonic_fp.queues" title="Link to this heading">¶</a></h2>
+<span id="queues-packaage"></span><h2>Queues Packaage<a class="headerlink" href="#module-pythonic_fp.queues" title="Link to this heading">¶</a></h2>
 <p>Developer Tools - Queue based data structures</p>
 <p>These are modeled after Python builtins. The initializers take at most one
 iterable while factory functions stand in for Python syntax.</p>
@@ -174,6 +174,435 @@ iterable while factory functions stand in for Python syntax.</p>
 </ul>
 </li>
 </ul>
+<section id="module-pythonic_fp.queues.fifo">
+<span id="fifo-queue"></span><h3>FIFO Queue<a class="headerlink" href="#module-pythonic_fp.queues.fifo" title="Link to this heading">¶</a></h3>
+<p>First-In-Last-Out (FIFO) Queue</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythonic_fp.queues.fifo.FIFOQueue">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythonic_fp.queues.fifo.</span></span><span class="sig-name descname"><span class="pre">FIFOQueue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">dss</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.FIFOQueue" title="Link to this definition">¶</a></dt>
+<dd><p>FIFO Queue</p>
+<ul class="simple">
+<li><p>stateful First-In-First-Out (FIFO) data structure</p></li>
+<li><p>initial data pushed on in natural FIFO order</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.fifo.FIFOQueue.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.FIFOQueue.copy" title="Link to this definition">¶</a></dt>
+<dd><p>Return a shallow copy of the <code class="docutils literal notranslate"><span class="pre">FIFOQueue</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue" title="pythonic_fp.queues.fifo.FIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">FIFOQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.fifo.FIFOQueue.fold">
+<span class="sig-name descname"><span class="pre">fold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.FIFOQueue.fold" title="Link to this definition">¶</a></dt>
+<dd><p>Reduce with <code class="docutils literal notranslate"><span class="pre">f</span></code> with an optional initial value.</p>
+<ul class="simple">
+<li><p>folds in natural FIFO Order (oldest to newest)</p></li>
+<li><p>note that when an initial value is not given then <code class="docutils literal notranslate"><span class="pre">~L</span> <span class="pre">=</span> <span class="pre">~D</span></code></p></li>
+<li><p>if iterable empty &amp; no initial value given, return <code class="docutils literal notranslate"><span class="pre">MB()</span></code></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">T</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.fifo.FIFOQueue.map">
+<span class="sig-name descname"><span class="pre">map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.FIFOQueue.map" title="Link to this definition">¶</a></dt>
+<dd><p>Map over the <code class="docutils literal notranslate"><span class="pre">FIFOQueue</span></code>.</p>
+<ul class="simple">
+<li><p>map function <code class="docutils literal notranslate"><span class="pre">f</span></code> over the queue</p>
+<ul>
+<li><p>oldest to newest</p></li>
+<li><p>retain original order</p></li>
+</ul>
+</li>
+<li><p>returns a new instance</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue" title="pythonic_fp.queues.fifo.FIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">FIFOQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">U</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.fifo.FIFOQueue.peak_last_in">
+<span class="sig-name descname"><span class="pre">peak_last_in</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.FIFOQueue.peak_last_in" title="Link to this definition">¶</a></dt>
+<dd><p>Peak last data into <code class="docutils literal notranslate"><span class="pre">FIFOQueue</span></code>.</p>
+<ul class="simple">
+<li><p>return a maybe monad of the last item pushed to queue</p></li>
+<li><p>does not consume the data</p></li>
+<li><p>if item already popped, return <code class="docutils literal notranslate"><span class="pre">MB()</span></code></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.fifo.FIFOQueue.peak_next_out">
+<span class="sig-name descname"><span class="pre">peak_next_out</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.FIFOQueue.peak_next_out" title="Link to this definition">¶</a></dt>
+<dd><p>Peak next data out of <code class="docutils literal notranslate"><span class="pre">FIFOQueue</span></code>.</p>
+<ul class="simple">
+<li><p>returns a maybe monad of the next item to be popped from the queue.</p></li>
+<li><p>does not consume it the item</p></li>
+<li><p>returns <code class="docutils literal notranslate"><span class="pre">MB()</span></code> if queue is empty</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.fifo.FIFOQueue.pop">
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.FIFOQueue.pop" title="Link to this definition">¶</a></dt>
+<dd><p>Pop data from <code class="docutils literal notranslate"><span class="pre">FIFOQueue</span></code>.</p>
+<ul class="simple">
+<li><p>pop item off queue, return item in a maybe monad</p></li>
+<li><p>returns an empty <code class="docutils literal notranslate"><span class="pre">MB()</span></code> if queue is empty</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.fifo.FIFOQueue.push">
+<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.FIFOQueue.push" title="Link to this definition">¶</a></dt>
+<dd><p>Push data onto <code class="docutils literal notranslate"><span class="pre">FIFOQueue</span></code>, does not return a value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pythonic_fp.queues.fifo.fifo_queue">
+<span class="sig-prename descclassname"><span class="pre">pythonic_fp.queues.fifo.</span></span><span class="sig-name descname"><span class="pre">fifo_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.fifo_queue" title="Link to this definition">¶</a></dt>
+<dd><p>Create a FIFOQueue from the arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue" title="pythonic_fp.queues.fifo.FIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">FIFOQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">D</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pythonic_fp.queues.lifo">
+<span id="lifo-queue"></span><h3>LIFO Queue<a class="headerlink" href="#module-pythonic_fp.queues.lifo" title="Link to this heading">¶</a></h3>
+<p>### Last-In-Last-Out (LIFO) Queue</p>
+<ul class="simple">
+<li><p>stateful LIFO queue data structures with amortized O(1) pushes and pops</p></li>
+<li><p>obtaining length (number of elements) of a queue is an O(1) operation</p></li>
+<li><p>implemented in a “has-a” relationship with a Python list based circular array</p></li>
+<li><p>will resize itself larger as needed</p></li>
+</ul>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythonic_fp.queues.lifo.LIFOQueue">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythonic_fp.queues.lifo.</span></span><span class="sig-name descname"><span class="pre">LIFOQueue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">dss</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.lifo.LIFOQueue" title="Link to this definition">¶</a></dt>
+<dd><p>LIFO Queue.</p>
+<ul class="simple">
+<li><p>stateful Last-In-First-Out (LIFO) data structure</p></li>
+<li><p>initial data pushed on in natural LIFO order</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.lifo.LIFOQueue.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.lifo.LIFOQueue.copy" title="Link to this definition">¶</a></dt>
+<dd><p>Return a shallow copy of the <code class="docutils literal notranslate"><span class="pre">LIFOQueue</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.lifo.LIFOQueue" title="pythonic_fp.queues.lifo.LIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">LIFOQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.lifo.LIFOQueue.fold">
+<span class="sig-name descname"><span class="pre">fold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.lifo.LIFOQueue.fold" title="Link to this definition">¶</a></dt>
+<dd><p>Reduce with <code class="docutils literal notranslate"><span class="pre">f</span></code> with an optional initial value.</p>
+<ul class="simple">
+<li><p>folds in natural LIFO Order (newest to oldest)</p></li>
+<li><p>note that when an initial value is not given then <code class="docutils literal notranslate"><span class="pre">~T</span> <span class="pre">=</span> <span class="pre">~D</span></code></p></li>
+<li><p>if iterable empty &amp; no initial value given, return <code class="docutils literal notranslate"><span class="pre">MB()</span></code></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">T</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.lifo.LIFOQueue.map">
+<span class="sig-name descname"><span class="pre">map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.lifo.LIFOQueue.map" title="Link to this definition">¶</a></dt>
+<dd><p>Map Over the <code class="docutils literal notranslate"><span class="pre">LIFOQueue</span></code>.</p>
+<ul class="simple">
+<li><p>map the function <code class="docutils literal notranslate"><span class="pre">f</span></code> over the queue</p>
+<ul>
+<li><p>newest to oldest</p></li>
+<li><p>retain original order</p></li>
+</ul>
+</li>
+<li><p>returns a new instance</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.lifo.LIFOQueue" title="pythonic_fp.queues.lifo.LIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">LIFOQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">U</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.lifo.LIFOQueue.peak">
+<span class="sig-name descname"><span class="pre">peak</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.lifo.LIFOQueue.peak" title="Link to this definition">¶</a></dt>
+<dd><p>Peak next data out of <code class="docutils literal notranslate"><span class="pre">LIFOQueue</span></code>.</p>
+<ul class="simple">
+<li><p>return a maybe monad of the next item to be popped from the queue</p></li>
+<li><p>does not consume the item</p></li>
+<li><p>returns <code class="docutils literal notranslate"><span class="pre">MB()</span></code> if queue is empty</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.lifo.LIFOQueue.pop">
+<span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.lifo.LIFOQueue.pop" title="Link to this definition">¶</a></dt>
+<dd><p>Pop data from <code class="docutils literal notranslate"><span class="pre">LIFOQueue</span></code>.</p>
+<ul class="simple">
+<li><p>pop item off of queue, return item in a maybe monad</p></li>
+<li><p>returns an empty <code class="docutils literal notranslate"><span class="pre">MB()</span></code> if queue is empty</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.lifo.LIFOQueue.push">
+<span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.lifo.LIFOQueue.push" title="Link to this definition">¶</a></dt>
+<dd><p>Push data onto <code class="docutils literal notranslate"><span class="pre">LIFOQueue</span></code>, does not return a value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pythonic_fp.queues.lifo.lifo_queue">
+<span class="sig-prename descclassname"><span class="pre">pythonic_fp.queues.lifo.</span></span><span class="sig-name descname"><span class="pre">lifo_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.lifo.lifo_queue" title="Link to this definition">¶</a></dt>
+<dd><p>Create a LIFOQueue from the arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.lifo.LIFOQueue" title="pythonic_fp.queues.lifo.LIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">LIFOQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">D</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-pythonic_fp.queues.de">
+<span id="double-ended-queue"></span><h3>Double Ended Queue<a class="headerlink" href="#module-pythonic_fp.queues.de" title="Link to this heading">¶</a></h3>
+<p>### Double-Ended (DE) Queue</p>
+<ul class="simple">
+<li><p>stateful DE queue data structures with amortized O(1) pushes and pops each end</p></li>
+<li><p>obtaining length (number of elements) of a queue is an O(1) operation</p></li>
+<li><p>implemented in a “has-a” relationship with a Python list based circular array</p></li>
+<li><p>will resize itself larger as needed</p></li>
+</ul>
+<dl class="py class">
+<dt class="sig sig-object py" id="pythonic_fp.queues.de.DEQueue">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythonic_fp.queues.de.</span></span><span class="sig-name descname"><span class="pre">DEQueue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">dss</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.de.DEQueue" title="Link to this definition">¶</a></dt>
+<dd><p>Double Ended Queue</p>
+<ul class="simple">
+<li><p>stateful Double-Ended (DEQueue) data structure</p></li>
+<li><p>order of initial data retained, as if pushed on from the right</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.de.DEQueue.copy">
+<span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.de.DEQueue.copy" title="Link to this definition">¶</a></dt>
+<dd><p>Return a shallow copy of the <code class="docutils literal notranslate"><span class="pre">DEQueue</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue" title="pythonic_fp.queues.de.DEQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">DEQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.de.DEQueue.foldl">
+<span class="sig-name descname"><span class="pre">foldl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.de.DEQueue.foldl" title="Link to this definition">¶</a></dt>
+<dd><p>Reduce left to right with <code class="docutils literal notranslate"><span class="pre">f</span></code> using an optional initial value.</p>
+<ul class="simple">
+<li><p>note that when an initial value is not given then <code class="docutils literal notranslate"><span class="pre">~L</span> <span class="pre">=</span> <span class="pre">~D</span></code></p></li>
+<li><p>if iterable empty &amp; no initial value given, return <code class="docutils literal notranslate"><span class="pre">MB()</span></code></p></li>
+<li><p>traditional FP type order given for function <code class="docutils literal notranslate"><span class="pre">f</span></code></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">L</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.de.DEQueue.foldr">
+<span class="sig-name descname"><span class="pre">foldr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.de.DEQueue.foldr" title="Link to this definition">¶</a></dt>
+<dd><p>Reduce right to left with <code class="docutils literal notranslate"><span class="pre">f</span></code> using an optional initial value.</p>
+<ul class="simple">
+<li><p>note that when an initial value is not given then <code class="docutils literal notranslate"><span class="pre">~R</span> <span class="pre">=</span> <span class="pre">~D</span></code></p></li>
+<li><p>if iterable empty &amp; no initial value given, return <code class="docutils literal notranslate"><span class="pre">MB()</span></code></p></li>
+<li><p>traditional FP type order given for function <code class="docutils literal notranslate"><span class="pre">f</span></code></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">R</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.de.DEQueue.map">
+<span class="sig-name descname"><span class="pre">map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.de.DEQueue.map" title="Link to this definition">¶</a></dt>
+<dd><p>Map a function over <code class="docutils literal notranslate"><span class="pre">DEQueue</span></code>.</p>
+<ul class="simple">
+<li><p>map the function <code class="docutils literal notranslate"><span class="pre">f</span></code> over the <code class="docutils literal notranslate"><span class="pre">DEQueue</span></code></p>
+<ul>
+<li><p>left to right</p></li>
+<li><p>retain original order</p></li>
+</ul>
+</li>
+<li><p>returns a new instance</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue" title="pythonic_fp.queues.de.DEQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">DEQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">U</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.de.DEQueue.peakl">
+<span class="sig-name descname"><span class="pre">peakl</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.de.DEQueue.peakl" title="Link to this definition">¶</a></dt>
+<dd><p>Peak left side of <code class="docutils literal notranslate"><span class="pre">DEQueue</span></code>.</p>
+<ul class="simple">
+<li><p>return left most value in a maybe monad</p></li>
+<li><p>does not consume the item</p></li>
+<li><p>returns an empty <code class="docutils literal notranslate"><span class="pre">MB()</span></code> if queue is empty</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.de.DEQueue.peakr">
+<span class="sig-name descname"><span class="pre">peakr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.de.DEQueue.peakr" title="Link to this definition">¶</a></dt>
+<dd><p>Peak right side of <code class="docutils literal notranslate"><span class="pre">DEQueue</span></code>.</p>
+<ul class="simple">
+<li><p>return right most value in a maybe monad</p></li>
+<li><p>does not consume the item</p></li>
+<li><p>returns an empty <code class="docutils literal notranslate"><span class="pre">MB()</span></code> if queue is empty</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.de.DEQueue.popl">
+<span class="sig-name descname"><span class="pre">popl</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.de.DEQueue.popl" title="Link to this definition">¶</a></dt>
+<dd><p>Pop Data from left side (front) of <code class="docutils literal notranslate"><span class="pre">DEQueue</span></code>.</p>
+<ul class="simple">
+<li><p>pop left most item off of queue, return item in a maybe monad</p></li>
+<li><p>returns an empty <code class="docutils literal notranslate"><span class="pre">MB()</span></code> if queue is empty</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.de.DEQueue.popr">
+<span class="sig-name descname"><span class="pre">popr</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.de.DEQueue.popr" title="Link to this definition">¶</a></dt>
+<dd><p>Pop Data from right side (rear) of <code class="docutils literal notranslate"><span class="pre">DEQueue</span></code>.</p>
+<ul class="simple">
+<li><p>pop right most item off of queue, return item in a maybe monad</p></li>
+<li><p>returns an empty <code class="docutils literal notranslate"><span class="pre">MB()</span></code> if queue is empty</p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.de.DEQueue.pushl">
+<span class="sig-name descname"><span class="pre">pushl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.de.DEQueue.pushl" title="Link to this definition">¶</a></dt>
+<dd><p>Push data onto left side (front) of <code class="docutils literal notranslate"><span class="pre">DEQueue</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="pythonic_fp.queues.de.DEQueue.pushr">
+<span class="sig-name descname"><span class="pre">pushr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.de.DEQueue.pushr" title="Link to this definition">¶</a></dt>
+<dd><p>Push data onto right side (rear) of <code class="docutils literal notranslate"><span class="pre">DEQueue</span></code>.
+Like a Python List, does not return a value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="pythonic_fp.queues.de.de_queue">
+<span class="sig-prename descclassname"><span class="pre">pythonic_fp.queues.de.</span></span><span class="sig-name descname"><span class="pre">de_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.de.de_queue" title="Link to this definition">¶</a></dt>
+<dd><p>Create a <code class="docutils literal notranslate"><span class="pre">DEQueue</span></code> from the function arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue" title="pythonic_fp.queues.de.DEQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">DEQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">D</span></code>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
 </section>
 </section>
 
@@ -191,8 +620,54 @@ iterable while factory functions stand in for Python syntax.</p>
             <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
             <div class="page_toc">
                 <ul>
-<li><a class="reference internal" href="#">pythonic-fp.circulararray API</a><ul>
-<li><a class="reference internal" href="#module-pythonic_fp.queues">Detailed Documentation</a></li>
+<li><a class="reference internal" href="#">pythonic-fp.queues API</a><ul>
+<li><a class="reference internal" href="#module-pythonic_fp.queues">Queues Packaage</a><ul>
+<li><a class="reference internal" href="#module-pythonic_fp.queues.fifo">FIFO Queue</a><ul>
+<li><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue"><code class="docutils literal notranslate"><span class="pre">FIFOQueue</span></code></a><ul>
+<li><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue.copy"><code class="docutils literal notranslate"><span class="pre">FIFOQueue.copy()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue.fold"><code class="docutils literal notranslate"><span class="pre">FIFOQueue.fold()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue.map"><code class="docutils literal notranslate"><span class="pre">FIFOQueue.map()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue.peak_last_in"><code class="docutils literal notranslate"><span class="pre">FIFOQueue.peak_last_in()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue.peak_next_out"><code class="docutils literal notranslate"><span class="pre">FIFOQueue.peak_next_out()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue.pop"><code class="docutils literal notranslate"><span class="pre">FIFOQueue.pop()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue.push"><code class="docutils literal notranslate"><span class="pre">FIFOQueue.push()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pythonic_fp.queues.fifo.fifo_queue"><code class="docutils literal notranslate"><span class="pre">fifo_queue()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-pythonic_fp.queues.lifo">LIFO Queue</a><ul>
+<li><a class="reference internal" href="#pythonic_fp.queues.lifo.LIFOQueue"><code class="docutils literal notranslate"><span class="pre">LIFOQueue</span></code></a><ul>
+<li><a class="reference internal" href="#pythonic_fp.queues.lifo.LIFOQueue.copy"><code class="docutils literal notranslate"><span class="pre">LIFOQueue.copy()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.lifo.LIFOQueue.fold"><code class="docutils literal notranslate"><span class="pre">LIFOQueue.fold()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.lifo.LIFOQueue.map"><code class="docutils literal notranslate"><span class="pre">LIFOQueue.map()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.lifo.LIFOQueue.peak"><code class="docutils literal notranslate"><span class="pre">LIFOQueue.peak()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.lifo.LIFOQueue.pop"><code class="docutils literal notranslate"><span class="pre">LIFOQueue.pop()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.lifo.LIFOQueue.push"><code class="docutils literal notranslate"><span class="pre">LIFOQueue.push()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pythonic_fp.queues.lifo.lifo_queue"><code class="docutils literal notranslate"><span class="pre">lifo_queue()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#module-pythonic_fp.queues.de">Double Ended Queue</a><ul>
+<li><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue"><code class="docutils literal notranslate"><span class="pre">DEQueue</span></code></a><ul>
+<li><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue.copy"><code class="docutils literal notranslate"><span class="pre">DEQueue.copy()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue.foldl"><code class="docutils literal notranslate"><span class="pre">DEQueue.foldl()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue.foldr"><code class="docutils literal notranslate"><span class="pre">DEQueue.foldr()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue.map"><code class="docutils literal notranslate"><span class="pre">DEQueue.map()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue.peakl"><code class="docutils literal notranslate"><span class="pre">DEQueue.peakl()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue.peakr"><code class="docutils literal notranslate"><span class="pre">DEQueue.peakr()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue.popl"><code class="docutils literal notranslate"><span class="pre">DEQueue.popl()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue.popr"><code class="docutils literal notranslate"><span class="pre">DEQueue.popr()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue.pushl"><code class="docutils literal notranslate"><span class="pre">DEQueue.pushl()</span></code></a></li>
+<li><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue.pushr"><code class="docutils literal notranslate"><span class="pre">DEQueue.pushr()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pythonic_fp.queues.de.de_queue"><code class="docutils literal notranslate"><span class="pre">de_queue()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

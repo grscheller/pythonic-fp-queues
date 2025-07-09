@@ -15,7 +15,6 @@ release = '3.0.1'
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
-    'sphinx_toolbox.more_autodoc',
     'sphinx.ext.autodoc',
     'sphinx_autodoc_typehints',
 ]
@@ -27,11 +26,14 @@ exclude_patterns: list[str] = []
 autoclass_content = 'both'
 
 # -- Options for sphinx_autodoc_typehints
-always_use_bars_union = True  # Not working
-# simplify_optional_unions = False
-# typehints_document_rtype_none = False
-# typehints_use_signatures = True
-# typehints_use_signatures_return = True
+always_use_bars_union = True
+typehints_fully_qualified = False
+always_document_param_types = True
+typehints_use_rtype = True
+simplify_optional_unions = False
+typehints_document_rtype_none = True
+typehints_use_signatures = True
+typehints_use_signatures_return = True
 
 # -- Options for sphinx_toolbox.more_autodoc.typevars
 all_typevars = True

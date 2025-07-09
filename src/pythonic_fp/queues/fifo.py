@@ -20,7 +20,7 @@ from collections.abc import Callable, Iterable, Iterator, Sequence
 from typing import Never, overload, TypeVar
 
 from pythonic_fp.circulararray import CA
-from pythonic_fp.containers.maybe import MayBe as MB
+from pythonic_fp.containers.maybe import MayBe
 
 
 __all__ = ['FIFOQueue', 'fifo_queue']
@@ -29,12 +29,11 @@ D = TypeVar('D')
 
 
 class FIFOQueue[D]:
-    """FIFO Queue
-
-    - stateful First-In-First-Out (FIFO) data structure
-    - initial data pushed on in natural FIFO order
     """
+    Stateful First-In-First-Out (FIFO) data structure. Initial data
+    pushed on in natural FIFO order.
 
+    """
     __slots__ = ('_ca',)
 
     T = TypeVar('T')
@@ -81,70 +80,63 @@ class FIFOQueue[D]:
         return '<< ' + ' < '.join(map(str, self)) + ' <<'
 
     def copy(self) -> FIFOQueue[D]:
-        """Return a shallow copy of the ``FIFOQueue``."""
+        """Copy.
+
+        :returns: Shallow copy of the FIFOQueue
+        """
         return FIFOQueue(self._ca)
 
     def push(self, *ds: D) -> None:
-        """Push data onto ``FIFOQueue``, does not return a value."""
+        """Push data an item onto FIFOQueue."""
         self._ca.pushr(*ds)
 
-    def pop(self) -> MB[D]:
-        """Pop data from ``FIFOQueue``.
+    def pop(self) -> MayBe[D]:
+        """Pop next item from FIFOQueue.
 
-        - pop item off queue, return item in a maybe monad
-        - returns an empty ``MB()`` if queue is empty
+        :returns: MayBe of next item in queue
         """
         if self._ca:
-            return MB(self._ca.popl())
-        return MB()
+            return MayBe(self._ca.popl())
+        return MayBe()
 
-    def peak_last_in(self) -> MB[D]:
-        """Peak last data into ``FIFOQueue``.
+    def peak_last_in(self) -> MayBe[D]:
+        """Peak at end. Does not consume data.
 
-        - return a maybe monad of the last item pushed to queue
-        - does not consume the data
-        - if item already popped, return ``MB()``
+        :returns: MayBe of last item in queue
         """
         if self._ca:
-            return MB(self._ca[-1])
-        return MB()
+            return MayBe(self._ca[-1])
+        return MayBe()
 
-    def peak_next_out(self) -> MB[D]:
-        """Peak next data out of ``FIFOQueue``.
+    def peak_next_out(self) -> MayBe[D]:
+        """Peak at beginning. Does not consume data.
 
-        - returns a maybe monad of the next item to be popped from the queue.
-        - does not consume it the item
-        - returns ``MB()`` if queue is empty
+        :returns:  MayBe of next item in queue
         """
         if self._ca:
-            return MB(self._ca[0])
-        return MB()
+            return MayBe(self._ca[0])
+        return MayBe()
 
-    def fold[T](self, f: Callable[[T, D], T], initial: T | None = None, /) -> MB[T]:
-        """Reduce with ``f`` with an optional initial value.
+    def fold[T](self, f: Callable[[T, D], T], initial: T | None = None, /) -> MayBe[T]:
+        """
+        Folds in natural FIFO Order (oldest to newest).
 
-        - folds in natural FIFO Order (oldest to newest)
-        - note that when an initial value is not given then ``~L = ~D``
-        - if iterable empty & no initial value given, return ``MB()``
+        :returns: Reduced value with f and optional initial value.
         """
         if initial is None:
             if not self._ca:
-                return MB()
-        return MB(self._ca.foldl(f, initial))
+                return MayBe()
+        return MayBe(self._ca.foldl(f, initial))
 
     def map[U](self, f: Callable[[D], U], /) -> FIFOQueue[U]:
-        """Map over the ``FIFOQueue``.
+        """
+        Map f over the FIFOQueue, oldest to newest.
 
-        - map function ``f`` over the queue
-
-          - oldest to newest
-          - retain original order
-
-        - returns a new instance
+        :returns: New FIFOQueue in original order.
         """
         return FIFOQueue(map(f, self._ca))
 
 
 def fifo_queue[D](*ds: D) -> FIFOQueue[D]:
-    """Create a FIFOQueue from the arguments."""
+    """FIFOQueue factory function."""
     return FIFOQueue(ds)

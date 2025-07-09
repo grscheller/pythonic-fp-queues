@@ -8,7 +8,6 @@
     <title>pythonic-fp.queues API &#8212; Pythonic FP - Queues 3.0.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
     <link rel="stylesheet" type="text/css" href="_static/basic_mod.css?v=9b2032db" />
-    <link rel="stylesheet" type="text/css" href="_static/css/sphinx-toolbox.css" />
     <script src="_static/documentation_options.js?v=08bfcbec"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
@@ -147,51 +146,50 @@
 <h1>pythonic-fp.queues API<a class="headerlink" href="#pythonic-fp-queues-api" title="Link to this heading">¶</a></h1>
 <section id="module-pythonic_fp.queues">
 <span id="queues-packaage"></span><h2>Queues Packaage<a class="headerlink" href="#module-pythonic_fp.queues" title="Link to this heading">¶</a></h2>
-<p>Developer Tools - Queue based data structures</p>
-<p>These are modeled after Python builtins. The initializers take at most one
-iterable while factory functions stand in for Python syntax.</p>
-<p>Queue types:</p>
+<section id="queue-based-data-structures">
+<h3>Queue based data structures<a class="headerlink" href="#queue-based-data-structures" title="Link to this heading">¶</a></h3>
+<p>Modeled after Python builtins. Initializers take 0 or 1 iterables.
+Factory functions take an arbitrary number of arguments.</p>
+<section id="queue-types">
+<h4>Queue Types<a class="headerlink" href="#queue-types" title="Link to this heading">¶</a></h4>
 <ul class="simple">
-<li><p><em>class</em> dtools.queues.fifo.FIFOQueue: First-In-First-Out Queue</p></li>
-<li><p><em>class</em> dtools.queues.lifo.LIFOQueue: Last-In-First-Out Queue</p></li>
-<li><p><em>class</em> dtools.queues.de.DEQueue: Double-Ended Queue</p></li>
+<li><p>FIFOQueue (First In First Out Queue)</p></li>
+<li><p>LIFOQueue (Last In First Out Queue)</p></li>
+<li><p>DEQueue (Double Ended Queue)</p></li>
 </ul>
-<p>Create queues from specific values:</p>
+</section>
+<section id="factory-functions">
+<h4>Factory Functions<a class="headerlink" href="#factory-functions" title="Link to this heading">¶</a></h4>
 <ul class="simple">
-<li><p><em>function</em> dtools.queues.fifo.fifo_queue: Create a FIFOQueue</p>
-<ul>
-<li><p>from function’s arguments pushed on in natural FIFO order</p></li>
+<li><p>fifo_queue</p></li>
+<li><p>lifo_queue</p></li>
+<li><p>de_queue</p></li>
 </ul>
-</li>
-<li><p><em>function</em> dtools.queues.lifo.lifo_queue: Create a LIFOQueue</p>
-<ul>
-<li><p>from function’s arguments pushed on in natural LIFO order</p></li>
-</ul>
-</li>
-<li><p><em>function</em> dtools.queues.de.de_queue: Create a DEQueue</p>
-<ul>
-<li><p>from function’s arguments pushed on from the right</p></li>
-</ul>
-</li>
-</ul>
+</section>
+</section>
 <section id="module-pythonic_fp.queues.fifo">
 <span id="fifo-queue"></span><h3>FIFO Queue<a class="headerlink" href="#module-pythonic_fp.queues.fifo" title="Link to this heading">¶</a></h3>
 <p>First-In-Last-Out (FIFO) Queue</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="pythonic_fp.queues.fifo.FIFOQueue">
 <em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">pythonic_fp.queues.fifo.</span></span><span class="sig-name descname"><span class="pre">FIFOQueue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">dss</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.FIFOQueue" title="Link to this definition">¶</a></dt>
-<dd><p>FIFO Queue</p>
-<ul class="simple">
-<li><p>stateful First-In-First-Out (FIFO) data structure</p></li>
-<li><p>initial data pushed on in natural FIFO order</p></li>
-</ul>
+<dd><p>Stateful First-In-First-Out (FIFO) data structure. Initial data
+pushed on in natural FIFO order.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dss</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span>)</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="pythonic_fp.queues.fifo.FIFOQueue.copy">
 <span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.FIFOQueue.copy" title="Link to this definition">¶</a></dt>
-<dd><p>Return a shallow copy of the <code class="docutils literal notranslate"><span class="pre">FIFOQueue</span></code>.</p>
+<dd><p>Copy.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue" title="pythonic_fp.queues.fifo.FIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">FIFOQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue" title="pythonic_fp.queues.fifo.FIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">FIFOQueue</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Shallow copy of the FIFOQueue</p>
 </dd>
 </dl>
 </dd></dl>
@@ -199,15 +197,19 @@ iterable while factory functions stand in for Python syntax.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pythonic_fp.queues.fifo.FIFOQueue.fold">
 <span class="sig-name descname"><span class="pre">fold</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">initial</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.FIFOQueue.fold" title="Link to this definition">¶</a></dt>
-<dd><p>Reduce with <code class="docutils literal notranslate"><span class="pre">f</span></code> with an optional initial value.</p>
-<ul class="simple">
-<li><p>folds in natural FIFO Order (oldest to newest)</p></li>
-<li><p>note that when an initial value is not given then <code class="docutils literal notranslate"><span class="pre">~L</span> <span class="pre">=</span> <span class="pre">~D</span></code></p></li>
-<li><p>if iterable empty &amp; no initial value given, return <code class="docutils literal notranslate"><span class="pre">MB()</span></code></p></li>
-</ul>
+<dd><p>Folds in natural FIFO Order (oldest to newest).</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">T</span></code>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>)]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Reduced value with f and optional initial value.</p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>), <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)], <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>)]</span>)</p></li>
+<li><p><strong>initial</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>) | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>)</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
@@ -215,19 +217,16 @@ iterable while factory functions stand in for Python syntax.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pythonic_fp.queues.fifo.FIFOQueue.map">
 <span class="sig-name descname"><span class="pre">map</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">f</span></span></em>, <em class="sig-param"><span class="positional-only-separator o"><abbr title="Positional-only parameter separator (PEP 570)"><span class="pre">/</span></abbr></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.FIFOQueue.map" title="Link to this definition">¶</a></dt>
-<dd><p>Map over the <code class="docutils literal notranslate"><span class="pre">FIFOQueue</span></code>.</p>
-<ul class="simple">
-<li><p>map function <code class="docutils literal notranslate"><span class="pre">f</span></code> over the queue</p>
-<ul>
-<li><p>oldest to newest</p></li>
-<li><p>retain original order</p></li>
-</ul>
-</li>
-<li><p>returns a new instance</p></li>
-</ul>
+<dd><p>Map f over the FIFOQueue, oldest to newest.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue" title="pythonic_fp.queues.fifo.FIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">FIFOQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">U</span></code>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue" title="pythonic_fp.queues.fifo.FIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">FIFOQueue</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">U</span></code>)]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New FIFOQueue in original order.</p>
+</dd>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)], <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">U</span></code>)]</span>)</p>
 </dd>
 </dl>
 </dd></dl>
@@ -235,15 +234,13 @@ iterable while factory functions stand in for Python syntax.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pythonic_fp.queues.fifo.FIFOQueue.peak_last_in">
 <span class="sig-name descname"><span class="pre">peak_last_in</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.FIFOQueue.peak_last_in" title="Link to this definition">¶</a></dt>
-<dd><p>Peak last data into <code class="docutils literal notranslate"><span class="pre">FIFOQueue</span></code>.</p>
-<ul class="simple">
-<li><p>return a maybe monad of the last item pushed to queue</p></li>
-<li><p>does not consume the data</p></li>
-<li><p>if item already popped, return <code class="docutils literal notranslate"><span class="pre">MB()</span></code></p></li>
-</ul>
+<dd><p>Peak at end. Does not consume data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>MayBe of last item in queue</p>
 </dd>
 </dl>
 </dd></dl>
@@ -251,15 +248,13 @@ iterable while factory functions stand in for Python syntax.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pythonic_fp.queues.fifo.FIFOQueue.peak_next_out">
 <span class="sig-name descname"><span class="pre">peak_next_out</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.FIFOQueue.peak_next_out" title="Link to this definition">¶</a></dt>
-<dd><p>Peak next data out of <code class="docutils literal notranslate"><span class="pre">FIFOQueue</span></code>.</p>
-<ul class="simple">
-<li><p>returns a maybe monad of the next item to be popped from the queue.</p></li>
-<li><p>does not consume it the item</p></li>
-<li><p>returns <code class="docutils literal notranslate"><span class="pre">MB()</span></code> if queue is empty</p></li>
-</ul>
+<dd><p>Peak at beginning. Does not consume data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>MayBe of next item in queue</p>
 </dd>
 </dl>
 </dd></dl>
@@ -267,14 +262,13 @@ iterable while factory functions stand in for Python syntax.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pythonic_fp.queues.fifo.FIFOQueue.pop">
 <span class="sig-name descname"><span class="pre">pop</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.FIFOQueue.pop" title="Link to this definition">¶</a></dt>
-<dd><p>Pop data from <code class="docutils literal notranslate"><span class="pre">FIFOQueue</span></code>.</p>
-<ul class="simple">
-<li><p>pop item off queue, return item in a maybe monad</p></li>
-<li><p>returns an empty <code class="docutils literal notranslate"><span class="pre">MB()</span></code> if queue is empty</p></li>
-</ul>
+<dd><p>Pop next item from FIFOQueue.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span></p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>MayBe of next item in queue</p>
 </dd>
 </dl>
 </dd></dl>
@@ -282,10 +276,13 @@ iterable while factory functions stand in for Python syntax.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="pythonic_fp.queues.fifo.FIFOQueue.push">
 <span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.FIFOQueue.push" title="Link to this definition">¶</a></dt>
-<dd><p>Push data onto <code class="docutils literal notranslate"><span class="pre">FIFOQueue</span></code>, does not return a value.</p>
+<dd><p>Push data an item onto FIFOQueue.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ds</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)</span>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -295,10 +292,13 @@ iterable while factory functions stand in for Python syntax.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="pythonic_fp.queues.fifo.fifo_queue">
 <span class="sig-prename descclassname"><span class="pre">pythonic_fp.queues.fifo.</span></span><span class="sig-name descname"><span class="pre">fifo_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.fifo.fifo_queue" title="Link to this definition">¶</a></dt>
-<dd><p>Create a FIFOQueue from the arguments.</p>
+<dd><p>FIFOQueue factory function.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue" title="pythonic_fp.queues.fifo.FIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">FIFOQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">D</span></code>]</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ds</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)</span>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue" title="pythonic_fp.queues.fifo.FIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">FIFOQueue</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -321,13 +321,18 @@ iterable while factory functions stand in for Python syntax.</p>
 <li><p>stateful Last-In-First-Out (LIFO) data structure</p></li>
 <li><p>initial data pushed on in natural LIFO order</p></li>
 </ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dss</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span>)</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="pythonic_fp.queues.lifo.LIFOQueue.copy">
 <span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.lifo.LIFOQueue.copy" title="Link to this definition">¶</a></dt>
 <dd><p>Return a shallow copy of the <code class="docutils literal notranslate"><span class="pre">LIFOQueue</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.lifo.LIFOQueue" title="pythonic_fp.queues.lifo.LIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">LIFOQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#pythonic_fp.queues.lifo.LIFOQueue" title="pythonic_fp.queues.lifo.LIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">LIFOQueue</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -342,8 +347,14 @@ iterable while factory functions stand in for Python syntax.</p>
 <li><p>if iterable empty &amp; no initial value given, return <code class="docutils literal notranslate"><span class="pre">MB()</span></code></p></li>
 </ul>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">T</span></code>]</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>), <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)], <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>)]</span>)</p></li>
+<li><p><strong>initial</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>) | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">T</span></code>)]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -362,8 +373,11 @@ iterable while factory functions stand in for Python syntax.</p>
 <li><p>returns a new instance</p></li>
 </ul>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.lifo.LIFOQueue" title="pythonic_fp.queues.lifo.LIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">LIFOQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">U</span></code>]</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)], <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">U</span></code>)]</span>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#pythonic_fp.queues.lifo.LIFOQueue" title="pythonic_fp.queues.lifo.LIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">LIFOQueue</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">U</span></code>)]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -379,7 +393,7 @@ iterable while factory functions stand in for Python syntax.</p>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -394,7 +408,7 @@ iterable while factory functions stand in for Python syntax.</p>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -404,8 +418,11 @@ iterable while factory functions stand in for Python syntax.</p>
 <span class="sig-name descname"><span class="pre">push</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.lifo.LIFOQueue.push" title="Link to this definition">¶</a></dt>
 <dd><p>Push data onto <code class="docutils literal notranslate"><span class="pre">LIFOQueue</span></code>, does not return a value.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ds</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)</span>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -417,8 +434,11 @@ iterable while factory functions stand in for Python syntax.</p>
 <span class="sig-prename descclassname"><span class="pre">pythonic_fp.queues.lifo.</span></span><span class="sig-name descname"><span class="pre">lifo_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.lifo.lifo_queue" title="Link to this definition">¶</a></dt>
 <dd><p>Create a LIFOQueue from the arguments.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.lifo.LIFOQueue" title="pythonic_fp.queues.lifo.LIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">LIFOQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">D</span></code>]</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ds</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)</span>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#pythonic_fp.queues.lifo.LIFOQueue" title="pythonic_fp.queues.lifo.LIFOQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">LIFOQueue</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -441,13 +461,18 @@ iterable while factory functions stand in for Python syntax.</p>
 <li><p>stateful Double-Ended (DEQueue) data structure</p></li>
 <li><p>order of initial data retained, as if pushed on from the right</p></li>
 </ul>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>dss</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Iterable</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span>)</p>
+</dd>
+</dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="pythonic_fp.queues.de.DEQueue.copy">
 <span class="sig-name descname"><span class="pre">copy</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.de.DEQueue.copy" title="Link to this definition">¶</a></dt>
 <dd><p>Return a shallow copy of the <code class="docutils literal notranslate"><span class="pre">DEQueue</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue" title="pythonic_fp.queues.de.DEQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">DEQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue" title="pythonic_fp.queues.de.DEQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">DEQueue</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -462,8 +487,14 @@ iterable while factory functions stand in for Python syntax.</p>
 <li><p>traditional FP type order given for function <code class="docutils literal notranslate"><span class="pre">f</span></code></p></li>
 </ul>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">L</span></code>]</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">L</span></code>), <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)], <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">L</span></code>)]</span>)</p></li>
+<li><p><strong>initial</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">L</span></code>) | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">L</span></code>)]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -478,8 +509,14 @@ iterable while factory functions stand in for Python syntax.</p>
 <li><p>traditional FP type order given for function <code class="docutils literal notranslate"><span class="pre">f</span></code></p></li>
 </ul>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">R</span></code>]</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>f</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>), <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">R</span></code>)], <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">R</span></code>)]</span>)</p></li>
+<li><p><strong>initial</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">R</span></code>) | <code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">R</span></code>)]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -498,8 +535,11 @@ iterable while factory functions stand in for Python syntax.</p>
 <li><p>returns a new instance</p></li>
 </ul>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue" title="pythonic_fp.queues.de.DEQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">DEQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">U</span></code>]</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>f</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">Callable</span></code>[[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)], <code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">U</span></code>)]</span>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue" title="pythonic_fp.queues.de.DEQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">DEQueue</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">U</span></code>)]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -515,7 +555,7 @@ iterable while factory functions stand in for Python syntax.</p>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -531,7 +571,7 @@ iterable while factory functions stand in for Python syntax.</p>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -546,7 +586,7 @@ iterable while factory functions stand in for Python syntax.</p>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -561,7 +601,7 @@ iterable while factory functions stand in for Python syntax.</p>
 </ul>
 <dl class="field-list simple">
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-data docutils literal notranslate"><span class="pre">~D</span></code>]</p>
+<dd class="field-odd"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">MayBe</span></code>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -571,8 +611,11 @@ iterable while factory functions stand in for Python syntax.</p>
 <span class="sig-name descname"><span class="pre">pushl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.de.DEQueue.pushl" title="Link to this definition">¶</a></dt>
 <dd><p>Push data onto left side (front) of <code class="docutils literal notranslate"><span class="pre">DEQueue</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ds</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)</span>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -583,8 +626,11 @@ iterable while factory functions stand in for Python syntax.</p>
 <dd><p>Push data onto right side (rear) of <code class="docutils literal notranslate"><span class="pre">DEQueue</span></code>.
 Like a Python List, does not return a value.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ds</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)</span>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -596,8 +642,11 @@ Like a Python List, does not return a value.</p>
 <span class="sig-prename descclassname"><span class="pre">pythonic_fp.queues.de.</span></span><span class="sig-name descname"><span class="pre">de_queue</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">ds</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#pythonic_fp.queues.de.de_queue" title="Link to this definition">¶</a></dt>
 <dd><p>Create a <code class="docutils literal notranslate"><span class="pre">DEQueue</span></code> from the function arguments.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Return type<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue" title="pythonic_fp.queues.de.DEQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">DEQueue</span></code></a>[<code class="xref py py-data docutils literal notranslate"><span class="pre">D</span></code>]</p>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ds</strong> (<span class="sphinx_autodoc_typehints-type"><code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)</span>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><span class="sphinx_autodoc_typehints-type"><a class="reference internal" href="#pythonic_fp.queues.de.DEQueue" title="pythonic_fp.queues.de.DEQueue"><code class="xref py py-class docutils literal notranslate"><span class="pre">DEQueue</span></code></a>[<code class="xref py py-class docutils literal notranslate"><span class="pre">TypeVar</span></code>(<code class="docutils literal notranslate"><span class="pre">D</span></code>)]</span></p>
 </dd>
 </dl>
 </dd></dl>
@@ -622,6 +671,11 @@ Like a Python List, does not return a value.</p>
                 <ul>
 <li><a class="reference internal" href="#">pythonic-fp.queues API</a><ul>
 <li><a class="reference internal" href="#module-pythonic_fp.queues">Queues Packaage</a><ul>
+<li><a class="reference internal" href="#queue-based-data-structures">Queue based data structures</a><ul>
+<li><a class="reference internal" href="#queue-types">Queue Types</a></li>
+<li><a class="reference internal" href="#factory-functions">Factory Functions</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#module-pythonic_fp.queues.fifo">FIFO Queue</a><ul>
 <li><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue"><code class="docutils literal notranslate"><span class="pre">FIFOQueue</span></code></a><ul>
 <li><a class="reference internal" href="#pythonic_fp.queues.fifo.FIFOQueue.copy"><code class="docutils literal notranslate"><span class="pre">FIFOQueue.copy()</span></code></a></li>

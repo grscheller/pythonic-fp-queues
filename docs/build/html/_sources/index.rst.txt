@@ -11,9 +11,9 @@ Implementing 3 types of queue data structures.
 +-----------+--------------------------+
 | Class     | Queue Type               |
 +===========+==========================+
-| FIFOQueue | First-In-First-Out Queue |
-| LIFOQueue | Last-In-First-Out Queue  |
-| DEQueue   | Double-Ended Queue       |
+| FIFOQueue | First In First Out Queue |
+| LIFOQueue | Last In First Out Queue  |
+| DEQueue   | Double Ended Queue       |
 +-----------+--------------------------+
 
 Part of of the

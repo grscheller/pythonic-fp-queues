@@ -12,30 +12,27 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Developer Tools - Queue based data structures
+"""
+Queue based data structures
+===========================
 
-These are modeled after Python builtins. The initializers take at most one
-iterable while factory functions stand in for Python syntax.
+Modeled after Python builtins. Initializers take 0 or 1 iterables.
+Factory functions take an arbitrary number of arguments.
 
-Queue types:
+Queue Types
+-----------
 
-- *class* dtools.queues.fifo.FIFOQueue: First-In-First-Out Queue
-- *class* dtools.queues.lifo.LIFOQueue: Last-In-First-Out Queue
-- *class* dtools.queues.de.DEQueue: Double-Ended Queue
+- FIFOQueue (First In First Out Queue)
+- LIFOQueue (Last In First Out Queue)
+- DEQueue (Double Ended Queue)
 
-Create queues from specific values:
+Factory Functions
+-----------------
 
-- *function* dtools.queues.fifo.fifo_queue: Create a FIFOQueue
+- fifo_queue 
+- lifo_queue
+- de_queue
 
-  - from function's arguments pushed on in natural FIFO order
-
-- *function* dtools.queues.lifo.lifo_queue: Create a LIFOQueue
-
-  - from function's arguments pushed on in natural LIFO order
-
-- *function* dtools.queues.de.de_queue: Create a DEQueue
-
-  - from function's arguments pushed on from the right
 """
 
 __author__ = 'Geoffrey R. Scheller'

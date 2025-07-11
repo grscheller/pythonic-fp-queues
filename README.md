@@ -16,7 +16,7 @@ This PyPI project is part of of the grscheller
 ## Documentation
 
 Documentation for package
-[GitHub Pages](https://grscheller.github.io/pythonic-fp-queues/html/api_pypi.html)
+[GitHub Pages](https://grscheller.github.io/pythonic-fp/queues/API/development/build/html)
 hosted on GitHub pages.
 
 ## Copyright and License

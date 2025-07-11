@@ -12,8 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""First-In-Last-Out (FIFO) Queue"""
-
 from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Iterator, Sequence
@@ -22,7 +20,6 @@ from typing import Never, overload, TypeVar
 from pythonic_fp.circulararray import CA
 from pythonic_fp.containers.maybe import MayBe
 
-
 __all__ = ['FIFOQueue', 'fifo_queue']
 
 D = TypeVar('D')
@@ -30,9 +27,8 @@ D = TypeVar('D')
 
 class FIFOQueue[D]:
     """
-    Stateful First-In-First-Out (FIFO) data structure. Initial data
+    Stateful First In First Out (FIFO) data structure. Initial data
     pushed on in natural FIFO order.
-
     """
     __slots__ = ('_ca',)
 
@@ -40,11 +36,14 @@ class FIFOQueue[D]:
     U = TypeVar('U')
 
     def __init__(self, *dss: Iterable[D]) -> None:
-        if (size := len(dss)) < 2:
-            self._ca = CA(dss[0]) if size == 1 else CA()
-        else:
+        """
+        :param dss: takes one or no iterables
+        :raises ValueError: if more than 1 iterable is given
+        """
+        if (size := len(dss)) > 1:
             msg = f'FIFOQueue expects at most 1 iterable argument, got {size}'
             raise ValueError(msg)
+        self._ca = CA(dss[0]) if size == 1 else CA()
 
     def __bool__(self) -> bool:
         return len(self._ca) > 0
@@ -52,29 +51,30 @@ class FIFOQueue[D]:
     def __len__(self) -> int:
         return len(self._ca)
 
-    def __eq__(self, other: object, /) -> bool:
+    def __eq__(self, other: object) -> bool:
         if not isinstance(other, FIFOQueue):
             return False
         return self._ca == other._ca
 
     @overload
-    def __getitem__(self, idx: int, /) -> D: ...
+    def __getitem__(self, idx: int) -> D: ...
     @overload
-    def __getitem__(self, idx: slice, /) -> Sequence[D]: ...
+    def __getitem__(self, idx: slice) -> Sequence[D]: ...
 
-    def __getitem__(self, idx: int | slice, /) -> D | Sequence[D] | Never:
+    def __getitem__(self, idx: int | slice) -> Never:
         if isinstance(idx, slice):
-            msg = 'dtool.restictive queues are not slicable by design'
+            msg = 'fptools_fp.queues.FIFOQueue is not slicable by design'
             raise NotImplementedError(msg)
-        return self._ca[idx]
+        msg = 'fptools_fp.queues.FIFOQueue is not indexable by design'
+        raise NotImplementedError(msg)
 
     def __iter__(self) -> Iterator[D]:
         return iter(list(self._ca))
 
     def __repr__(self) -> str:
         if len(self) == 0:
-            return 'FQ()'
-        return 'FQ(' + ', '.join(map(repr, self._ca)) + ')'
+            return 'FIFOQueue()'
+        return 'FIFOQueue(' + ', '.join(map(repr, self._ca)) + ')'
 
     def __str__(self) -> str:
         return '<< ' + ' < '.join(map(str, self)) + ' <<'
@@ -82,18 +82,18 @@ class FIFOQueue[D]:
     def copy(self) -> FIFOQueue[D]:
         """Copy.
 
-        :returns: Shallow copy of the FIFOQueue
+        :returns: shallow copy of the FIFOQueue
         """
         return FIFOQueue(self._ca)
 
     def push(self, *ds: D) -> None:
-        """Push data an item onto FIFOQueue."""
+        """Push an item onto FIFOQueue."""
         self._ca.pushr(*ds)
 
     def pop(self) -> MayBe[D]:
-        """Pop next item from FIFOQueue.
+        """Pop oldest item from FIFOQueue.
 
-        :returns: MayBe of next item in queue
+        :returns: MayBe of item popped from queue
         """
         if self._ca:
             return MayBe(self._ca.popl())
@@ -117,22 +117,22 @@ class FIFOQueue[D]:
             return MayBe(self._ca[0])
         return MayBe()
 
-    def fold[T](self, f: Callable[[T, D], T], initial: T | None = None, /) -> MayBe[T]:
-        """
-        Folds in natural FIFO Order (oldest to newest).
+    def fold[T](self, f: Callable[[T, D], T], initial: T | None = None) -> MayBe[T]:
+        """Reduces in natural FIFO Order (oldest to newest).
 
-        :returns: Reduced value with f and optional initial value.
+        :param f: reducing function, first argument is for accumulator
+        :param initial: optional initial value
+        :returns: MayBe of reduced value with f
         """
         if initial is None:
             if not self._ca:
                 return MayBe()
         return MayBe(self._ca.foldl(f, initial))
 
-    def map[U](self, f: Callable[[D], U], /) -> FIFOQueue[U]:
-        """
-        Map f over the FIFOQueue, oldest to newest.
+    def map[U](self, f: Callable[[D], U]) -> FIFOQueue[U]:
+        """Map f over the FIFOQueue, retain original order.
 
-        :returns: New FIFOQueue in original order.
+        :returns: new FIFOQueue
         """
         return FIFOQueue(map(f, self._ca))
 

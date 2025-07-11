@@ -16,22 +16,30 @@
 Queue based data structures
 ===========================
 
-Modeled after Python builtins. Initializers take 0 or 1 iterables.
-Factory functions take an arbitrary number of arguments.
+- O(1) pushes and pops
+- O(1) length determination
+- in a Boolean context, true if not empty, false if empty
+- will resize itself larger if needed
+- is not indexable or sliceable by design
+
+Modeled after Python builtins.
+
+- initializers take 0 or 1 iterables
+- factory functions take an arbitrary number of arguments
 
 Queue Types
 -----------
 
-- FIFOQueue (First In First Out Queue)
-- LIFOQueue (Last In First Out Queue)
-- DEQueue (Double Ended Queue)
+- *class* **FIFOQueue** (First In First Out Queue)
+- *class* **LIFOQueue** (Last In First Out Queue)
+- *class* **DEQueue** (Double Ended Queue)
 
 Factory Functions
 -----------------
 
-- fifo_queue 
-- lifo_queue
-- de_queue
+- *function* **fifo_queue** 
+- *function* **lifo_queue**
+- *function* **de_queue**
 
 """
 

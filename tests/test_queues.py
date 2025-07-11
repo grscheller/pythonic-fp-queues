@@ -15,8 +15,8 @@
 from __future__ import annotations
 from typing import Optional
 from pythonic_fp.circulararray import ca
-from pythonic_fp.queues.de import DEQueue as DQ
-from pythonic_fp.queues.de import de_queue as dq
+from pythonic_fp.queues.de import DEQueue as DE
+from pythonic_fp.queues.de import de_queue as de
 from pythonic_fp.queues.fifo import FIFOQueue as FQ
 from pythonic_fp.queues.fifo import fifo_queue as fq
 from pythonic_fp.queues.lifo import LIFOQueue as LQ
@@ -25,11 +25,11 @@ from pythonic_fp.containers.maybe import MayBe as MB
 
 class TestQueueTypes:
     def test_mutate_map(self) -> None:
-        dq1: DQ[int] = DQ()
-        dq1.pushl(1,2,3)
-        dq1.pushr(1,2,3)
-        dq2 = dq1.map(lambda x: x-1)
-        assert dq2.popl() == dq2.popr() == MB(2)
+        de1: DE[int] = DE()
+        de1.pushl(1,2,3)
+        de1.pushr(1,2,3)
+        de2 = de1.map(lambda x: x-1)
+        assert de2.popl() == de2.popr() == MB(2)
 
         def add_one_if_int(x: int|str) -> int|str:
             if type(x) is int:
@@ -61,38 +61,38 @@ class TestQueueTypes:
         assert lq2.peak().get(MB(3)).get(42) == 8
 
     def test_push_then_pop(self) -> None:
-        dq1 = DQ[int]()
+        de1 = DE[int]()
         pushed_1 = 42
-        dq1.pushl(pushed_1)
-        popped_1 = dq1.popl()
+        de1.pushl(pushed_1)
+        popped_1 = de1.popl()
         assert MB(pushed_1) == popped_1
-        assert len(dq1) == 0
+        assert len(de1) == 0
         pushed_1 = 0
-        dq1.pushl(pushed_1)
-        popped_1 = dq1.popr()
+        de1.pushl(pushed_1)
+        popped_1 = de1.popr()
         assert pushed_1 == popped_1.get(-1) == 0
-        assert not dq1
+        assert not de1
         pushed_1 = 0
-        dq1.pushr(pushed_1)
-        popped_2 = dq1.popl().get(1000)
+        de1.pushr(pushed_1)
+        popped_2 = de1.popl().get(1000)
         assert popped_2 != 1000
         assert pushed_1 == popped_2
-        assert len(dq1) == 0
+        assert len(de1) == 0
 
-        dq2: DQ[str] = DQ()
+        de2: DE[str] = DE()
         pushed_3 = ''
-        dq2.pushr(pushed_3)
-        popped_3 = dq2.popr().get('hello world')
+        de2.pushr(pushed_3)
+        popped_3 = de2.popr().get('hello world')
         assert pushed_3 == popped_3
-        assert len(dq2) == 0
-        dq2.pushr('first')
-        dq2.pushr('second')
-        dq2.pushr('last')
-        assert dq2.popl() == MB('first')
-        assert dq2.popr() == MB('last')
-        assert dq2
-        dq2.popl()
-        assert len(dq2) == 0
+        assert len(de2) == 0
+        de2.pushr('first')
+        de2.pushr('second')
+        de2.pushr('last')
+        assert de2.popl() == MB('first')
+        assert de2.popr() == MB('last')
+        assert de2
+        de2.popl()
+        assert len(de2) == 0
 
         fq1: FQ[MB[int|str]] = FQ()
         fq1.push(MB(42))
@@ -186,50 +186,50 @@ class TestQueueTypes:
 
 
     def test_pushing_None(self) -> None:
-        dq1: DQ[Optional[int]] = DQ()
-        dq2: DQ[Optional[int]] = DQ()
-        dq1.pushr(None)
-        dq2.pushl(None)
-        assert dq1 == dq2
+        de1: DE[Optional[int]] = DE()
+        de2: DE[Optional[int]] = DE()
+        de1.pushr(None)
+        de2.pushl(None)
+        assert de1 == de2
 
         def is42(ii: int) -> Optional[int]:
             return None if ii == 42 else ii
 
         barNone = (1, 2, None, 3, None, 4)
         bar42 = (1, 2, 42, 3, 42, 4)
-        dq3 = DQ[Optional[int]](barNone)
-        dq4 = DQ[Optional[int]](map(is42, bar42))
-        assert dq3 == dq4
+        de3 = DE[Optional[int]](barNone)
+        de4 = DE[Optional[int]](map(is42, bar42))
+        assert de3 == de4
 
     def test_bool_len_peak(self) -> None:
-        dq: DQ[int] = DQ()
-        assert not dq
-        dq.pushl(2,1)
-        dq.pushr(3)
-        assert dq
-        assert len(dq) == 3
-        assert dq.popl() == MB(1)
-        assert len(dq) == 2
-        assert dq
-        assert dq.peakl() == MB(2)
-        assert dq.peakr() == MB(3)
-        assert dq.popr() == MB(3)
-        assert len(dq) == 1
-        assert dq
-        assert dq.popl() == MB(2)
-        assert len(dq) == 0
-        assert not dq
-        assert len(dq) == 0
-        assert not dq
-        dq.pushr(42)
-        assert len(dq) == 1
-        assert dq
-        assert dq.peakl() == MB(42)
-        assert dq.peakr() == MB(42)
-        assert dq.popr() == MB(42)
-        assert not dq
-        assert dq.peakl() == MB()
-        assert dq.peakr() == MB()
+        de: DE[int] = DE()
+        assert not de
+        de.pushl(2,1)
+        de.pushr(3)
+        assert de
+        assert len(de) == 3
+        assert de.popl() == MB(1)
+        assert len(de) == 2
+        assert de
+        assert de.peakl() == MB(2)
+        assert de.peakr() == MB(3)
+        assert de.popr() == MB(3)
+        assert len(de) == 1
+        assert de
+        assert de.popl() == MB(2)
+        assert len(de) == 0
+        assert not de
+        assert len(de) == 0
+        assert not de
+        de.pushr(42)
+        assert len(de) == 1
+        assert de
+        assert de.peakl() == MB(42)
+        assert de.peakr() == MB(42)
+        assert de.popr() == MB(42)
+        assert not de
+        assert de.peakl() == MB()
+        assert de.peakr() == MB()
 
         fq: FQ[int] = FQ()
         assert not fq
@@ -298,29 +298,29 @@ class TestQueueTypes:
     def test_iterators(self) -> None:
         data_d = ca(1, 2, 3, 4, 5)
         data_mb = data_d.map(lambda d: MB(d))
-        dq: DQ[MB[int]] = DQ(data_mb)
+        de: DE[MB[int]] = DE(data_mb)
         ii = 0
-        for item in dq:
+        for item in de:
             assert data_mb[ii] == item
             ii += 1
         assert ii == 5
 
-        dq0: DQ[bool] = DQ()
-        for _ in dq0:
+        de0: DE[bool] = DE()
+        for _ in de0:
             assert False
 
         data_bool_mb: tuple[bool, ...] = ()
-        dq1: DQ[bool] = DQ(data_bool_mb)
-        for _ in dq1:
+        de1: DE[bool] = DE(data_bool_mb)
+        for _ in de1:
             assert False
-        dq1.pushr(True)
-        dq1.pushl(True)
-        dq1.pushr(True)
-        dq1.pushl(False)
-        assert not dq1.popl().get(True)
-        while dq1:
-            assert dq1.popl().get(False)
-        assert dq1.popr() == MB()
+        de1.pushr(True)
+        de1.pushl(True)
+        de1.pushr(True)
+        de1.pushl(False)
+        assert not de1.popl().get(True)
+        while de1:
+            assert de1.popl().get(False)
+        assert de1.popr() == MB()
 
         def wrapMB(x: int) -> MB[int]:
             return MB(x)
@@ -365,33 +365,33 @@ class TestQueueTypes:
         assert lq00.pop() == MB()
 
     def test_equality(self) -> None:
-        dq1: DQ[object] = dq(1, 2, 3, 'Forty-Two', (7, 11, 'foobar'))
-        dq2: DQ[object] = dq(2, 3, 'Forty-Two')
-        dq2.pushl(1)
-        dq2.pushr((7, 11, 'foobar'))
-        assert dq1 == dq2
+        de1: DE[object] = de(1, 2, 3, 'Forty-Two', (7, 11, 'foobar'))
+        de2: DE[object] = de(2, 3, 'Forty-Two')
+        de2.pushl(1)
+        de2.pushr((7, 11, 'foobar'))
+        assert de1 == de2
 
-        tup = dq2.popr().get(tuple(range(42)))
-        assert dq1 != dq2
+        tup = de2.popr().get(tuple(range(42)))
+        assert de1 != de2
 
-        dq2.pushr((42, 'foofoo'))
-        assert dq1 != dq2
+        de2.pushr((42, 'foofoo'))
+        assert de1 != de2
 
-        dq1.popr()
-        dq1.pushr((42, 'foofoo'))
-        dq1.pushr(tup)
-        dq2.pushr(tup)
-        assert dq1 == dq2
+        de1.popr()
+        de1.pushr((42, 'foofoo'))
+        de1.pushr(tup)
+        de2.pushr(tup)
+        assert de1 == de2
 
-        holdA = dq1.popl().get(0)
-        holdB = dq1.popl().get(0)
-        holdC = dq1.popr().get(0)
-        dq1.pushl(holdB)
-        dq1.pushr(holdC)
-        dq1.pushl(holdA)
-        dq1.pushl(200)
-        dq2.pushl(200)
-        assert dq1 == dq2
+        holdA = de1.popl().get(0)
+        holdB = de1.popl().get(0)
+        holdC = de1.popr().get(0)
+        de1.pushl(holdB)
+        de1.pushr(holdC)
+        de1.pushl(holdA)
+        de1.pushl(200)
+        de2.pushl(200)
+        assert de1 == de2
 
         tup1 = 7, 11, 'foobar'
         tup2 = 42, 'foofoo'
@@ -451,18 +451,18 @@ class TestQueueTypes:
         def f2(ii: int) -> str:
             return str(ii)
 
-        dq0: DQ[int] = dq()
-        dq1 = dq(5, 2, 3, 1, 42)
-        dq2 = dq1.copy()
-        assert dq2 == dq1
-        assert dq2 is not dq1
-        dq0m = dq0.map(f1)
-        dq1m = dq2.map(f1)
-        assert dq1 == dq(5, 2, 3, 1, 42)
-        assert dq0m == dq()
-        assert dq1m == dq(24, 3, 8, 0, 1763)
-        assert dq0m.map(f2) == DQ()
-        assert dq1m.map(f2) == dq('24', '3', '8', '0', '1763')
+        de0: DE[int] = de()
+        de1 = de(5, 2, 3, 1, 42)
+        de2 = de1.copy()
+        assert de2 == de1
+        assert de2 is not de1
+        de0m = de0.map(f1)
+        de1m = de2.map(f1)
+        assert de1 == de(5, 2, 3, 1, 42)
+        assert de0m == de()
+        assert de1m == de(24, 3, 8, 0, 1763)
+        assert de0m.map(f2) == DE()
+        assert de1m.map(f2) == de('24', '3', '8', '0', '1763')
 
         fq0: FQ[int] = fq()
         fq1: FQ[int] = fq(5, 42, 3, 1, 2)
@@ -510,46 +510,46 @@ class TestQueueTypes:
             return ss + str(ii)
 
         data = [1, 2, 3, 4, 5]
-        dq0: DQ[int] = DQ()
+        de0: DE[int] = DE()
         fq0: FQ[int] = FQ()
         lq0: LQ[int] = LQ()
         
-        dq1: DQ[int] = DQ()
+        de1: DE[int] = DE()
         fq1: FQ[int] = FQ()
         lq1: LQ[int] = LQ()
 
-        dq1.pushr(*data[1:])
-        dq1.pushl(data[0])
+        de1.pushr(*data[1:])
+        de1.pushl(data[0])
         fq1.push(*data)
         lq1.push(*data)
 
-        assert dq1.foldl(f1).get(42) == 15
-        assert dq1.foldr(f1).get(42) == 15
+        assert de1.foldl(f1).get(42) == 15
+        assert de1.foldr(f1).get(42) == 15
         assert fq1.fold(f1).get(42) == 15
         assert lq1.fold(f1).get(42) == 15
 
-        assert dq1.foldl(f1, 10).get(-1) == 25
-        assert dq1.foldr(f1, 10).get(-1) == 25
+        assert de1.foldl(f1, 10).get(-1) == 25
+        assert de1.foldr(f1, 10).get(-1) == 25
         assert fq1.fold(f1, 10).get(-1) == 25
         assert lq1.fold(f1, 10).get(-1) == 25
 
-        assert dq1.foldl(f2l, '0').get('-1') == '012345'
-        assert dq1.foldr(f2r, '6').get('-1') == '654321' 
+        assert de1.foldl(f2l, '0').get('-1') == '012345'
+        assert de1.foldr(f2r, '6').get('-1') == '654321' 
         assert fq1.fold(f2l, '0').get('-1') == '012345'
         assert lq1.fold(f2l, '6').get('-1') == '654321'
 
-        assert dq0.foldl(f1).get(42) == 42
-        assert dq0.foldr(f1).get(42) == 42
+        assert de0.foldl(f1).get(42) == 42
+        assert de0.foldr(f1).get(42) == 42
         assert fq0.fold(f1).get(42) == 42
         assert lq0.fold(f1).get(42) == 42
 
-        assert dq0.foldl(f1, 10).get(-1) == 10
-        assert dq0.foldr(f1, 10).get(-1) == 10
+        assert de0.foldl(f1, 10).get(-1) == 10
+        assert de0.foldr(f1, 10).get(-1) == 10
         assert fq0.fold(f1, 10).get(-1) == 10
         assert lq0.fold(f1, 10).get(-1) == 10
 
-        assert dq0.foldl(f2l, '0').get() == '0'
-        assert dq0.foldr(f2r, '6').get() == '6' 
+        assert de0.foldl(f2l, '0').get() == '0'
+        assert de0.foldr(f2r, '6').get() == '6' 
         assert fq0.fold(f2l, '0').get() == '0'
         assert lq0.fold(f2l, '6').get() == '6'
 

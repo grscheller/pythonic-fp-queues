@@ -18,13 +18,13 @@ classifiers = [
 dependencies = [
   "pythonic-fp.circulararray >= 5.0.0",
   "pythonic-fp.containers >=2.0.0",
-  "pythonic-fp.fptools >=3.0.0",
+  "pythonic-fp.fptools >=4.0.0",
 ]
 dynamic = ["description"]
 
 [project.urls]
-Changelog = "https://grscheller.github.io/pythonic-fp-queues/html/changelog.html"
-Documentation = "https://grscheller.github.io/pythonic-fp-queues/html/"
+Changelog = "https://github.com/grscheller/pythonic-fp-queues/CHANGELOG.rst"
+Documentation = "https://grscheller.github.io/pythonic-fp/queues/API/development/build/html/"
 Homepage = "https://github.com/grscheller/pythonic-fp/blob/main/README.md"
 Source = "https://github.com/grscheller/pythonic-fp-queues"
 
@@ -33,7 +33,7 @@ requires = ["flit_core>=3.12,<4"]
 build-backend = "flit_core.buildapi"
 
 [tool.flit.sdist]
-exclude = ["dist", "docs", "tests", ".gitignore", ".mypy_cache", ".pytest_cache"]
+exclude = ["dist", "tests", ".gitignore", ".mypy_cache", ".pytest_cache"]
 
 [tool.mypy]
 enable_incomplete_feature = ["NewGenericSyntax"]

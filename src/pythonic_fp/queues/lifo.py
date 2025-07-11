@@ -12,23 +12,13 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""
-### Last-In-Last-Out (LIFO) Queue
-
-- stateful LIFO queue data structures with amortized O(1) pushes and pops
-- obtaining length (number of elements) of a queue is an O(1) operation
-- implemented in a "has-a" relationship with a Python list based circular array
-- will resize itself larger as needed
-
-"""
-
 from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Iterator, Sequence
 from typing import Never, TypeVar, overload
 
 from pythonic_fp.circulararray import CA
-from pythonic_fp.containers.maybe import MayBe as MB
+from pythonic_fp.containers.maybe import MayBe
 from pythonic_fp.fptools.function import swap
 
 __all__ = ['LIFOQueue', 'lifo_queue']
@@ -37,11 +27,9 @@ D = TypeVar('D')
 
 
 class LIFOQueue[D]:
-    """LIFO Queue.
-
-    - stateful Last-In-First-Out (LIFO) data structure
-    - initial data pushed on in natural LIFO order
-
+    """
+    Stateful Last In First Out (LIFO) data structure. Initial data
+    pushed on in natural FIFO order.
     """
 
     __slots__ = ('_ca',)
@@ -50,11 +38,14 @@ class LIFOQueue[D]:
     U = TypeVar('U')
 
     def __init__(self, *dss: Iterable[D]) -> None:
-        if (size := len(dss)) < 2:
-            self._ca = CA(dss[0]) if size == 1 else CA()
-        else:
+        """
+        :param dss: takes one or no iterables
+        :raises ValueError: if more than 1 iterable is given
+        """
+        if (size := len(dss)) > 1:
             msg = f'LIFOQueue expects at most 1 iterable argument, got {size}'
-            raise TypeError(msg)
+            raise ValueError(msg)
+        self._ca = CA(dss[0]) if size == 1 else CA()
 
     def __bool__(self) -> bool:
         return len(self._ca) > 0
@@ -62,91 +53,83 @@ class LIFOQueue[D]:
     def __len__(self) -> int:
         return len(self._ca)
 
-    def __eq__(self, other: object, /) -> bool:
+    def __eq__(self, other: object) -> bool:
         if not isinstance(other, LIFOQueue):
             return False
         return self._ca == other._ca
 
     @overload
-    def __getitem__(self, idx: int, /) -> D: ...
+    def __getitem__(self, idx: int) -> D: ...
     @overload
-    def __getitem__(self, idx: slice, /) -> Sequence[D]: ...
+    def __getitem__(self, idx: slice) -> Sequence[D]: ...
 
-    def __getitem__(self, idx: int | slice, /) -> D | Sequence[D] | Never:
+    def __getitem__(self, idx: int | slice) -> Never:
         if isinstance(idx, slice):
-            msg = 'dtool.restictive queues are not slicable by design'
+            msg = 'fptools_fp.queues.LIFOQueue is not slicable by design'
             raise NotImplementedError(msg)
-        return self._ca[idx]
+        msg = 'fptools_fp.queues.LIFOQueue is not indexable by design'
+        raise NotImplementedError(msg)
 
     def __iter__(self) -> Iterator[D]:
         return reversed(list(self._ca))
 
     def __repr__(self) -> str:
         if len(self) == 0:
-            return 'LQ()'
-        return 'LQ(' + ', '.join(map(repr, self._ca)) + ')'
+            return 'LIFOQueue()'
+        return 'LIFOQueue(' + ', '.join(map(repr, self._ca)) + ')'
 
     def __str__(self) -> str:
         return '|| ' + ' > '.join(map(str, self)) + ' ><'
 
     def copy(self) -> LIFOQueue[D]:
-        """Return a shallow copy of the ``LIFOQueue``."""
+        """Copy.
+
+        :returns: shallow copy of the LIFOQueue
+        """
         return LIFOQueue(reversed(self._ca))
 
     def push(self, *ds: D) -> None:
-        """Push data onto ``LIFOQueue``, does not return a value."""
+        """Push an item onto LIFOQueue."""
         self._ca.pushr(*ds)
 
-    def pop(self) -> MB[D]:
-        """Pop data from ``LIFOQueue``.
+    def pop(self) -> MayBe[D]:
+        """Pop top item off of LIFOQueue.
 
-        - pop item off of queue, return item in a maybe monad
-        - returns an empty ``MB()`` if queue is empty
-
+        :returns: MayBe of item popped from queue
         """
         if self._ca:
-            return MB(self._ca.popr())
-        return MB()
+            return MayBe(self._ca.popr())
+        return MayBe()
 
-    def peak(self) -> MB[D]:
-        """Peak next data out of ``LIFOQueue``.
+    def peak(self) -> MayBe[D]:
+        """Peak lans in/next out. Does not consume data.
 
-        - return a maybe monad of the next item to be popped from the queue
-        - does not consume the item
-        - returns ``MB()`` if queue is empty
-
+        :returns: MayBe of item at top of queue.
         """
         if self._ca:
-            return MB(self._ca[-1])
-        return MB()
+            return MayBe(self._ca[-1])
+        return MayBe()
 
-    def fold[T](self, f: Callable[[T, D], T], initial: T | None = None, /) -> MB[T]:
-        """Reduce with ``f`` with an optional initial value.
+    def fold[T](self, f: Callable[[T, D], T], initial: T | None = None) -> MayBe[T]:
+        """Reduces in natural LIFO Order (newest to oldest.
 
-        - folds in natural LIFO Order (newest to oldest)
-        - note that when an initial value is not given then ``~T = ~D``
-        - if iterable empty & no initial value given, return ``MB()``
-
+        :param f: reducing function, second argument is for accumulator
+        :param initial: Optional initial value
+        :returns: MayBe of reduced value with f
         """
         if initial is None:
             if not self._ca:
-                return MB()
-        return MB(self._ca.foldr(swap(f), initial))
+                return MayBe()
+        return MayBe(self._ca.foldr(swap(f), initial))
 
-    def map[U](self, f: Callable[[D], U], /) -> LIFOQueue[U]:
-        """Map Over the ``LIFOQueue``.
+    def map[U](self, f: Callable[[D], U]) -> LIFOQueue[U]:
+        """Map f over the LIFOQueue, retain original order.
 
-        - map the function ``f`` over the queue
-
-          - newest to oldest
-          - retain original order
-
-        - returns a new instance
-
+        :returns: new LIFOQueue
         """
         return LIFOQueue(reversed(CA(map(f, reversed(self._ca)))))
 
 
 def lifo_queue[D](*ds: D) -> LIFOQueue[D]:
-    """Create a LIFOQueue from the arguments."""
+    """LIFOQueue factory function."""
     return LIFOQueue(ds)

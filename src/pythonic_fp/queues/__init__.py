@@ -13,33 +13,25 @@
 # limitations under the License.
 
 """
-Queue based data structures
-===========================
+Data structures implementing queue-like behaviors.
 
-- O(1) pushes and pops
-- O(1) length determination
-- in a Boolean context, true if not empty, false if empty
-- will resize itself larger if needed
-- is not indexable or sliceable by design
+- Three Queue-like data structures:
 
-Modeled after Python builtins.
+  - *class* **FIFOQueue** - First In First Out Queue
+  - *class* **LIFOQueue** - Last In First Out Queue
+  - *class* **DEQueue** - Double Ended Queue
 
-- initializers take 0 or 1 iterables
-- factory functions take an arbitrary number of arguments
+- Each with capabilities:
 
-Queue Types
------------
+  - O(1) pushes and pops
+  - O(1) length determination
+  - in a Boolean context
 
-- *class* **FIFOQueue** (First In First Out Queue)
-- *class* **LIFOQueue** (Last In First Out Queue)
-- *class* **DEQueue** (Double Ended Queue)
+    - true if not empty
+    - false if empty
 
-Factory Functions
------------------
-
-- *function* **fifo_queue** 
-- *function* **lifo_queue**
-- *function* **de_queue**
+  - will resize themselves larger when needed
+  - not indexable or sliceable by design
 
 """
 

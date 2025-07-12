@@ -16,8 +16,8 @@ Strict 3 digit semantic versioning adopted 2025-05-19.
 Releases and Important Milestones
 =================================
 
-4.0.0 - TBD
------------
+4.0.0 - 2025-07-12
+------------------
 
 Removed the ability to index FIFOQueue, LIFOQueue, and DEQueue
 

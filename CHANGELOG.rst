@@ -16,13 +16,13 @@ Strict 3 digit semantic versioning adopted 2025-05-19.
 Releases and Important Milestones
 =================================
 
-4.0.0 - 2025-07-10
-------------------
+4.0.0 - TBD
+-----------
 
 Removed the ability to index FIFOQueue, LIFOQueue, and DEQueue
 
 - No cutting in line!
-- Sphinx documentation improvements
+- Moved all Sphinx documentation to pythonic-fp repo
 
 3.0.0 - 2025-07-06
 ------------------

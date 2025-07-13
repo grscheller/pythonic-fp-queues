@@ -1,6 +1,6 @@
 [project]
 name = "pythonic-fp.queues"
-version = "4.0.0"
+version = "4.0.2"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { file = "LICENSE" }
@@ -23,8 +23,8 @@ dependencies = [
 dynamic = ["description"]
 
 [project.urls]
-Changelog = "https://github.com/grscheller/pythonic-fp-queues/CHANGELOG.rst"
-Documentation = "https://grscheller.github.io/pythonic-fp/queues/API/development/build/html/"
+Changelog = "https://github.com/grscheller/pythonic-fp-queues/blob/main/CHANGELOG.rst"
+Documentation = "https://grscheller.github.io/pythonic-fp/queues/API/v4.0.2/build/html/"
 Homepage = "https://github.com/grscheller/pythonic-fp/blob/main/README.md"
 Source = "https://github.com/grscheller/pythonic-fp-queues"
 

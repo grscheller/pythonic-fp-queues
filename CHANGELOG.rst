@@ -1,11 +1,10 @@
-*********
 CHANGELOG
-*********
+=========
 
 PyPI pythonic-fp.queues project.
 
 Semantic Versioning
-===================
+-------------------
 
 Strict 3 digit semantic versioning adopted 2025-05-19.
 
@@ -13,11 +12,13 @@ Strict 3 digit semantic versioning adopted 2025-05-19.
 - **MINOR** version incremented for backward compatible added functionality
 - **PATCH** version incremented for backward compatible bug fixes
 
+See `Semantic Versioning 2.0.0 <https://semver.org>`_.
+
 Releases and Important Milestones
-=================================
+---------------------------------
 
 4.0.0 - 2025-07-12
-------------------
+~~~~~~~~~~~~~~~~~~
 
 Removed the ability to index FIFOQueue, LIFOQueue, and DEQueue
 
@@ -25,24 +26,24 @@ Removed the ability to index FIFOQueue, LIFOQueue, and DEQueue
 - Moved all Sphinx documentation to pythonic-fp repo
 
 3.0.0 - 2025-07-06
-------------------
+~~~~~~~~~~~~~~~~~~
 
 First PyPI release as pythonic-fp.queues
 
 2.0.0 - 2025-05-22
-------------------
+~~~~~~~~~~~~~~~~~~
 
 Last PyPI release as dtools.queues
 
 1.0.0 - 2025-04-22
-------------------
+~~~~~~~~~~~~~~~~~~
 
 - docstring changes
 - pyproject.toml standardization
 - moved dtools.queues.splitends module to its own dtools repo
 
 0.27.0 - 2025-04-07
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 - First PyPI release as dtools.queues
 
@@ -54,7 +55,7 @@ Last PyPI release as dtools.queues
 - Typing improvements
 
 0.25.1 - 2025-01-16
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 Fixed pdoc issues with new typing notation
 
@@ -62,30 +63,30 @@ Fixed pdoc issues with new typing notation
 - had to add TypeVars
 
 0.25.0 - 2025-01-17
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 First release under dtools.datastructures name
 
 0.24.0 - 2024-11-18
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 Changed flatMap to bind thru out project
 
 0.22.1 - 2024-10-20
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 - removed docs from repo
 - docs for all grscheller namespace projects maintained
   [here](https://grscheller.github.io/grscheller-pypi-namespace-docs/).
 
 0.21.0 - 2024-08-20
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 - Got back to a state maintainer is happy with
 - Many dependencies needed updating first
 
 0.20.5.1 - 2024-08-19
----------------------
+~~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
@@ -95,7 +96,7 @@ Devel environment only.
   - preparing for PyPI 0.21.0 release
 
 0.20.2.0 - 2024-08-03
----------------------
+~~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only. Going down a typing rabbit hole.
 
@@ -110,7 +111,7 @@ Devel environment only. Going down a typing rabbit hole.
   - use ``cast`` only when you have knowledge beyond what the typechecker can know
 
 0.19.0 - 2024-07-15
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 Continuing to prepare for PyPI release 1.0.0
 
@@ -118,7 +119,7 @@ Continuing to prepare for PyPI release 1.0.0
 - considering requiring grscheller.fp as a dependency
 
 0.18.0.0
---------
+~~~~~~~~
 
 Devel environment only. Beginning to prepare for PyPI release 1.0.0
 
@@ -127,7 +128,7 @@ Devel environment only. Beginning to prepare for PyPI release 1.0.0
 - TODO: Verify flatMap family yields results in "natural" order
 
 0.17.0.4
---------
+~~~~~~~~
 
 Devel environment only. Start of effort to relax None restrictions.
 
@@ -138,7 +139,7 @@ Devel environment only. Start of effort to relax None restrictions.
 - perhaps next PyPI release will be v1.0.0 ???
 
 0.16.0.0
---------
+~~~~~~~~
 
 Devel environment only. Preparing to support PEP 695 generics.
 
@@ -156,7 +157,7 @@ Devel environment only. Preparing to support PEP 695 generics.
   - THEREFORE: tests need to be completely overhauled
 
 0.14.1.1
---------
+~~~~~~~~
 
 Devel environment only. Preparing to add TypeVars.
 
@@ -166,7 +167,7 @@ Devel environment only. Preparing to add TypeVars.
   - first version using TypeVars will be 0.15.0.0
 
 0.14.0 - 2024-03-09
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 - updated dependency on CircularArray class
 
@@ -176,7 +177,7 @@ Devel environment only. Preparing to add TypeVars.
 - keeping project an Alpha release for now
 
 0.13.0 - 2024-01-30
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 - BREAKING API CHANGE - CircularArray class removed
 - CircularArray moved to its own PyPI & GitHub repos
@@ -187,7 +188,7 @@ Devel environment only. Preparing to add TypeVars.
 - Fix various out-of-date docstrings
 
 0.12.3 - 2024-01-20
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 Cutting next PyPI release from development (main)
 
@@ -198,12 +199,12 @@ Cutting next PyPI release from development (main)
 - Made pytest >= 7.4 an optional test dependency
 
 0.12.0 - 2024-01-14
--------------------
+~~~~~~~~~~~~~~~~~~~
 
 Considerable future-proofing for first real Beta release
 
 0.11.3.4
---------
+~~~~~~~~
 
 Devel environment only.
 
@@ -214,7 +215,7 @@ Devel environment only.
   - API changes will be deprecated before removed
 
 0.10.14.0 - 2023-12-09
-----------------------
+~~~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
@@ -244,7 +245,7 @@ Devel environment only.
       - FTuple
 
 0.10.8.0 - 2023-11-18
----------------------
+~~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
@@ -257,7 +258,7 @@ Devel environment only.
     - LSP almost useless due to more primitive typing module
 
 0.10.7.0 - 2023-11-18
----------------------
+~~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
@@ -268,7 +269,7 @@ Devel environment only.
 - Updated markdown overview documentation
 
 0.10.1.0 - 2023-11-11
----------------------
+~~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
@@ -280,7 +281,7 @@ Devel environment only.
 - Some restructuring so package will scale better in the future
 
 0.9.1 - 2023-11-09
-------------------
+~~~~~~~~~~~~~~~~~~
 
 - First Beta release of grscheller.datastructures on PyPI
 - Infrastructure stable
@@ -298,7 +299,7 @@ Devel environment only.
   - Need to use this package in other projects to gain insight
 
 0.8.6.0 - 2023-11-05
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 PyPI release.
 
@@ -313,14 +314,14 @@ PyPI release.
     - head and headOr
 
 0.8.3.0 - 2023-11-02
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
 Major API breaking change, Dqueue renamed DQueue. Tests now work.
 
 0.8.0.0 - 2023-10-28
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
@@ -334,7 +335,7 @@ Devel environment only.
   - need to resolve tension of package being Pythonic and Functional
 
 0.7.5.0 - 2023-10-26
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
@@ -346,7 +347,7 @@ Devel environment only.
 - Instructions to run test suite in tests/__init__.py
 
 0.7.4.0 - 2023-10-25
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 PyPI release.
 
@@ -356,7 +357,7 @@ PyPI release.
 - Still tagging it an Alpha release
 
 0.7.2.0 - 2023-10-18
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
@@ -368,7 +369,7 @@ Devel environment only.
     - like popping or peaking from an empty queue or dqueue
 
 0.7.0.0 - 2023-10-16
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
@@ -393,7 +394,7 @@ Devel environment only.
   - added info on class Queue
 
 0.6.9.0 - 2023-10-09
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 PyPI release.
 
@@ -417,7 +418,7 @@ PyPI release.
   - Circle which implements a circular array with a Python List
 
 0.6.8.6 - 2023-10-08
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
@@ -434,7 +435,7 @@ Devel environment only.
   - the other modifying the object in place
 
 0.6.8.3 - 2023-10-06
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
@@ -455,7 +456,7 @@ Devel environment only.
 - Ensured that None is never pushed to Stack & Dqueue objects
 
 0.6.3.2 - 2023-09-30
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
@@ -468,14 +469,14 @@ Devel environment only.
   - Need to improve test suite first
 
 0.6.2.0 - 2023-09-25
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
 - removed isEmpty method from Stack class
 
 0.6.1.0 - 2023-09-25
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
@@ -486,7 +487,7 @@ Devel environment only.
   - erroneous LSP error messages greatly reduced
 
 0.5.2.1 - 2023-09-24
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 PyPI release. 
 
@@ -496,7 +497,7 @@ PyPI release.
   - much better test coverage
 
 0.3.0.2 - 2023-09-09
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 PyPI release. 
 
@@ -508,7 +509,7 @@ PyPI release.
 - Improved docstrings
 
 0.2.2.2 - 2023-09-04
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 PyPI release. 
 
@@ -524,7 +525,7 @@ PyPI release.
   - could not do the same for tests/ if end users are to have access
 
 0.2.1.0 - 2023-09-03
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 PyPI release. 
 
@@ -552,7 +553,7 @@ PyPI release.
     - for CI/CD pipelines requiring unit testing
 
 0.2.0.2 - 2023-08-29
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 GitHub only release. 
 
@@ -560,7 +561,7 @@ First version of grscheller.datastructures installed from GitHub with pip
 ``$ pip install git+https://github.com/grscheller/datastructures@v0.2.0.2``
 
 0.2.0.0 - 2023-08-29
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
@@ -574,7 +575,7 @@ Devel environment only.
 - Preparing first version to be "released" on GitHub
 
 0.1.1.0 - 2023-08-27
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Devel environment only.
 
@@ -584,7 +585,7 @@ Devel environment only.
   - GitHub and PyPI user names just a happy coincidence
 
 0.1.0.0 - 2023-08-27
---------------------
+~~~~~~~~~~~~~~~~~~~~
 
 Initial version. Devel environment only.
 

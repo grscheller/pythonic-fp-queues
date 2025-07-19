@@ -12,26 +12,31 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""
-Data structures implementing queue-like behaviors.
+"""Pythonic FP - Queues
 
-- Three Queue-like data structures:
+Three data structures with queue-like behaviors.
 
-  - *class* **FIFOQueue** - First In First Out Queue
-  - *class* **LIFOQueue** - Last In First Out Queue
-  - *class* **DEQueue** - Double Ended Queue
++-----------+--------------------------+
+|   Class   |      Type of Queue       |
++===========+==========================+
+| FIFOQueue | First-In-First-Out Queue |
++-----------+--------------------------+
+| LIFOQueue | Last-In-First-Out Queue  |
++-----------+--------------------------+
+| DEQueue   |    Double-Ended Queue    |
++-----------+--------------------------+
 
-- Each with capabilities:
+Each with capabilities:
 
-  - O(1) pushes and pops
-  - O(1) length determination
-  - in a Boolean context
+- O(1) pushes and pops
+- O(1) length determination
+- in a Boolean context
 
-    - true if not empty
-    - false if empty
+  - true if not empty
+  - false if empty
 
-  - will resize themselves larger when needed
-  - not indexable or sliceable by design
+- will resize themselves larger when needed
+- not indexable or sliceable by design
 
 """
 

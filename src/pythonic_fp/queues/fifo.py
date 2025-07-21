@@ -17,7 +17,7 @@ from __future__ import annotations
 from collections.abc import Callable, Iterable, Iterator, Sequence
 from typing import Never, overload, TypeVar
 
-from pythonic_fp.circulararray import CA
+from pythonic_fp.circulararray.resizing import CA
 from pythonic_fp.containers.maybe import MayBe
 
 __all__ = ['FIFOQueue', 'fifo_queue']

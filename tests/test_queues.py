@@ -14,7 +14,8 @@
 
 from __future__ import annotations
 from typing import Optional
-from pythonic_fp.circulararray import ca
+from pythonic_fp.circulararray.resizing import ca
+from pythonic_fp.circulararray.fixed_capacity import ca_fix
 from pythonic_fp.queues.de import DEQueue as DE
 from pythonic_fp.queues.de import de_queue as de
 from pythonic_fp.queues.fifo import FIFOQueue as FQ
@@ -296,7 +297,7 @@ class TestQueueTypes:
         assert lq.pop() == MB()
 
     def test_iterators(self) -> None:
-        data_d = ca(1, 2, 3, 4, 5)
+        data_d = ca_fix(1, 2, 3, 4, 5)
         data_mb = data_d.map(lambda d: MB(d))
         de: DE[MB[int]] = DE(data_mb)
         ii = 0

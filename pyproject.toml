@@ -1,6 +1,6 @@
 [project]
 name = "pythonic-fp.queues"
-version = "4.0.2"
+version = "5.0.0"
 readme = "README.md"
 requires-python = ">=3.12"
 license = { file = "LICENSE" }
@@ -16,9 +16,8 @@ classifiers = [
   "Typing :: Typed",
 ]
 dependencies = [
-  "pythonic-fp.circulararray >= 5.0.0",
-  "pythonic-fp.containers >=2.0.0",
-  "pythonic-fp.fptools >=4.0.0",
+  "pythonic-fp.circulararray >= 5.3.0",
+  "pythonic-fp.fptools >=5.0.0",
 ]
 dynamic = ["description"]
 

@@ -1,11 +1,14 @@
-Pythonic FP - Queues
-====================
+Pythonic FP - Queues (DEPRECATED)
+=================================
 
 PyPI project
 `pythonic-fp.queues
 <https://pypi.org/project/pythonic-fp.queues>`_.
 
-Three data structures with queue-like behaviors.
+This PyPI project has been **DEPRECATED**, but the effort will be
+continued in PyPI project
+`pythonic-fp.containers <https://pypi.org/project/pythonic-fp.containers/>`_
+where it is now the subpackage ``pythonic_fp.containers.queues``.
 
 +-----------+--------------------------+
 |   Class   |      Type of Queue       |
@@ -17,18 +20,6 @@ Three data structures with queue-like behaviors.
 | DEQueue   |    Double-Ended Queue    |
 +-----------+--------------------------+
 
-Each with capabilities:
-
-- O(1) pushes and pops
-- O(1) length determination
-- in a Boolean context
-
-  - true if not empty
-  - false if empty
-
-- will resize themselves larger when needed
-- not indexable or sliceable by design
-
 This PyPI project is part of of the grscheller
 `pythonic-fp namespace projects
 <https://github.com/grscheller/pythonic-fp/blob/main/README.md>`_
@@ -36,10 +27,9 @@ This PyPI project is part of of the grscheller
 Documentation
 -------------
 
-Documentation for package
+Documentation for this project is hosted on
 `GitHub Pages
-<https://grscheller.github.io/pythonic-fp/queues/API/development/build/html/releases.html>`_
-hosted on GitHub pages.
+<https://grscheller.github.io/pythonic-fp/deprecated/queues/5.0.0/build/html/releases.html>`_.
 
 Copyright and License
 ---------------------

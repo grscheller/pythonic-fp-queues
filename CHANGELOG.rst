@@ -17,6 +17,15 @@ See `Semantic Versioning 2.0.0 <https://semver.org>`_.
 Releases and Important Milestones
 ---------------------------------
 
+5.0.0 - TBD
+~~~~~~~~~~~
+
+Deprecating pythonic-fp.queues as a separate PyPI project.
+Now part of pythonic-fp.containers.
+
+Created a queues subpackage pythonic_fp.containers.queues to
+continue the effort.
+
 4.0.0 - 2025-07-12
 ~~~~~~~~~~~~~~~~~~
 

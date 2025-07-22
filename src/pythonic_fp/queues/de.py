@@ -14,7 +14,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Callable, Iterable, Iterator, Sequence
+from collections.abc import Callable, Iterable, Iterator
 from typing import Never, overload, TypeVar
 
 from pythonic_fp.circulararray.resizing import CA
@@ -61,9 +61,9 @@ class DEQueue[D]:
     @overload
     def __getitem__(self, idx: int) -> D: ...
     @overload
-    def __getitem__(self, idx: slice) -> Sequence[D]: ...
+    def __getitem__(self, idx: slice) -> Never: ...
 
-    def __getitem__(self, idx: int | slice) -> Never:
+    def __getitem__(self, idx: int | slice) -> D | Never:
         if isinstance(idx, slice):
             msg = 'fptools_fp.queues.DEQueue is not slicable by design'
             raise NotImplementedError(msg)

@@ -22,7 +22,7 @@ from pythonic_fp.queues.fifo import FIFOQueue as FQ
 from pythonic_fp.queues.fifo import fifo_queue as fq
 from pythonic_fp.queues.lifo import LIFOQueue as LQ
 from pythonic_fp.queues.lifo import lifo_queue as lq
-from pythonic_fp.containers.maybe import MayBe as MB
+from pythonic_fp.fptools.maybe import MayBe
 
 class TestQueueTypes:
     def test_mutate_map(self) -> None:
@@ -30,7 +30,7 @@ class TestQueueTypes:
         de1.pushl(1,2,3)
         de1.pushr(1,2,3)
         de2 = de1.map(lambda x: x-1)
-        assert de2.popl() == de2.popr() == MB(2)
+        assert de2.popl() == de2.popr() == MayBe(2)
 
         def add_one_if_int(x: int|str) -> int|str:
             if type(x) is int:
@@ -43,30 +43,30 @@ class TestQueueTypes:
         fq1.push(4,5,6)
         fq2 = fq1.map(lambda x: x+1)
         not_none = fq2.pop()
-        assert not_none != MB()
-        assert not_none == MB(2)
-        assert fq2.peak_last_in() == MB(7) != MB()
-        assert fq2.peak_next_out() == MB(3)
+        assert not_none != MayBe()
+        assert not_none == MayBe(2)
+        assert fq2.peak_last_in() == MayBe(7) != MayBe()
+        assert fq2.peak_next_out() == MayBe(3)
 
-        lq1: LQ[MB[int]] = LQ()  # not really a canonical way to use MB
-        lq1.push(MB(1), MB(2), MB(3))
-        lq1.push(MB(4), MB(), MB(5))
-        lq2 = lq1.map(lambda mb: mb.bind(lambda n: MB(2*n)))
+        lq1: LQ[MayBe[int]] = LQ()  # not really a canonical way to use MB
+        lq1.push(MayBe(1), MayBe(2), MayBe(3))
+        lq1.push(MayBe(4), MayBe(), MayBe(5))
+        lq2 = lq1.map(lambda mb: mb.bind(lambda n: MayBe(2*n)))
         last = lq2.pop()
-        assert last.get(MB(42)) == MB(10)
+        assert last.get(MayBe(42)) == MayBe(10)
         pop_out = lq2.pop()
-        assert pop_out == MB(MB())
-        assert pop_out.get(MB(42)) == MB()
-        assert lq2.peak() == MB(MB(8))
-        assert lq2.peak().get(MB(3)) == MB(8)
-        assert lq2.peak().get(MB(3)).get(42) == 8
+        assert pop_out == MayBe(MayBe())
+        assert pop_out.get(MayBe(42)) == MayBe()
+        assert lq2.peak() == MayBe(MayBe(8))
+        assert lq2.peak().get(MayBe(3)) == MayBe(8)
+        assert lq2.peak().get(MayBe(3)).get(42) == 8
 
     def test_push_then_pop(self) -> None:
         de1 = DE[int]()
         pushed_1 = 42
         de1.pushl(pushed_1)
         popped_1 = de1.popl()
-        assert MB(pushed_1) == popped_1
+        assert MayBe(pushed_1) == popped_1
         assert len(de1) == 0
         pushed_1 = 0
         de1.pushl(pushed_1)
@@ -89,40 +89,40 @@ class TestQueueTypes:
         de2.pushr('first')
         de2.pushr('second')
         de2.pushr('last')
-        assert de2.popl() == MB('first')
-        assert de2.popr() == MB('last')
+        assert de2.popl() == MayBe('first')
+        assert de2.popr() == MayBe('last')
         assert de2
         de2.popl()
         assert len(de2) == 0
 
-        fq1: FQ[MB[int|str]] = FQ()
-        fq1.push(MB(42))
-        fq1.push(MB('bar'))
-        assert fq1.pop().get() == MB(42)
-        assert fq1.pop().get(MB('foo')).get(13) == 'bar'
-        assert fq1.pop().get(MB('foo')).get() == 'foo'
+        fq1: FQ[MayBe[int|str]] = FQ()
+        fq1.push(MayBe(42))
+        fq1.push(MayBe('bar'))
+        assert fq1.pop().get() == MayBe(42)
+        assert fq1.pop().get(MayBe('foo')).get(13) == 'bar'
+        assert fq1.pop().get(MayBe('foo')).get() == 'foo'
         assert len(fq1) == 0
-        fq1.push(MB(0))
-        assert fq1.pop() == MB(MB(0))
+        fq1.push(MayBe(0))
+        assert fq1.pop() == MayBe(MayBe(0))
         assert not fq1
-        assert fq1.pop() == MB()
+        assert fq1.pop() == MayBe()
         assert len(fq1) == 0
-        val: MB[int|str] = MB('Bob' + 'by')
+        val: MayBe[int|str] = MayBe('Bob' + 'by')
         fq1.push(val)
         assert fq1
-        assert val.get('Robert') == fq1.pop().get(MB('Bob')).get('Billy Bob') == 'Bobby'
+        assert val.get('Robert') == fq1.pop().get(MayBe('Bob')).get('Billy Bob') == 'Bobby'
         assert len(fq1) == 0
-        assert fq1.pop().get(MB('Robert')) == MB('Robert')
-        fq1.push(MB('first'))
-        fq1.push(MB(2))
-        fq1.push(MB('last'))
+        assert fq1.pop().get(MayBe('Robert')) == MayBe('Robert')
+        fq1.push(MayBe('first'))
+        fq1.push(MayBe(2))
+        fq1.push(MayBe('last'))
         fq1.map(lambda x: x.get('improbable'))
         popped = fq1.pop()
         if popped == 'impossible' or popped == 'improbable':
             assert False
         else:
             assert popped.get().get('impossible') == 'first'
-        assert fq1.pop().get(MB()).get(-1) == 2
+        assert fq1.pop().get(MayBe()).get(-1) == 2
         assert fq1
         fq1.pop()
         assert len(fq1) == 0
@@ -136,9 +136,9 @@ class TestQueueTypes:
         assert lq10.pop().get(24.0) == 24.0
         assert len(lq10) == 0
         lq10.push(0)
-        assert lq10.pop() == MB(0)
+        assert lq10.pop() == MayBe(0)
         assert not lq10
-        assert lq10.pop() == MB()
+        assert lq10.pop() == MayBe()
         assert len(lq10) == 0
 
         val1: int|float|complex = 1.0 + 2.0j
@@ -209,15 +209,15 @@ class TestQueueTypes:
         de.pushr(3)
         assert de
         assert len(de) == 3
-        assert de.popl() == MB(1)
+        assert de.popl() == MayBe(1)
         assert len(de) == 2
         assert de
-        assert de.peakl() == MB(2)
-        assert de.peakr() == MB(3)
-        assert de.popr() == MB(3)
+        assert de.peakl() == MayBe(2)
+        assert de.peakr() == MayBe(3)
+        assert de.popr() == MayBe(3)
         assert len(de) == 1
         assert de
-        assert de.popl() == MB(2)
+        assert de.popl() == MayBe(2)
         assert len(de) == 0
         assert not de
         assert len(de) == 0
@@ -225,27 +225,27 @@ class TestQueueTypes:
         de.pushr(42)
         assert len(de) == 1
         assert de
-        assert de.peakl() == MB(42)
-        assert de.peakr() == MB(42)
-        assert de.popr() == MB(42)
+        assert de.peakl() == MayBe(42)
+        assert de.peakr() == MayBe(42)
+        assert de.popr() == MayBe(42)
         assert not de
-        assert de.peakl() == MB()
-        assert de.peakr() == MB()
+        assert de.peakl() == MayBe()
+        assert de.peakr() == MayBe()
 
         fq: FQ[int] = FQ()
         assert not fq
         fq.push(1,2,3)
         assert fq
-        assert fq.peak_next_out() == MB(1)
-        assert fq.peak_last_in() == MB(3)
+        assert fq.peak_next_out() == MayBe(1)
+        assert fq.peak_last_in() == MayBe(3)
         assert len(fq) == 3
-        assert fq.pop() == MB(1)
+        assert fq.pop() == MayBe(1)
         assert len(fq) == 2
         assert fq
-        assert fq.pop() == MB(2)
+        assert fq.pop() == MayBe(2)
         assert len(fq) == 1
         assert fq
-        assert fq.pop() == MB(3)
+        assert fq.pop() == MayBe(3)
         assert len(fq) == 0
         assert not fq
         assert fq.pop().get(-42) == -42
@@ -253,11 +253,11 @@ class TestQueueTypes:
         assert not fq
         fq.push(42)
         assert fq
-        assert fq.peak_next_out() == MB(42)
-        assert fq.peak_last_in() == MB(42)
+        assert fq.peak_next_out() == MayBe(42)
+        assert fq.peak_last_in() == MayBe(42)
         assert len(fq) == 1
         assert fq
-        assert fq.pop() == MB(42)
+        assert fq.pop() == MayBe(42)
         assert not fq
         assert fq.peak_next_out().get(-42) == -42
         assert fq.peak_last_in().get(-42) == -42
@@ -266,40 +266,40 @@ class TestQueueTypes:
         assert not lq
         lq.push(1,2,3)
         assert lq
-        assert lq.peak() == MB(3)
+        assert lq.peak() == MayBe(3)
         assert len(lq) == 3
-        assert lq.pop() == MB(3)
+        assert lq.pop() == MayBe(3)
         assert len(lq) == 2
         assert lq
-        assert lq.pop() == MB(2)
+        assert lq.pop() == MayBe(2)
         assert len(lq) == 1
         assert lq
-        assert lq.pop() == MB(1)
+        assert lq.pop() == MayBe(1)
         assert len(lq) == 0
         assert not lq
-        assert lq.pop() == MB()
+        assert lq.pop() == MayBe()
         assert len(lq) == 0
         assert not lq
         lq.push(42)
         assert lq
-        assert lq.peak() == MB(42)
+        assert lq.peak() == MayBe(42)
         assert len(lq) == 1
         assert lq
         lq.push(0)
-        assert lq.peak() == MB(0)
+        assert lq.peak() == MayBe(0)
         popped = lq.pop()
         assert popped.get(-1) == 0
-        assert lq.peak() == MB(42)
+        assert lq.peak() == MayBe(42)
         popped2 = lq.pop().get(-1)
         assert popped2 == 42
         assert not lq
-        assert lq.peak() == MB()
-        assert lq.pop() == MB()
+        assert lq.peak() == MayBe()
+        assert lq.pop() == MayBe()
 
     def test_iterators(self) -> None:
         data_d = ca_fix(1, 2, 3, 4, 5)
-        data_mb = data_d.map(lambda d: MB(d))
-        de: DE[MB[int]] = DE(data_mb)
+        data_mb = data_d.map(lambda d: MayBe(d))
+        de: DE[MayBe[int]] = DE(data_mb)
         ii = 0
         for item in de:
             assert data_mb[ii] == item
@@ -321,13 +321,13 @@ class TestQueueTypes:
         assert not de1.popl().get(True)
         while de1:
             assert de1.popl().get(False)
-        assert de1.popr() == MB()
+        assert de1.popr() == MayBe()
 
-        def wrapMB(x: int) -> MB[int]:
-            return MB(x)
+        def wrapMB(x: int) -> MayBe[int]:
+            return MayBe(x)
 
         data_ca = ca(1, 2, 3, 4, 0, 6, 7, 8, 9)
-        fq: FQ[MB[int]] = FQ(data_ca.map(wrapMB))
+        fq: FQ[MayBe[int]] = FQ(data_ca.map(wrapMB))
         assert data_ca[0] == 1
         assert data_ca[-1] == 9
         ii = 0
@@ -336,7 +336,7 @@ class TestQueueTypes:
             ii += 1
         assert ii == 9
 
-        fq0: FQ[MB[int]] = FQ()
+        fq0: FQ[MayBe[int]] = FQ()
         for _ in fq0:
             assert False
 
@@ -357,13 +357,13 @@ class TestQueueTypes:
         for _ in lq0:
             assert False
         assert not lq0
-        assert lq0.pop() == MB()
+        assert lq0.pop() == MayBe()
 
         lq00: LQ[int] = LQ(*())
         for _ in lq00:
             assert False
         assert not lq00
-        assert lq00.pop() == MB()
+        assert lq00.pop() == MayBe()
 
     def test_equality(self) -> None:
         de1: DE[object] = de(1, 2, 3, 'Forty-Two', (7, 11, 'foobar'))
@@ -401,7 +401,7 @@ class TestQueueTypes:
         fq2 = fq(2, 3, 'Forty-Two')
         fq2.push((7, 11, 'foobar'))
         popped = fq1.pop()
-        assert popped == MB(1)
+        assert popped == MayBe(1)
         assert fq1 == fq2
 
         fq2.push(tup2)
@@ -410,7 +410,7 @@ class TestQueueTypes:
         fq1.push(fq1.pop(), fq1.pop(), fq1.pop())
         fq2.push(fq2.pop(), fq2.pop(), fq2.pop())
         fq2.pop()
-        assert MB(tup2) == fq2.peak_next_out()
+        assert MayBe(tup2) == fq2.peak_next_out()
         assert fq1 != fq2
         assert fq1.pop() != fq2.pop()
         assert fq1 == fq2
@@ -424,14 +424,14 @@ class TestQueueTypes:
 
         lq1: LQ[object] = lq(3, 'Forty-Two', l1, 1)
         lq2: LQ[object] = lq(3, 'Forty-Two', 2)
-        assert lq1.pop() == MB(1)
+        assert lq1.pop() == MayBe(1)
         peak = lq1.peak().get([1,2,3,4,5])
         assert peak == l1
         assert type(peak) is list
         assert peak.pop() == 11
         assert peak.pop() == 7
         peak.append(42)
-        assert lq2.pop() == MB(2)
+        assert lq2.pop() == MayBe(2)
         lq2.push(l2)
         assert lq1 == lq2
 
@@ -474,7 +474,7 @@ class TestQueueTypes:
 
         fq0.push(8, 9, 10)
         assert fq0.pop().get(-1) == 8
-        assert fq0.pop() == MB(9)
+        assert fq0.pop() == MayBe(9)
         fq2 = fq0.map(f1)
         assert fq2 == fq(99)
         assert fq2 == fq(99)
@@ -491,8 +491,8 @@ class TestQueueTypes:
         assert lq1m == lq(24, 1763, 8, 0, 3)
 
         lq0.push(8, 9, 10)
-        assert lq0.pop() == MB(10)
-        assert lq0.pop() == MB(9)
+        assert lq0.pop() == MayBe(10)
+        assert lq0.pop() == MayBe(9)
         lq2 = lq0.map(f1)
         assert lq2 == lq(63)
 
@@ -555,4 +555,4 @@ class TestQueueTypes:
         assert lq0.fold(f2l, '6').get() == '6'
 
         cnt_up = fq1.fold(f2l, '0').map(lambda ss: ss + '6789')
-        assert cnt_up == MB('0123456789')
+        assert cnt_up == MayBe('0123456789')

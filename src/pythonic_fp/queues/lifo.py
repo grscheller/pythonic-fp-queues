@@ -18,8 +18,8 @@ from collections.abc import Callable, Iterable, Iterator, Sequence
 from typing import Never, TypeVar, overload
 
 from pythonic_fp.circulararray.resizing import CA
-from pythonic_fp.containers.maybe import MayBe
 from pythonic_fp.fptools.function import swap
+from pythonic_fp.fptools.maybe import MayBe
 
 __all__ = ['LIFOQueue', 'lifo_queue']
 

@@ -12,9 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Pythonic FP - Queues
+"""Pythonic FP - Queues (**DEPRECATED**)
 
-Three data structures with queue-like behaviors.
+This PyPI project has been **DEPRECATED**, but the effort will be
+continued in PyPI project
+`pythonic-fp.containers <https://pypi.org/project/pythonic-fp.containers/>`_
+where it is now the subpackage ``pythonic_fp.containers.queues``.
 
 +-----------+--------------------------+
 |   Class   |      Type of Queue       |
@@ -31,12 +34,10 @@ Each with capabilities:
 - O(1) pushes and pops
 - O(1) length determination
 - in a Boolean context
-
-  - true if not empty
-  - false if empty
-
-- will resize themselves larger when needed
 - not indexable or sliceable by design
+
+There are two versions of these. One set will resize themselves
+larger when needed. The other set are of fixed length.
 
 """
 

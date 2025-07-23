@@ -12,31 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Pythonic FP - Queues
+"""package queues
 
-Three data structures with queue-like behaviors.
+Three types of queues.
 
 +-----------+--------------------------+
-|   Class   |      Type of Queue       |
+|   Class   | Type of Queue            |
 +===========+==========================+
 | FIFOQueue | First-In-First-Out Queue |
 +-----------+--------------------------+
 | LIFOQueue | Last-In-First-Out Queue  |
 +-----------+--------------------------+
-| DEQueue   |    Double-Ended Queue    |
+| DEQueue   | Double-Ended Queue       |
 +-----------+--------------------------+
-
-Each with capabilities:
-
-- O(1) pushes and pops
-- O(1) length determination
-- in a Boolean context
-
-  - true if not empty
-  - false if empty
-
-- will resize themselves larger when needed
-- not indexable or sliceable by design
 
 """
 

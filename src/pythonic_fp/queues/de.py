@@ -15,7 +15,7 @@
 from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Iterator
-from typing import Never, overload, TypeVar
+from typing import TypeVar
 
 from pythonic_fp.circulararray.resizing import CA
 from pythonic_fp.fptools.maybe import MayBe
@@ -26,13 +26,18 @@ D = TypeVar('D')
 
 
 class DEQueue[D]:
-    """
-    Stateful Double-Ended (DEQueue) data structure. Order of initial
-    data retained, as if pushed on from the right.
-    """
-    L = TypeVar('L')
-    R = TypeVar('R')
+    """module de
 
+    Stateful Double Ended (DE) queue data structure.
+    Initial data instantiated in FIFO order.
+
+    - O(1) length determination
+    - in a Boolean context, true if not empty, false if empty
+    - will automatically resize itself larger when needed
+    - neither indexable nor sliceable by design
+    - O(1) pushes and pops
+
+    """
     __slots__ = ('_ca',)
 
     U = TypeVar('U')
@@ -57,18 +62,6 @@ class DEQueue[D]:
         if not isinstance(other, DEQueue):
             return False
         return self._ca == other._ca
-
-    @overload
-    def __getitem__(self, idx: int) -> D: ...
-    @overload
-    def __getitem__(self, idx: slice) -> Never: ...
-
-    def __getitem__(self, idx: int | slice) -> D | Never:
-        if isinstance(idx, slice):
-            msg = 'fptools_fp.queues.DEQueue is not slicable by design'
-            raise NotImplementedError(msg)
-        msg = 'fptools_fp.queues.DEQueue is not indexable by design'
-        raise NotImplementedError(msg)
 
     def __iter__(self) -> Iterator[D]:
         return iter(list(self._ca))

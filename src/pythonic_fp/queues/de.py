@@ -1,4 +1,4 @@
-# Copyright 2023-2024 Geoffrey R. Scheller
+# Copyright 2023-2025 Geoffrey R. Scheller
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -12,6 +12,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+"""Stateful Double-Ended (DE) queue data structure.
+
+- O(1) pushes and pops
+- in a Boolean context, true if not empty, false if empty
+- will automatically resize itself larger when needed
+- neither indexable nor sliceable by design
+- O(1) length determination
+
+"""
 from __future__ import annotations
 
 from collections.abc import Callable, Iterable, Iterator
@@ -26,26 +35,17 @@ D = TypeVar('D')
 
 
 class DEQueue[D]:
-    """module de
 
-    Stateful Double Ended (DE) queue data structure.
-    Initial data instantiated in FIFO order.
-
-    - O(1) length determination
-    - in a Boolean context, true if not empty, false if empty
-    - will automatically resize itself larger when needed
-    - neither indexable nor sliceable by design
-    - O(1) pushes and pops
-
-    """
     __slots__ = ('_ca',)
 
     U = TypeVar('U')
 
     def __init__(self, *dss: Iterable[D]) -> None:
-        """
+        """Initial data instantiated in FIFO order.
+
         :param dss: takes one or no iterables
         :raises ValueError: if more than 1 iterable is given
+
         """
         if (size := len(dss)) > 1:
             msg = f'DEQueue expects at most 1 iterable argument, got {size}'

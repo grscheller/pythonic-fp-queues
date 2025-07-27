@@ -12,11 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Stateful Last-In-First-Out (LIFO) data structure.
+"""Stateful Last-In-First-Out (LIFO) Queue data structure.
 
-- O(1) pushes and pops
+- O(1) pops
+- O(1) amortized pushes
 - in a Boolean context, true if not empty, false if empty
-- will automatically resize itself larger when needed
+- will automatically increase storage capacity when needed
 - neither indexable nor sliceable by design
 - O(1) length determination
 
@@ -26,7 +27,7 @@ from __future__ import annotations
 from collections.abc import Callable, Iterable, Iterator
 from typing import TypeVar
 
-from pythonic_fp.circulararray.resizing import CA
+from pythonic_fp.circulararray.auto import CA
 from pythonic_fp.fptools.function import swap
 from pythonic_fp.fptools.maybe import MayBe
 
@@ -40,10 +41,13 @@ class LIFOQueue[D]:
     __slots__ = ('_ca',)
 
     def __init__(self, *dss: Iterable[D]) -> None:
-        """Initial data instantiated in natural LIFO order.
+        """Initial data in natural LIFO order, oldest to newest.
 
-        :param dss: takes one or no iterables
+        :param dss: takes up to one iterable
         :raises ValueError: if more than 1 iterable is given
+
+         .. deprecated:: 5.0.0
+             Use ``pythonic_fp.containers.queues.lifo.LIFOQueue`` instead.
 
         """
         if (size := len(dss)) > 1:
@@ -76,23 +80,23 @@ class LIFOQueue[D]:
     def copy(self) -> LIFOQueue[D]:
         """Shallow copy.
 
-        :returns: shallow copy of the queue
+        :return: shallow copy of the LIFOQueue
 
         """
         return LIFOQueue(reversed(self._ca))
 
     def push(self, *ds: D) -> None:
-        """Push data onto FIFOQueue.
+        """Push data onto LIFOQueue.
 
-        :param ds: items to be pushed onto queue
+        :param ds: data items to be pushed onto LIFOQueue
 
         """
         self._ca.pushr(*ds)
 
     def pop(self) -> MayBe[D]:
-        """Pop newest item off of queue.
+        """Pop newest data item off of LIFOQueue.
 
-        :returns: MayBe of popped item
+        :return: MayBe of popped data item if queue was not empty, empty MayBe otherwise
 
         """
         if self._ca:
@@ -100,32 +104,32 @@ class LIFOQueue[D]:
         return MayBe()
 
     def peak(self) -> MayBe[D]:
-        """Peak at newest item on queue. Does not consume data.
+        """Peak at newest data item on queue.
 
-        :returns: MayBe of next item to be popped
+        :return: MayBe of newest data item on queue, empty MayBe if queue empty
 
         """
         if self._ca:
             return MayBe(self._ca[-1])
         return MayBe()
 
-    def fold[T](self, f: Callable[[T, D], T], initial: T | None = None) -> MayBe[T]:
-        """Reduces in natural LIFO Order, newest to oldest.
+    def fold[T](self, f: Callable[[T, D], T], start: T | None = None) -> MayBe[T]:
+        """Reduces LIFOQUEUE in natural LIFO Order, newest to oldest.
 
         :param f: reducing function, first argument is for accumulator
-        :param initial: Optional initial value
-        :returns: MayBe of reduced value with f
+        :param start: optional starting value
+        :return: MayBe of reduced value with f, empty MayBe if queue empty and no starting value given
 
         """
-        if initial is None:
+        if start is None:
             if not self._ca:
                 return MayBe()
-        return MayBe(self._ca.foldr(swap(f), initial))
+        return MayBe(self._ca.foldr(swap(f), start))
 
     def map[U](self, f: Callable[[D], U]) -> LIFOQueue[U]:
         """Map f over the LIFOQueue, retain original order.
 
-        :returns: new LIFOQueue
+        :return: new LIFOQueue instance
 
         """
         return LIFOQueue(reversed(CA(map(f, reversed(self._ca)))))

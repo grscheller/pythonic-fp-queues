@@ -12,11 +12,12 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Stateful First-In-First-Out (FIFO) queue data structure.
+"""Stateful First-In-First-Out (FIFO) Queue data structure.
 
-- O(1) pushes and pops
+- O(1) pops
+- O(1) amortized pushes
 - in a Boolean context, true if not empty, false if empty
-- will automatically resize itself larger when needed
+- will automatically increase storage capacity when needed
 - neither indexable nor sliceable by design
 - O(1) length determination
 
@@ -26,7 +27,7 @@ from __future__ import annotations
 from collections.abc import Callable, Iterable, Iterator
 from typing import TypeVar
 
-from pythonic_fp.circulararray.resizing import CA
+from pythonic_fp.circulararray.auto import CA
 from pythonic_fp.fptools.maybe import MayBe
 
 __all__ = ['FIFOQueue', 'fifo_queue']
@@ -39,10 +40,13 @@ class FIFOQueue[D]:
     __slots__ = ('_ca',)
 
     def __init__(self, *dss: Iterable[D]) -> None:
-        """Initial data instantiated in natural FIFO order.
+        """Initial data in natural FIFO order, newest to oldest.
 
-        :param dss: takes one or no iterables
+        :param dss: takes up to one iterable
         :raises ValueError: if more than 1 iterable is given
+
+         .. deprecated:: 5.0.0
+             Use ``pythonic_fp.containers.queues.fifo.FIFOQueue`` instead.
 
         """
         if (size := len(dss)) > 1:
@@ -75,7 +79,7 @@ class FIFOQueue[D]:
     def copy(self) -> FIFOQueue[D]:
         """Shallow copy.
 
-        :returns: shallow copy of the queue
+        :return: shallow copy of the FIFOQueue
 
         """
         return FIFOQueue(self._ca)
@@ -83,15 +87,15 @@ class FIFOQueue[D]:
     def push(self, *ds: D) -> None:
         """Push data onto FIFOQueue.
 
-        :param ds: items to be pushed onto queue
+        :param ds: data items to be pushed onto FIFOQueue
 
         """
         self._ca.pushr(*ds)
 
     def pop(self) -> MayBe[D]:
-        """Pop oldest item off of queue.
+        """Pop oldest data item off of FIFOQueue.
 
-        :returns: MayBe of popped item
+        :return: MayBe of popped data item if queue was not empty, empty MayBe otherwise
 
         """
         if self._ca:
@@ -99,9 +103,9 @@ class FIFOQueue[D]:
         return MayBe()
 
     def peak_last_in(self) -> MayBe[D]:
-        """Peak at newest item on queue. Does not consume data.
+        """Peak at newest data item on queue.
 
-        :returns: MayBe of newest item pushed on queue
+        :return: MayBe of newest data item on queue, empty MayBe if queue empty
         
         """
         if self._ca:
@@ -109,32 +113,33 @@ class FIFOQueue[D]:
         return MayBe()
 
     def peak_next_out(self) -> MayBe[D]:
-        """Peak at oldest item on queue. Does not consume data.
+        """Peak at oldest data item on queue.
 
-        :returns:  MayBe of next item to be popped
+        :return: MayBe of oldest data item on queue, empty MayBe if queue empty
 
         """
         if self._ca:
             return MayBe(self._ca[0])
         return MayBe()
 
-    def fold[T](self, f: Callable[[T, D], T], initial: T | None = None) -> MayBe[T]:
-        """Reduces in natural FIFO Order, oldest to newest.
+    def fold[T](self, f: Callable[[T, D], T], start: T | None = None) -> MayBe[T]:
+        """Reduces FIFOQueue in natural FIFO Order, oldest to newest.
 
         :param f: reducing function, first argument is for accumulator
-        :param initial: optional initial value
-        :returns: MayBe of reduced value with f
+        :param start: optional starting value
+        :return: MayBe of reduced value with f, empty MayBe if queue empty and no starting value given
 
         """
-        if initial is None:
+        if start is None:
             if not self._ca:
                 return MayBe()
-        return MayBe(self._ca.foldl(f, initial))
+        return MayBe(self._ca.foldl(f, start))
 
     def map[U](self, f: Callable[[D], U]) -> FIFOQueue[U]:
         """Map f over the FIFOQueue, retain original order.
 
-        :returns: new FIFOQueue
+        :return: new FIFOQueue instance
+
         """
         return FIFOQueue(map(f, self._ca))
 

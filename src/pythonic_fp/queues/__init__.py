@@ -24,6 +24,9 @@
 | pythonic_fp.queues.lifo | LIFOQueue | Last-In-First-Out queue  |
 +-------------------------+-----------+--------------------------+
 
+.. deprecated:: 5.0.0
+    Use ``pythonic_fp.containers.queues`` instead.
+
 """
 
 __author__ = 'Geoffrey R. Scheller'

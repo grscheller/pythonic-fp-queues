@@ -14,6 +14,9 @@
 
 """Stateful Last-In-First-Out (LIFO) Queue data structure.
 
+.. deprecated:: 5.0.0
+   Use module ``pythonic_fp.containers.queues.lifo`` instead.
+
 - O(1) pops
 - O(1) amortized pushes
 - in a Boolean context, true if not empty, false if empty
@@ -45,9 +48,6 @@ class LIFOQueue[D]:
 
         :param dss: takes up to one iterable
         :raises ValueError: if more than 1 iterable is given
-
-         .. deprecated:: 5.0.0
-             Use ``pythonic_fp.containers.queues.lifo.LIFOQueue`` instead.
 
         """
         if (size := len(dss)) > 1:

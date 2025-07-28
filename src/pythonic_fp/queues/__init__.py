@@ -25,6 +25,7 @@
 +-------------------------+-----------+--------------------------+
 
 .. deprecated:: 5.0.0
+
    Use package ``pythonic_fp.containers.queues`` instead.
 
 """

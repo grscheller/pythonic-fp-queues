@@ -15,6 +15,7 @@
 """Stateful Last-In-First-Out (LIFO) Queue data structure.
 
 .. deprecated:: 5.0.0
+
    Use module ``pythonic_fp.containers.queues.lifo`` instead.
 
 - O(1) pops

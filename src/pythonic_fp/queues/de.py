@@ -15,6 +15,7 @@
 """Stateful Double-Ended (DE) Queue data structure.
 
 .. deprecated:: 5.0.0
+
    Use module ``pythonic_fp.containers.queues.de`` instead.
 
 - O(1) pops each end

@@ -15,6 +15,7 @@
 """Stateful First-In-First-Out (FIFO) Queue data structure.
 
 .. deprecated:: 5.0.0
+
    Use module ``pythonic_fp.containers.queues.fifo`` instead.
 
 - O(1) pops

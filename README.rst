@@ -8,7 +8,7 @@ PyPI project
 This PyPI project has been **DEPRECATED**, but the effort will be
 continued in PyPI project
 `pythonic-fp-containers <https://pypi.org/project/pythonic-fp-containers/>`_
-where it is now a subpackage of ``pythonic_fp.containers.queues``.
+where it is now the subpackage ``pythonic_fp.containers.queues``.
 
 +-----------+--------------------------+
 |   Class   |      Type of Queue       |

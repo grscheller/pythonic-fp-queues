@@ -12,21 +12,19 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Three types of queues.
+"""
+Queues
+======
 
 +-------------------------+-----------+--------------------------+
-| module                  | class     | description              |
+| module                  | class     | name                     |
 +=========================+===========+==========================+
-| pythonic_fp.queues.de   | DEQueue   | Double-Ended queue       |
+| pythonic_fp.queues.fifo | FIFOQueue | First-In-First-Out Queue |
 +-------------------------+-----------+--------------------------+
-| pythonic_fp.queues.fifo | FIFOQueue | First-In-First-Out queue |
+| pythonic_fp.queues.lifo | LIFOQueue | Last-In-First-Out Queue  |
 +-------------------------+-----------+--------------------------+
-| pythonic_fp.queues.lifo | LIFOQueue | Last-In-First-Out queue  |
+| pythonic_fp.queues.de   | DEQueue   | Double-Ended Queue       |
 +-------------------------+-----------+--------------------------+
-
-.. deprecated:: 5.0.0
-
-   Use package ``pythonic_fp.containers.queues`` instead.
 
 """
 

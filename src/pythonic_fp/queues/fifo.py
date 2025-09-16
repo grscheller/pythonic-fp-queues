@@ -12,25 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Stateful First-In-First-Out (FIFO) Queue data structure.
-
-.. deprecated:: 5.0.0
-
-   Use module ``pythonic_fp.containers.queues.fifo`` instead.
-
-- O(1) pops
-- O(1) amortized pushes
-- in a Boolean context, true if not empty, false if empty
-- will automatically increase storage capacity when needed
-- neither indexable nor sliceable by design
-- O(1) length determination
-
-"""
-from __future__ import annotations
-
 from collections.abc import Callable, Iterable, Iterator
 from typing import TypeVar
-
 from pythonic_fp.circulararray.auto import CA
 from pythonic_fp.fptools.maybe import MayBe
 
@@ -40,15 +23,23 @@ D = TypeVar('D')
 
 
 class FIFOQueue[D]:
+    """Stateful First-In-First-Out (FIFO) Queue data structure.
+
+    - O(1) pops
+    - O(1) amortized pushes
+    - O(1) length determination
+    - in a Boolean context, truthy if not empty, falsy if empty
+    - will automatically increase storage capacity when needed
+    - neither indexable nor sliceable by design
+
+    """
 
     __slots__ = ('_ca',)
 
     def __init__(self, *dss: Iterable[D]) -> None:
-        """Initial data in natural FIFO order, newest to oldest.
-
-        :param dss: takes up to one iterable
+        """
+        :param dss: takes 1 or 0 iterables, initializes data in natural FIFO order
         :raises ValueError: if more than 1 iterable is given
-
         """
         if (size := len(dss)) > 1:
             msg = f'FIFOQueue expects at most 1 iterable argument, got {size}'
@@ -77,11 +68,10 @@ class FIFOQueue[D]:
     def __str__(self) -> str:
         return '<< ' + ' < '.join(map(str, self)) + ' <<'
 
-    def copy(self) -> FIFOQueue[D]:
+    def copy(self) -> 'FIFOQueue[D]':
         """Shallow copy.
 
         :return: shallow copy of the FIFOQueue
-
         """
         return FIFOQueue(self._ca)
 
@@ -89,7 +79,6 @@ class FIFOQueue[D]:
         """Push data onto FIFOQueue.
 
         :param ds: data items to be pushed onto FIFOQueue
-
         """
         self._ca.pushr(*ds)
 
@@ -97,7 +86,6 @@ class FIFOQueue[D]:
         """Pop oldest data item off of FIFOQueue.
 
         :return: MayBe of popped data item if queue was not empty, empty MayBe otherwise
-
         """
         if self._ca:
             return MayBe(self._ca.popl())
@@ -107,7 +95,6 @@ class FIFOQueue[D]:
         """Peak at newest data item on queue.
 
         :return: MayBe of newest data item on queue, empty MayBe if queue empty
-        
         """
         if self._ca:
             return MayBe(self._ca[-1])
@@ -117,7 +104,6 @@ class FIFOQueue[D]:
         """Peak at oldest data item on queue.
 
         :return: MayBe of oldest data item on queue, empty MayBe if queue empty
-
         """
         if self._ca:
             return MayBe(self._ca[0])
@@ -129,18 +115,17 @@ class FIFOQueue[D]:
         :param f: reducing function, first argument is for accumulator
         :param start: optional starting value
         :return: MayBe of reduced value with f, empty MayBe if queue empty and no starting value given
-
         """
         if start is None:
             if not self._ca:
                 return MayBe()
         return MayBe(self._ca.foldl(f, start))
 
-    def map[U](self, f: Callable[[D], U]) -> FIFOQueue[U]:
+    def map[U](self, f: Callable[[D], U]) -> 'FIFOQueue[U]':
         """Map f over the FIFOQueue, retain original order.
 
+        :param f: function to map over queue
         :return: new FIFOQueue instance
-
         """
         return FIFOQueue(map(f, self._ca))
 

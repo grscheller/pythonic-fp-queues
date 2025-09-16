@@ -1,35 +1,30 @@
-Pythonic FP - Queues (DEPRECATED)
-=================================
+Pythonic FP - Queues
+====================
 
 PyPI project
 `pythonic-fp.queues
 <https://pypi.org/project/pythonic-fp.queues>`_.
 
-This PyPI project has been **DEPRECATED**, but the effort will be
-continued in PyPI project
-`pythonic-fp-containers <https://pypi.org/project/pythonic-fp-containers/>`_
-where it is now the subpackage ``pythonic_fp.containers.queues``.
-
-+-----------+--------------------------+
-|   Class   |      Type of Queue       |
-+===========+==========================+
-| FIFOQueue | First-In-First-Out Queue |
-+-----------+--------------------------+
-| LIFOQueue | Last-In-First-Out Queue  |
-+-----------+--------------------------+
-| DEQueue   |    Double-Ended Queue    |
-+-----------+--------------------------+
++-------------------------+-----------+--------------------------+
+| module                  | class     | name                     |
++=========================+===========+==========================+
+| pythonic_fp.queues.fifo | FIFOQueue | First-In-First-Out Queue |
++-------------------------+-----------+--------------------------+
+| pythonic_fp.queues.lifo | LIFOQueue | Last-In-First-Out Queue  |
++-------------------------+-----------+--------------------------+
+| pythonic_fp.queues.de   | DEQueue   | Double-Ended Queue       |
++-------------------------+-----------+--------------------------+
 
 This PyPI project is part of of the grscheller
-`pythonic-fp namespace projects
-<https://github.com/grscheller/pythonic-fp/blob/main/README.md>`_
+`pythonic_fp Python namespace packages
+<https://github.com/grscheller/pythonic-fp/blob/main/README.md>`_.
 
 Documentation
 -------------
 
 Documentation for this project is hosted on
 `GitHub Pages
-<https://grscheller.github.io/pythonic-fp/deprecated/queues/5.0.0/build/html/releases.html>`_.
+<https://grscheller.github.io/pythonic-fp/queues/development/build/html>`_.
 
 Copyright and License
 ---------------------

@@ -12,25 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Stateful Double-Ended (DE) Queue data structure.
-
-.. deprecated:: 5.0.0
-
-   Use module ``pythonic_fp.containers.queues.de`` instead.
-
-- O(1) pops each end
-- O(1) amortized pushes each end
-- O(1) length determination
-- will automatically increase storage capacity when needed
-- in a Boolean context, true if not empty, false if empty
-- neither indexable nor sliceable by design
-
-"""
-from __future__ import annotations
-
 from collections.abc import Callable, Iterable, Iterator
 from typing import TypeVar
-
 from pythonic_fp.circulararray.auto import CA
 from pythonic_fp.fptools.maybe import MayBe
 
@@ -40,16 +23,23 @@ D = TypeVar('D')
 
 
 class DEQueue[D]:
+    """Stateful Double-Ended (DE) Queue data structure.
+
+    - O(1) pops each end
+    - O(1) amortized pushes each end
+    - O(1) length determination
+    - in a Boolean context, truthy if not empty, falsy if empty
+    - will automatically increase storage capacity when needed
+    - neither indexable nor sliceable by design
+
+    """
 
     __slots__ = ('_ca',)
 
     def __init__(self, *dss: Iterable[D]) -> None:
-        """Initial data in FIFO order, newest to oldest, as if
-        pushed on from the right side.
-
-        :param dss: takes up to one iterable
+        """
+        :param dss: takes 1 or 0 iterables, initializes data in FIFO order
         :raises ValueError: if more than 1 iterable is given
-
         """
         if (size := len(dss)) > 1:
             msg = f'DEQueue expects at most 1 argument, got {size}'
@@ -81,11 +71,10 @@ class DEQueue[D]:
     def __str__(self) -> str:
         return '>< ' + ' | '.join(map(str, self)) + ' ><'
 
-    def copy(self) -> DEQueue[D]:
+    def copy(self) -> 'DEQueue[D]':
         """Shallow copy.
 
         :return: shallow copy of the DEQueue
-
         """
         return DEQueue(self._ca)
 
@@ -93,7 +82,6 @@ class DEQueue[D]:
         """Push data onto left side of DEQueue.
 
         :param ds: items to be pushed onto DEQueue from the left
-
         """
         self._ca.pushl(*ds)
 
@@ -101,7 +89,6 @@ class DEQueue[D]:
         """Push data onto right side of DEQueue.
 
         :param ds: items to be pushed onto DEQueue from the right
-
         """
         self._ca.pushr(*ds)
 
@@ -109,7 +96,6 @@ class DEQueue[D]:
         """Pop next data item from left side DEQueue, if it exists.
 
         :return: MayBe of popped item if queue was not empty, empty MayBe otherwise
-
         """
         if self._ca:
             return MayBe(self._ca.popl())
@@ -119,7 +105,6 @@ class DEQueue[D]:
         """Pop next item off right side DEQueue.
 
         :return: MayBe of popped item if queue was not empty, empty MayBe otherwise
-
         """
         if self._ca:
             return MayBe(self._ca.popr())
@@ -129,7 +114,6 @@ class DEQueue[D]:
         """Peak at data on left side of DEQueue.
 
         :return: MayBe of leftmost data if queue not empty, empty MayBe otherwise
-
         """
         if self._ca:
             return MayBe(self._ca[0])
@@ -139,7 +123,6 @@ class DEQueue[D]:
         """Peak at right side of DEQueue. Does not consume item.
 
         :return: MayBe of rightmost data if queue not empty, empty MayBe otherwise
-
         """
         if self._ca:
             return MayBe(self._ca[-1])
@@ -151,7 +134,6 @@ class DEQueue[D]:
         :param f: reducing function, first argument is for accumulator
         :param start: optional starting value
         :return: MayBe of reduced value with f, empty MayBe if queue empty and no starting value given
-
         """
         if start is None:
             if not self._ca:
@@ -164,18 +146,17 @@ class DEQueue[D]:
         :param f: reducing function, second argument is for accumulator
         :param start: optional starting value
         :return: MayBe of reduced value with f, empty MayBe if queue empty and no starting value given
-
         """
         if start is None:
             if not self._ca:
                 return MayBe()
         return MayBe(self._ca.foldr(f, start))
 
-    def map[U](self, f: Callable[[D], U]) -> DEQueue[U]:
-        """Map f over the DEQueue left to right, retain original order.
+    def map[U](self, f: Callable[[D], U]) -> 'DEQueue[U]':
+        """Map left to right. Does not matter if f is pure.
 
-        :return: new DEQueue instance
-
+        :param f: function to map over queue
+        :return: new DEQueue instance, retain original order
         """
         return DEQueue(map(f, self._ca))
 

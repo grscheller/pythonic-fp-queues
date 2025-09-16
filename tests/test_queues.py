@@ -12,7 +12,6 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from __future__ import annotations
 from typing import Optional
 from pythonic_fp.circulararray.auto import ca
 from pythonic_fp.circulararray.fixed import caf
@@ -23,6 +22,7 @@ from pythonic_fp.queues.fifo import fifo_queue as fq
 from pythonic_fp.queues.lifo import LIFOQueue as LQ
 from pythonic_fp.queues.lifo import lifo_queue as lq
 from pythonic_fp.fptools.maybe import MayBe
+
 
 class TestQueueTypes:
     def test_mutate_map(self) -> None:

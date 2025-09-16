@@ -1,10 +1,7 @@
 from collections.abc import Callable, Iterable, Iterator
 from pythonic_fp.fptools.maybe import MayBe
-from typing import TypeVar
 
 __all__ = ['DEQueue', 'de_queue']
-
-D = TypeVar('D')
 
 class DEQueue[D]:
     def __init__(self, *dss: Iterable[D]) -> None: ...

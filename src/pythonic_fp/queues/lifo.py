@@ -35,8 +35,8 @@ class LIFOQueue[D]:
 
     def __init__(self, *dss: Iterable[D]) -> None:
         """
-        :param dss: takes 1 or 0 iterables, initializes data in natural LIFO order
-        :raises ValueError: if more than 1 iterable is given
+        :param dss: Takes 1 or 0 iterables, initializes data in natural LIFO order.
+        :raises ValueError: If more than 1 iterable is given.
         """
         if (size := len(dss)) > 1:
             msg = f'LIFOQueue expects at most 1 iterable argument, got {size}'
@@ -68,30 +68,30 @@ class LIFOQueue[D]:
     def copy(self) -> 'LIFOQueue[D]':
         """Shallow copy.
 
-        :return: shallow copy of the LIFOQueue
+        :returns: Shallow copy of the LIFOQueue.
         """
         return LIFOQueue(reversed(self._ca))
 
     def push(self, *ds: D) -> None:
-        """Push data onto LIFOQueue.
+        """Push items onto LIFOQueue.
 
-        :param ds: data items to be pushed onto LIFOQueue
+        :param ds: Items to be pushed onto LIFOQueue.
         """
         self._ca.pushr(*ds)
 
     def pop(self) -> MayBe[D]:
         """Pop newest data item off of LIFOQueue.
 
-        :return: MayBe of popped data item if queue was not empty, empty MayBe otherwise
+        :returns: MayBe of popped item if queue was not empty, empty MayBe otherwise.
         """
         if self._ca:
             return MayBe(self._ca.popr())
         return MayBe()
 
     def peak(self) -> MayBe[D]:
-        """Peak at newest data item on queue.
+        """Peak at newest item on queue.
 
-        :return: MayBe of newest data item on queue, empty MayBe if queue empty
+        :returns: MayBe of newest item on queue, empty MayBe if queue empty.
         """
         if self._ca:
             return MayBe(self._ca[-1])
@@ -100,9 +100,9 @@ class LIFOQueue[D]:
     def fold[T](self, f: Callable[[T, D], T], start: T | None = None) -> MayBe[T]:
         """Reduces LIFOQUEUE in natural LIFO Order, newest to oldest.
 
-        :param f: reducing function, first argument is for accumulator
-        :param start: optional starting value
-        :return: MayBe of reduced value with f, empty MayBe if queue empty and no starting value given
+        :param f: Reducing function, first argument is for accumulator.
+        :param start: Optional starting value.
+        :returns: MayBe of reduced value, empty MayBe if queue empty and no starting value given.
         """
         if start is None:
             if not self._ca:
@@ -112,12 +112,16 @@ class LIFOQueue[D]:
     def map[U](self, f: Callable[[D], U]) -> 'LIFOQueue[U]':
         """Map f over the LIFOQueue, retain original order.
 
-        :param f: function to map over queue
-        :return: new LIFOQueue instance
+        :param f: Function to map over queue.
+        :returns: New LIFOQueue instance.
         """
         return LIFOQueue(reversed(CA(map(f, reversed(self._ca)))))
 
 
 def lifo_queue[D](*ds: D) -> LIFOQueue[D]:
-    """LIFOQueue factory function."""
+    """LIFOQueue factory function.
+
+    :param ds: Initial items pushed on in LIFO order.
+    :returns: LIFOQueue with initialized items from ``ds``.
+    """
     return LIFOQueue(ds)

@@ -13,13 +13,10 @@
 # limitations under the License.
 
 from collections.abc import Callable, Iterable, Iterator
-from typing import TypeVar
 from pythonic_fp.circulararray.auto import CA
 from pythonic_fp.fptools.maybe import MayBe
 
 __all__ = ['FIFOQueue', 'fifo_queue']
-
-D = TypeVar('D')
 
 
 class FIFOQueue[D]:
@@ -38,8 +35,8 @@ class FIFOQueue[D]:
 
     def __init__(self, *dss: Iterable[D]) -> None:
         """
-        :param dss: takes 1 or 0 iterables, initializes data in natural FIFO order
-        :raises ValueError: if more than 1 iterable is given
+        :param dss: Takes 1 or 0 iterables, initializes items in natural FIFO order.
+        :raises ValueError: If more than 1 iterable is given.
         """
         if (size := len(dss)) > 1:
             msg = f'FIFOQueue expects at most 1 iterable argument, got {size}'
@@ -71,30 +68,30 @@ class FIFOQueue[D]:
     def copy(self) -> 'FIFOQueue[D]':
         """Shallow copy.
 
-        :return: shallow copy of the FIFOQueue
+        :returns: Shallow copy of the FIFOQueue.
         """
         return FIFOQueue(self._ca)
 
     def push(self, *ds: D) -> None:
-        """Push data onto FIFOQueue.
+        """Push items onto FIFOQueue.
 
-        :param ds: data items to be pushed onto FIFOQueue
+        :param ds: Items to be pushed onto FIFOQueue.
         """
         self._ca.pushr(*ds)
 
     def pop(self) -> MayBe[D]:
         """Pop oldest data item off of FIFOQueue.
 
-        :return: MayBe of popped data item if queue was not empty, empty MayBe otherwise
+        :returns: MayBe of popped data item if queue was not empty, empty MayBe otherwise.
         """
         if self._ca:
             return MayBe(self._ca.popl())
         return MayBe()
 
     def peak_last_in(self) -> MayBe[D]:
-        """Peak at newest data item on queue.
+        """Peak at newest item on queue.
 
-        :return: MayBe of newest data item on queue, empty MayBe if queue empty
+        :returns: MayBe of newest item on queue, empty MayBe if queue empty.
         """
         if self._ca:
             return MayBe(self._ca[-1])
@@ -103,7 +100,7 @@ class FIFOQueue[D]:
     def peak_next_out(self) -> MayBe[D]:
         """Peak at oldest data item on queue.
 
-        :return: MayBe of oldest data item on queue, empty MayBe if queue empty
+        :returns: MayBe of oldest item on queue, empty MayBe if queue empty.
         """
         if self._ca:
             return MayBe(self._ca[0])
@@ -112,9 +109,9 @@ class FIFOQueue[D]:
     def fold[T](self, f: Callable[[T, D], T], start: T | None = None) -> MayBe[T]:
         """Reduces FIFOQueue in natural FIFO Order, oldest to newest.
 
-        :param f: reducing function, first argument is for accumulator
-        :param start: optional starting value
-        :return: MayBe of reduced value with f, empty MayBe if queue empty and no starting value given
+        :param f: Reducing function, first argument is for accumulator.
+        :param start: Optional starting value.
+        :returns: MayBe of reduced value, empty MayBe if queue empty and no starting value given.
         """
         if start is None:
             if not self._ca:
@@ -124,12 +121,16 @@ class FIFOQueue[D]:
     def map[U](self, f: Callable[[D], U]) -> 'FIFOQueue[U]':
         """Map f over the FIFOQueue, retain original order.
 
-        :param f: function to map over queue
-        :return: new FIFOQueue instance
+        :param f: Function to map over queue.
+        :returns: New FIFOQueue instance.
         """
         return FIFOQueue(map(f, self._ca))
 
 
 def fifo_queue[D](*ds: D) -> FIFOQueue[D]:
-    """FIFOQueue factory function."""
+    """FIFOQueue factory function.
+
+    :param ds: Initial items pushed on in FIFO order.
+    :returns: FIFOQueue with initialized items from ``ds``.
+    """
     return FIFOQueue(ds)

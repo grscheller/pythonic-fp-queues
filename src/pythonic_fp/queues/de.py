@@ -13,13 +13,10 @@
 # limitations under the License.
 
 from collections.abc import Callable, Iterable, Iterator
-from typing import TypeVar
 from pythonic_fp.circulararray.auto import CA
 from pythonic_fp.fptools.maybe import MayBe
 
 __all__ = ['DEQueue', 'de_queue']
-
-D = TypeVar('D')
 
 
 class DEQueue[D]:
@@ -38,8 +35,8 @@ class DEQueue[D]:
 
     def __init__(self, *dss: Iterable[D]) -> None:
         """
-        :param dss: takes 1 or 0 iterables, initializes data in FIFO order
-        :raises ValueError: if more than 1 iterable is given
+        :param dss: Takes 1 or 0 iterables, initializes data in FIFO order.
+        :raises ValueError: If more than 1 iterable is given.
         """
         if (size := len(dss)) > 1:
             msg = f'DEQueue expects at most 1 argument, got {size}'
@@ -74,55 +71,55 @@ class DEQueue[D]:
     def copy(self) -> 'DEQueue[D]':
         """Shallow copy.
 
-        :return: shallow copy of the DEQueue
+        :returns: Shallow copy of the DEQueue.
         """
         return DEQueue(self._ca)
 
     def pushl(self, *ds: D) -> None:
         """Push data onto left side of DEQueue.
 
-        :param ds: items to be pushed onto DEQueue from the left
+        :param ds: Items to be pushed onto DEQueue from the left.
         """
         self._ca.pushl(*ds)
 
     def pushr(self, *ds: D) -> None:
         """Push data onto right side of DEQueue.
 
-        :param ds: items to be pushed onto DEQueue from the right
+        :param ds: Items to be pushed onto DEQueue from the right.
         """
         self._ca.pushr(*ds)
 
     def popl(self) -> MayBe[D]:
-        """Pop next data item from left side DEQueue, if it exists.
+        """Pop next item from left side DEQueue, if it exists.
 
-        :return: MayBe of popped item if queue was not empty, empty MayBe otherwise
+        :returns: MayBe of popped item if queue was not empty, empty MayBe otherwise.
         """
         if self._ca:
             return MayBe(self._ca.popl())
         return MayBe()
 
     def popr(self) -> MayBe[D]:
-        """Pop next item off right side DEQueue.
+        """Pop next item off right side DEQueue, if it exists.
 
-        :return: MayBe of popped item if queue was not empty, empty MayBe otherwise
+        :returns: MayBe of popped item if queue was not empty, empty MayBe otherwise.
         """
         if self._ca:
             return MayBe(self._ca.popr())
         return MayBe()
 
     def peakl(self) -> MayBe[D]:
-        """Peak at data on left side of DEQueue.
+        """Peak left side of DEQueue. Does not consume item.
 
-        :return: MayBe of leftmost data if queue not empty, empty MayBe otherwise
+        :returns: MayBe of leftmost item if queue not empty, empty MayBe otherwise.
         """
         if self._ca:
             return MayBe(self._ca[0])
         return MayBe()
 
     def peakr(self) -> MayBe[D]:
-        """Peak at right side of DEQueue. Does not consume item.
+        """Peak right side of DEQueue. Does not consume item.
 
-        :return: MayBe of rightmost data if queue not empty, empty MayBe otherwise
+        :returns: MayBe of rightmost item if queue not empty, empty MayBe otherwise.
         """
         if self._ca:
             return MayBe(self._ca[-1])
@@ -131,9 +128,9 @@ class DEQueue[D]:
     def foldl[L](self, f: Callable[[L, D], L], start: L | None = None) -> MayBe[L]:
         """Reduces DEQueue left to right.
 
-        :param f: reducing function, first argument is for accumulator
-        :param start: optional starting value
-        :return: MayBe of reduced value with f, empty MayBe if queue empty and no starting value given
+        :param f: Reducing function, first argument is for accumulator.
+        :param start: Optional starting value.
+        :returns: MayBe of reduced value with f, empty MayBe if queue empty and no starting value given.
         """
         if start is None:
             if not self._ca:
@@ -143,9 +140,9 @@ class DEQueue[D]:
     def foldr[R](self, f: Callable[[D, R], R], start: R | None = None) -> MayBe[R]:
         """Reduces DEQueue right to left.
 
-        :param f: reducing function, second argument is for accumulator
-        :param start: optional starting value
-        :return: MayBe of reduced value with f, empty MayBe if queue empty and no starting value given
+        :param f: Reducing function, second argument is for accumulator.
+        :param start: Optional starting value.
+        :returns: MayBe of reduced value with f, empty MayBe if queue empty and no starting value given.
         """
         if start is None:
             if not self._ca:
@@ -153,14 +150,22 @@ class DEQueue[D]:
         return MayBe(self._ca.foldr(f, start))
 
     def map[U](self, f: Callable[[D], U]) -> 'DEQueue[U]':
-        """Map left to right. Does not matter if f is pure.
+        """Map left to right.
 
-        :param f: function to map over queue
-        :return: new DEQueue instance, retain original order
+        .. tip::
+
+            Order map done does not matter if ``f`` is pure.
+
+        :param f: Function to map over queue.
+        :returns: New DEQueue instance, retain original order.
         """
         return DEQueue(map(f, self._ca))
 
 
 def de_queue[D](*ds: D) -> DEQueue[D]:
-    """DEQueue factory function."""
+    """DEQueue factory function.
+
+    :param ds: Initial items as if pushed on from right to left.
+    :returns: DEQueue with items initialized in FIFO order.
+    """
     return DEQueue(ds)

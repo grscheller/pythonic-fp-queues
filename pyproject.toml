@@ -17,7 +17,7 @@ classifiers = [
 ]
 dependencies = [
   "pythonic-fp-circulararray>=5.3.3",
-  "pythonic-fp-fptools>=5.1.0",
+  "pythonic-fp-fptools>=5.1.2",
 ]
 dynamic = ["description"]
 

@@ -15,9 +15,10 @@ PyPI project
 | pythonic_fp.queues.de   | DEQueue   | Double-Ended Queue       |
 +-------------------------+-----------+--------------------------+
 
-This PyPI project is part of of the grscheller
-`pythonic_fp Python namespace packages
-<https://github.com/grscheller/pythonic-fp/blob/main/README.md>`_.
+Part of the
+`pythonic-fp
+<https://grscheller.github.io/pythonic-fp/overview/next/build/html/index.html>`_
+PyPI projects.
 
 Documentation
 -------------

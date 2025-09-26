@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from collections.abc import Callable, Iterable, Iterator
+from typing import cast, overload
 from pythonic_fp.circulararray.auto import CA
 from pythonic_fp.fptools.maybe import MayBe
 
@@ -35,7 +36,8 @@ class DEQueue[D]:
 
     def __init__(self, *dss: Iterable[D]) -> None:
         """
-        :param dss: Takes 1 or 0 iterables, initializes data in FIFO order.
+        :param dss: "Optionally" takes a single iterable to initialize data in FIFO order.
+        :raises TypeError: When ``dss[0]`` not Iterable.
         :raises ValueError: If more than 1 iterable is given.
         """
         if (size := len(dss)) > 1:
@@ -125,6 +127,11 @@ class DEQueue[D]:
             return MayBe(self._ca[-1])
         return MayBe()
 
+    @overload
+    def foldl[L](self, f: Callable[[D, D], D]) -> MayBe[D]: ...
+    @overload
+    def foldl[L](self, f: Callable[[L, D], L], start: L) -> MayBe[L]: ...
+
     def foldl[L](self, f: Callable[[L, D], L], start: L | None = None) -> MayBe[L]:
         """Reduces DEQueue left to right.
 
@@ -135,7 +142,13 @@ class DEQueue[D]:
         if start is None:
             if not self._ca:
                 return MayBe()
+            return MayBe(cast(L, self._ca.foldl(cast(Callable[[D, D], D], f))))   # L = D
         return MayBe(self._ca.foldl(f, start))
+
+    @overload
+    def foldr[R](self, f: Callable[[D, D], D]) -> MayBe[D]: ...
+    @overload
+    def foldr[R](self, f: Callable[[D, R], R], start: R) -> MayBe[R]: ...
 
     def foldr[R](self, f: Callable[[D, R], R], start: R | None = None) -> MayBe[R]:
         """Reduces DEQueue right to left.
@@ -147,6 +160,7 @@ class DEQueue[D]:
         if start is None:
             if not self._ca:
                 return MayBe()
+            return MayBe(cast(R, self._ca.foldr(cast(Callable[[D, D], D], f))))  # R = D
         return MayBe(self._ca.foldr(f, start))
 
     def map[U](self, f: Callable[[D], U]) -> 'DEQueue[U]':

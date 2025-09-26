@@ -17,14 +17,16 @@ See `Semantic Versioning 2.0.0 <https://semver.org>`_.
 Releases and Important Milestones
 ---------------------------------
 
-PyPI 5.1.0 - TBD
-~~~~~~~~~~~~~~~~
+PyPI 5.1.0 - 2025-09-25
+~~~~~~~~~~~~~~~~~~~~~~~
 
-Deprecating pythonic-fp.queues as a separate PyPI project.
-Now part of pythonic-fp.containers.
+Updated API for pythonic_fp.circulararray.auto changes. Gained
+the ability to store None as a value.
 
-Created a queues subpackage pythonic_fp.containers.queues to
-continue the effort.
+Had planned to deprecating pythonic-fp-queues as a separate
+PyPI project. Continued development as a part of 
+pythonic-fp.containers for a while. Decided to move development
+back to its own PyPI pythonic-fp-queues project again.
 
 PyPI 4.0.0 - 2025-07-12
 ~~~~~~~~~~~~~~~~~~~~~~~

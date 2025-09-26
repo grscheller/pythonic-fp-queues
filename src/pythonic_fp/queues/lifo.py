@@ -13,6 +13,7 @@
 # limitations under the License.
 
 from collections.abc import Callable, Iterable, Iterator
+from typing import cast, overload
 from pythonic_fp.circulararray.auto import CA
 from pythonic_fp.fptools.function import swap
 from pythonic_fp.fptools.maybe import MayBe
@@ -97,6 +98,11 @@ class LIFOQueue[D]:
             return MayBe(self._ca[-1])
         return MayBe()
 
+    @overload
+    def fold[T](self, f: Callable[[D, D], D]) -> MayBe[D]: ...
+    @overload
+    def fold[T](self, f: Callable[[T, D], T], start: T) -> MayBe[T]: ...
+
     def fold[T](self, f: Callable[[T, D], T], start: T | None = None) -> MayBe[T]:
         """Reduces LIFOQUEUE in natural LIFO Order, newest to oldest.
 
@@ -107,6 +113,7 @@ class LIFOQueue[D]:
         if start is None:
             if not self._ca:
                 return MayBe()
+            return MayBe(cast(T, self._ca.foldl(cast(Callable[[D, D], D], f))))   # T = D
         return MayBe(self._ca.foldr(swap(f), start))
 
     def map[U](self, f: Callable[[D], U]) -> 'LIFOQueue[U]':

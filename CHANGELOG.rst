@@ -17,6 +17,11 @@ See `Semantic Versioning 2.0.0 <https://semver.org>`_.
 Releases and Important Milestones
 ---------------------------------
 
+PyPI 5.1.1 - 2026-01-15
+~~~~~~~~~~~~~~~~~~~~~~~
+
+Docstring improvements for updated Sphinx documentation.
+
 PyPI 5.1.0 - 2025-09-25
 ~~~~~~~~~~~~~~~~~~~~~~~
 

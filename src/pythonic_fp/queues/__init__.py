@@ -14,7 +14,13 @@
 
 """
 Queues
-======
+------
+
+.. admonition:: Stateful Queues based on a circular array.
+
+    Geared to specific algorithms by limiting what can be done with the
+    queues. Sometimes the power of a data structure is not what it
+    empowers you to do, but what it prevents you from doing to yourself.
 
 +-------------------------+-----------+--------------------------+
 | module                  | class     | name                     |
@@ -29,5 +35,5 @@ Queues
 """
 
 __author__ = 'Geoffrey R. Scheller'
-__copyright__ = 'Copyright (c) 2023-2025 Geoffrey R. Scheller'
+__copyright__ = 'Copyright (c) 2023-2026 Geoffrey R. Scheller'
 __license__ = 'Apache License 2.0'

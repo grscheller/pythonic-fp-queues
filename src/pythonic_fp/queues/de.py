@@ -39,6 +39,7 @@ class DEQueue[D]:
         :param dss: "Optionally" takes a single iterable to initialize data in FIFO order.
         :raises TypeError: When ``dss[0]`` not Iterable.
         :raises ValueError: If more than 1 iterable is given.
+
         """
         if (size := len(dss)) > 1:
             msg = f'DEQueue expects at most 1 argument, got {size}'
@@ -74,6 +75,7 @@ class DEQueue[D]:
         """Shallow copy.
 
         :returns: Shallow copy of the DEQueue.
+
         """
         return DEQueue(self._ca)
 
@@ -81,6 +83,7 @@ class DEQueue[D]:
         """Push data onto left side of DEQueue.
 
         :param ds: Items to be pushed onto DEQueue from the left.
+
         """
         self._ca.pushl(*ds)
 
@@ -88,6 +91,7 @@ class DEQueue[D]:
         """Push data onto right side of DEQueue.
 
         :param ds: Items to be pushed onto DEQueue from the right.
+
         """
         self._ca.pushr(*ds)
 
@@ -95,6 +99,7 @@ class DEQueue[D]:
         """Pop next item from left side DEQueue, if it exists.
 
         :returns: MayBe of popped item if queue was not empty, empty MayBe otherwise.
+
         """
         if self._ca:
             return MayBe(self._ca.popl())
@@ -104,6 +109,7 @@ class DEQueue[D]:
         """Pop next item off right side DEQueue, if it exists.
 
         :returns: MayBe of popped item if queue was not empty, empty MayBe otherwise.
+
         """
         if self._ca:
             return MayBe(self._ca.popr())
@@ -113,6 +119,7 @@ class DEQueue[D]:
         """Peak left side of DEQueue. Does not consume item.
 
         :returns: MayBe of leftmost item if queue not empty, empty MayBe otherwise.
+
         """
         if self._ca:
             return MayBe(self._ca[0])
@@ -122,6 +129,7 @@ class DEQueue[D]:
         """Peak right side of DEQueue. Does not consume item.
 
         :returns: MayBe of rightmost item if queue not empty, empty MayBe otherwise.
+
         """
         if self._ca:
             return MayBe(self._ca[-1])
@@ -138,6 +146,7 @@ class DEQueue[D]:
         :param f: Reducing function, first argument is for accumulator.
         :param start: Optional starting value.
         :returns: MayBe of reduced value with f, empty MayBe if queue empty and no starting value given.
+
         """
         if start is None:
             if not self._ca:
@@ -156,6 +165,7 @@ class DEQueue[D]:
         :param f: Reducing function, second argument is for accumulator.
         :param start: Optional starting value.
         :returns: MayBe of reduced value with f, empty MayBe if queue empty and no starting value given.
+
         """
         if start is None:
             if not self._ca:
@@ -172,6 +182,7 @@ class DEQueue[D]:
 
         :param f: Function to map over queue.
         :returns: New DEQueue instance, retain original order.
+
         """
         return DEQueue(map(f, self._ca))
 
@@ -181,5 +192,6 @@ def de_queue[D](*ds: D) -> DEQueue[D]:
 
     :param ds: Initial items as if pushed on from right to left.
     :returns: DEQueue with items initialized in FIFO order.
+
     """
     return DEQueue(ds)

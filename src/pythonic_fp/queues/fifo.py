@@ -38,6 +38,7 @@ class FIFOQueue[D]:
         """
         :param dss: Takes 1 or 0 iterables, initializes items in natural FIFO order.
         :raises ValueError: If more than 1 iterable is given.
+
         """
         if (size := len(dss)) > 1:
             msg = f'FIFOQueue expects at most 1 iterable argument, got {size}'
@@ -70,6 +71,7 @@ class FIFOQueue[D]:
         """Shallow copy.
 
         :returns: Shallow copy of the FIFOQueue.
+
         """
         return FIFOQueue(self._ca)
 
@@ -77,6 +79,7 @@ class FIFOQueue[D]:
         """Push items onto FIFOQueue.
 
         :param ds: Items to be pushed onto FIFOQueue.
+
         """
         self._ca.pushr(*ds)
 
@@ -84,6 +87,7 @@ class FIFOQueue[D]:
         """Pop oldest data item off of FIFOQueue.
 
         :returns: MayBe of popped data item if queue was not empty, empty MayBe otherwise.
+
         """
         if self._ca:
             return MayBe(self._ca.popl())
@@ -93,6 +97,7 @@ class FIFOQueue[D]:
         """Peak at newest item on queue.
 
         :returns: MayBe of newest item on queue, empty MayBe if queue empty.
+
         """
         if self._ca:
             return MayBe(self._ca[-1])
@@ -102,6 +107,7 @@ class FIFOQueue[D]:
         """Peak at oldest data item on queue.
 
         :returns: MayBe of oldest item on queue, empty MayBe if queue empty.
+
         """
         if self._ca:
             return MayBe(self._ca[0])
@@ -118,6 +124,7 @@ class FIFOQueue[D]:
         :param f: Reducing function, first argument is for accumulator.
         :param start: Optional starting value.
         :returns: MayBe of reduced value, empty MayBe if queue empty and no starting value given.
+
         """
         if start is None:
             if not self._ca:
@@ -130,6 +137,7 @@ class FIFOQueue[D]:
 
         :param f: Function to map over queue.
         :returns: New FIFOQueue instance.
+
         """
         return FIFOQueue(map(f, self._ca))
 
@@ -139,5 +147,6 @@ def fifo_queue[D](*ds: D) -> FIFOQueue[D]:
 
     :param ds: Initial items pushed on in FIFO order.
     :returns: FIFOQueue with initialized items from ``ds``.
+
     """
     return FIFOQueue(ds)

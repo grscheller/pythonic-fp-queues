@@ -1,4 +1,4 @@
-# Copyright 2023-2024 Geoffrey R. Scheller
+# Copyright 2023-2026 Geoffrey R. Scheller
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,15 +22,13 @@ Queues
     queues. Sometimes the power of a data structure is not what it
     empowers you to do, but what it prevents you from doing to yourself.
 
-+-------------------------+-----------+--------------------------+
-| module                  | class     | name                     |
-+=========================+===========+==========================+
-| pythonic_fp.queues.fifo | FIFOQueue | First-In-First-Out Queue |
-+-------------------------+-----------+--------------------------+
-| pythonic_fp.queues.lifo | LIFOQueue | Last-In-First-Out Queue  |
-+-------------------------+-----------+--------------------------+
-| pythonic_fp.queues.de   | DEQueue   | Double-Ended Queue       |
-+-------------------------+-----------+--------------------------+
+=========================== ============= ========================
+module                      class         name
+=========================== ============= ========================
+**pythonic_fp.queues.fifo** **FIFOQueue** First-In-First-Out Queue
+**pythonic_fp.queues.lifo** **LIFOQueue** Last-In-First-Out Queue
+**pythonic_fp.queues.de**   **DEQueue**   Double-Ended Queue
+=========================== ============= ========================
 
 """
 

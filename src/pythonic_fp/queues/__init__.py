@@ -22,13 +22,9 @@ Queues
     queues. Sometimes the power of a data structure is not what it
     empowers you to do, but what it prevents you from doing to yourself.
 
-=========================== ============= ========================
-module                      class         name
-=========================== ============= ========================
-**pythonic_fp.queues.fifo** **FIFOQueue** First-In-First-Out Queue
-**pythonic_fp.queues.lifo** **LIFOQueue** Last-In-First-Out Queue
-**pythonic_fp.queues.de**   **DEQueue**   Double-Ended Queue
-=========================== ============= ========================
+    - class **FIFOQueue:** First-In-First-Out Queue.
+    - class **LIFOQueue:** Last-In-First-Out Queue.
+    - class **DEQueue:**   Double-Ended Queue.
 
 """
 

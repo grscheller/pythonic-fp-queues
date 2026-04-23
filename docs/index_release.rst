@@ -1,13 +1,13 @@
-pythonic-fp-circulararray
--------------------------
+pythonic-fp-queues
+------------------
 
 Project
-`pythonic-fp-circulararray <https://pypi.org/project/pythonic-fp-circulararray/>`_
+`pythonic-fp-queues <https://pypi.org/project/pythonic-fp-queues/>`_
 one of the
 `Pythonic FP <https://grscheller.github.io/pythonic-fp/>`_
 PyPI projects.
 
-**PyPI 6.0.2 release**
+**PyPI 5.1.1 release**
 
 .. toctree::
     :caption: Overview

@@ -1,5 +1,5 @@
 pythonic-fp-queues
-------------------
+==================
 
 Project
 `pythonic-fp-queues <https://pypi.org/project/pythonic-fp-queues/>`_

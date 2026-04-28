@@ -25,7 +25,7 @@ Documentation
 
 Documentation for this project is hosted on
 `GitHub Pages
-<https://grscheller.github.io/pythonic-fp-queues>`_.
+<https://grscheller.github.io/pythonic-fp-queues/development/html/>`_.
 
 Copyright and License
 ---------------------

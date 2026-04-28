@@ -16,7 +16,7 @@
 Queues
 ------
 
-.. admonition:: Stateful Queues based on a circular array.
+.. admonition:: Stateful Queues based on a circular array
 
     Geared to specific algorithms by limiting what can be done with the
     queues. Sometimes the power of a data structure is not what it

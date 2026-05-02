@@ -16,15 +16,13 @@
 Queues
 ------
 
-.. admonition:: Stateful Queues based on a circular array
+.. admonition:: Stateful Queues
 
-    Geared to specific algorithms by limiting what can be done with the
-    queues. Sometimes the power of a data structure is not what it
-    empowers you to do, but what it prevents you from doing to yourself.
+    By limiting how their data can be accessed, each queue type
+    supports different algorithmic use cases.
 
-    - class **FIFOQueue:** First-In-First-Out Queue.
-    - class **LIFOQueue:** Last-In-First-Out Queue.
-    - class **DEQueue:**   Double-Ended Queue.
+    Sometimes the power of a data structure comes not what it empowers
+    you to do, but what it prevents you from doing to yourself.
 
 """
 

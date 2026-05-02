@@ -22,7 +22,7 @@ __all__ = ['FIFOQueue', 'fifo_queue']
 
 class FIFOQueue[D]:
     """
-    .. annotation:: FIFOQueue
+    .. admonition:: FIFOQueue
 
         Stateful First-In-First-Out (FIFO) Queue data structure.
 

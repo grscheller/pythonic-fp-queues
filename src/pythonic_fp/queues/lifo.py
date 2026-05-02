@@ -157,7 +157,7 @@ class LIFOQueue[D]:
 
     def map[U](self, f: Callable[[D], U]) -> 'LIFOQueue[U]':
         """
-        .. admonition:: 
+        .. admonition:: Map
 
             Map ``f`` over the ``LIFOQueue``, retain original order.
 

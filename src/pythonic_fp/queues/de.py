@@ -22,7 +22,7 @@ __all__ = ['DEQueue', 'de_queue']
 
 class DEQueue[D]:
     """
-    .. annotation:: DEQueue
+    .. admonition:: DEQueue
 
         Stateful Double-Ended (DE) Queue data structure.
 
@@ -146,7 +146,7 @@ class DEQueue[D]:
 
     def popr(self) -> MayBe[D]:
         """
-        .. admonition::
+        .. admonition:: Pop right
 
             Pop next item off right side ''DEQueue``, if it exists.
 

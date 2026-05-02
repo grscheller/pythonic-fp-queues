@@ -1,5 +1,5 @@
-module lifo
------------
+last in first out
+=================
 
 .. automodule:: pythonic_fp.queues.lifo
     :members:

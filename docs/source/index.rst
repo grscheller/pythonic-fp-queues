@@ -1,11 +1,11 @@
 pythonic-fp-queues
 ==================
 
-Project
-`pythonic-fp-queues <https://pypi.org/project/pythonic-fp-queues/>`_
+PyPI Project
+`Pythonic FP - Queues <https://pypi.org/project/pythonic-fp-queues/>`_
 one of the
 `Pythonic FP <https://grscheller.github.io/pythonic-fp/>`_
-PyPI projects.
+projects.
 
 |RELEASE_STRING|
 

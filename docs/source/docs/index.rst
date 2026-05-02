@@ -1,5 +1,5 @@
 Queues
----------------
+======
 
 .. automodule:: pythonic_fp.queues
     :synopsis:

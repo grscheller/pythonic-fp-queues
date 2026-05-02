@@ -1,5 +1,5 @@
-module fifo
------------
+first in last out
+=================
 
 .. automodule:: pythonic_fp.queues.fifo
     :members:

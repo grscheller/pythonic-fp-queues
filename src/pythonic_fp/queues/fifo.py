@@ -60,9 +60,25 @@ class FIFOQueue[D]:
         return len(self._ca) > 0
 
     def __len__(self) -> int:
+        """
+        .. admonition:: Get length
+
+            Return the number of data elements in the ``FIFOQueue``.
+
+        """
         return len(self._ca)
 
     def __eq__(self, other: object) -> bool:
+        """
+        .. admonition:: Equality comparison
+
+            If ``other`` is a ``FIFOQueue`` and the corresponding
+            elements of ``self`` and ``other`` compare as equal,
+            then return ``True``. Otherwise return ``False``.
+
+        :returns: ``self == other``
+
+        """
         if not isinstance(other, FIFOQueue):
             return False
         return self._ca == other._ca
@@ -79,20 +95,38 @@ class FIFOQueue[D]:
         return iter(list(self._ca))
 
     def __repr__(self) -> str:
+        """
+        .. admonition:: String representation
+
+            Construct a string to reproduce the ``FIFOQueue``. 
+
+        :returns: The string 'FIFOQueue(repr(a), repr(b), ..., repr(c))'
+                  where a, b, ..., c are the queue's contents.
+
+        """
         if len(self) == 0:
            return 'FIFOQueue()'
         return 'FIFOQueue(' + ', '.join(map(repr, self._ca)) + ')'
 
     def __str__(self) -> str:
+        """
+        .. admonition:: User string
+
+            Construct a string meaningful to an end user.
+
+        :returns: The string '<< str(a) < str(b) <...< str(c) <<'
+                  where a, b, ..., c are the queue's contents.
+
+        """
         return '<< ' + ' < '.join(map(str, self)) + ' <<'
 
     def copy(self) -> 'FIFOQueue[D]':
         """
-        .. admonition:: Shallow copy
+        .. admonition:: Copy
 
-            Make a shallow copy of the ``FIFOQueue``.
+            Shallow copy the ``FIFOQueue``.
 
-        :returns: Shallow copy of the ``FIFOQueue``.
+        :returns: New ``FIFOQueue`` instance containing the same references.
 
         """
         return FIFOQueue(self._ca)

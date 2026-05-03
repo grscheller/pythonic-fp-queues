@@ -176,7 +176,7 @@ def lifo_queue[D](*ds: D) -> LIFOQueue[D]:
         instance from the function's arguments.
 
     :param ds: Items pushed onto queue in LIFO order.
-    :returns: A new ``LIFOQueue`` instance.
+    :returns: New ``LIFOQueue`` instance.
 
     """
     return LIFOQueue(ds)

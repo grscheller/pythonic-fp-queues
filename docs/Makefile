@@ -5,8 +5,8 @@
 #  - later needs to agree with pyproject.toml
 PROJECT_NAME = Queues
 PYPI_NAME = queues
-RELEASE_VERSION = 5.1.1
-DEVEL_VERSION = 5.1.2
+RELEASE_VERSION = 5.1.2
+DEVEL_VERSION = 5.1.3
 CUSTOM_VERSION = 0.0.0
 
 SPHINXOPTS ?=

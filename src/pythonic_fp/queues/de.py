@@ -254,7 +254,7 @@ def de_queue[D](*ds: D) -> DEQueue[D]:
     """
     .. admonition:: Create DEQueue
 
-        Factory function to create a ``DEQueur``
+        Factory function to create a ``DEQueue``
         instance from the function's arguments.
 
     :param ds: Initial data to be pushed on right to left.

@@ -190,11 +190,11 @@ def fifo_queue[D](*ds: D) -> FIFOQueue[D]:
     """
     .. admonition:: Create FIFOQueue
 
-        Factory function to create an ``FIFOQUEUE``
+        Factory function to create an ``FIFOQueue``
         instance from the function's arguments.
 
     :param ds: Initial data to be pushed on in FIFO order.
-    :returns: A new ``FIFOQueue`` instance.
+    :returns: New ``FIFOQueue`` instance.
 
     """
     return FIFOQueue(ds)

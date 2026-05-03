@@ -39,11 +39,10 @@ class FIFOQueue[D]:
 
     def __init__(self, *dss: Iterable[D]) -> None:
         """
-        :param dss: Can take a single iterable to initializing
-                    ``FIFPQueue`` data in natural FIFO order.
-        :raises TypeError: When the optional parameter not iterable.
-        :raises ValueError: If more than one iterable is given.
-
+        :param dss: Takes 0 or 1 iterable parameters. Populates
+                    queue from the iterable in FIFO order.
+        :raises TypeError: When passed a non-iterable parameter.
+        :raises ValueError: When more than one parameter is given.
 
         """
         if (size := len(dss)) > 1:
@@ -188,11 +187,14 @@ class FIFOQueue[D]:
 
 
 def fifo_queue[D](*ds: D) -> FIFOQueue[D]:
-    """FIFOQueue factory function.
+    """
+    .. admonition:: Create FIFOQueue
 
-    :param ds: Initial items pushed on in FIFO order.
-    :returns: ``FIFOQueue`` instance initialized from ``ds``
-              in natural FIFO order.
+        Factory function to create an ``FIFOQUEUE``
+        instance from the function's arguments.
+
+    :param ds: Initial data to be pushed on in FIFO order.
+    :returns: A new ``FIFOQueue`` instance.
 
     """
     return FIFOQueue(ds)

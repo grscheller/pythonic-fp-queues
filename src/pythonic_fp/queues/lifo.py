@@ -39,10 +39,10 @@ class LIFOQueue[D]:
 
     def __init__(self, *dss: Iterable[D]) -> None:
         """
-        :param dss: Can take a single iterable to initializing
-                    ``LIFOQueue`` data in LIFO order.
-        :raises TypeError: When the optional parameter not Iterable.
-        :raises ValueError: If more than one iterable is given.
+        :param dss: Takes 0 or 1 iterable parameters. Populates
+                    queue from the iterable in LIFO order.
+        :raises TypeError: When passed a non-iterable parameter.
+        :raises ValueError: When more than one parameter is given.
 
         """
         if (size := len(dss)) > 1:
@@ -170,13 +170,13 @@ class LIFOQueue[D]:
 
 def lifo_queue[D](*ds: D) -> LIFOQueue[D]:
     """
-    .. admonition:: LIFOQueue factory function
+    .. admonition:: Create LIFOQueue
 
-        Create a ``LIFOQueue`` with the function's arguments.
+        Factory function to create an ``LIFOQUEUE``
+        instance from the function's arguments.
 
-    :param ds: Initial items pushed on in LIFO order.
-    :returns: ``LIFOQueue`` instance initialized from ``ds``
-               in natural LIFO order..
+    :param ds: Items pushed onto queue in LIFO order.
+    :returns: A new ``LIFOQueue`` instance.
 
     """
     return LIFOQueue(ds)

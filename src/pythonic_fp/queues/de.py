@@ -26,6 +26,7 @@ class DEQueue[D]:
 
         Stateful Double-Ended (DE) Queue data structure.
 
+        - has a left and a right side
         - O(1) pops each end
         - O(1) amortized pushes each end
         - O(1) length determination
@@ -39,10 +40,10 @@ class DEQueue[D]:
 
     def __init__(self, *dss: Iterable[D]) -> None:
         """
-        :param dss: Can take a single iterable to initializing
-                    queue data in FIFO order.
-        :raises TypeError: When the optional parameter not iterable.
-        :raises ValueError: If more than one iterable is given.
+        :param dss: Takes 0 or 1 iterable parameters. Populates
+                    queue from the iterable left to right.
+        :raises TypeError: When passed a non-iterable parameter.
+        :raises ValueError: When more than one parameter is given.
 
         """
         if (size := len(dss)) > 1:
@@ -251,12 +252,13 @@ class DEQueue[D]:
 
 def de_queue[D](*ds: D) -> DEQueue[D]:
     """
-    .. admonition:: DEQueue factory function
+    .. admonition:: Create DEQueue
 
-        Create a ``DEQueue`` with the function's arguments.
+        Factory function to create a ``DEQueur``
+        instance from the function's arguments.
 
-    :param ds: Initial data pushed on right to left.
-    :returns: ``DEQueue`` instance initialized from ``ds`` in FIFO order.
+    :param ds: Initial data to be pushed on right to left.
+    :returns: A new ``DEQueue`` instance.
 
     """
     return DEQueue(ds)

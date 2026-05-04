@@ -102,10 +102,11 @@ class FIFOQueue[D]:
         """
         .. admonition:: String representation
 
-            Construct a string to reproduce the ``FIFOQueue``. 
+            Construct string 'FIFOQueue(d₁, d₂, … dₙ)' where
 
-        :returns: The string 'FIFOQueue(repr(a), repr(b), ..., repr(c))'
-                  where a, b, ..., c are the queue's contents.
+            - d₁, d₂, … dₙ are the contents displayed with ``repr()``
+
+        :returns: A string to reproduce the ``FIFOQueue``.
 
         """
         if len(self) == 0:
@@ -116,10 +117,11 @@ class FIFOQueue[D]:
         """
         .. admonition:: User string
 
-            Construct a string meaningful to an end user.
+            Construct string '<< d₁ < d₂ < … < dₙ <<' where
 
-        :returns: The string '<< str(a) < str(b) <...< str(c) <<'
-                  where a, b, ..., c are the queue's contents.
+            - d₁, d₂, ..., dₙ are the contents displayed with ``str()``
+
+        :returns: A string meaningful to an end user.
 
         """
         return '<< ' + ' < '.join(map(str, self)) + ' <<'

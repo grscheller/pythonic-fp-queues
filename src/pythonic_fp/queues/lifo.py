@@ -102,10 +102,11 @@ class LIFOQueue[D]:
         """
         .. admonition:: String representation
 
-            Construct a string to reproduce the ``LIFOQueue``. 
+            Construct string 'LIFOQueue(d₁, d₂, … dₙ)' where
 
-        :returns: The string 'LIFOQueue(repr(a), repr(b), ..., repr(c))'
-                  where a, b, ..., c are the queue's contents.
+            - d₁, d₂, … dₙ are the contents displayed with ``repr()``
+
+        :returns: A string to reproduce the ``LIFOQueue``.
 
         """
         if len(self) == 0:
@@ -113,13 +114,14 @@ class LIFOQueue[D]:
         return 'LIFOQueue(' + ', '.join(map(repr, self._ca)) + ')'
 
     def __str__(self) -> str:
-        """
+        r"""
         .. admonition:: User string
 
-            Construct a string meaningful to an end user.
+            Construct string '|| d₁ > d₂ > … > dₙ ><' where
 
-        :returns: The string '|| str(a) > str(b) >...> str(c) ><'
-                  where a, b, ..., c are the queue's contents.
+            - d₁, d₂, ..., dₙ are the contents displayed with ``str()``
+
+        :returns: A string meaningful to an end user.
 
         """
         return '|| ' + ' > '.join(map(str, self)) + ' ><'

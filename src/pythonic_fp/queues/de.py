@@ -41,7 +41,7 @@ class DEQueue[D]:
     def __init__(self, *dss: Iterable[D]) -> None:
         """
         :param dss: Takes 0 or 1 iterable parameters to initially
-                    populate the queue in FIFO order.
+                    populate the queue from left to right.
         :raises ValueError: When more than one parameter is provided.
         :raises TypeError: When passed a non-iterable parameter.
 

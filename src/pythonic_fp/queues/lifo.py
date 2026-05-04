@@ -40,7 +40,7 @@ class LIFOQueue[D]:
     def __init__(self, *dss: Iterable[D]) -> None:
         """
         :param dss: Takes 0 or 1 iterable parameters to initially
-                    populate the queue in FIFO order.
+                    populate the queue in LIFO order.
         :raises ValueError: When more than one parameter is provided.
         :raises TypeError: When passed a non-iterable parameter.
 
@@ -132,7 +132,10 @@ class LIFOQueue[D]:
         return LIFOQueue(reversed(self._ca))
 
     def push(self, *ds: D) -> None:
-        """Push items onto LIFOQueue.
+        """
+        .. admonition:: Push
+
+            Push items onto ``LIFOQueue``.
 
         :param ds: Items to be pushed onto ``LIFOQueue``.
 

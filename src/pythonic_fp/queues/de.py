@@ -38,18 +38,22 @@ class DEQueue[D]:
 
     __slots__ = ('_ca',)
 
-    def __init__(self, *dss: Iterable[D]) -> None:
+    def __init__(self, *ds: Iterable[D]) -> None:
         """
-        :param dss: Takes 0 or 1 iterable parameters to initially
-                    populate the queue from left to right.
+        .. admonition:: Initializer
+
+            Initialize ``DEQueue`` with 0 or 1 iterables to populate
+            the queue left (front) to right (rear).
+
+        :param ds: Takes 0 or 1 iterable parameters.
         :raises ValueError: When more than one parameter is provided.
         :raises TypeError: When passed a non-iterable parameter.
 
         """
-        if (size := len(dss)) > 1:
+        if (size := len(ds)) > 1:
             msg = f'DEQueue expects at most 1 argument, got {size}'
             raise ValueError(msg)
-        self._ca = CA(dss[0]) if size == 1 else CA()
+        self._ca = CA(ds[0]) if size == 1 else CA()
 
     def __bool__(self) -> bool:
         """
@@ -234,7 +238,7 @@ class DEQueue[D]:
 
         :param f: Reducing function, first argument is for accumulator.
         :param start: Optional starting value.
-        :returns: ``MayBe`` of reduced value with f, empty ``MayBe`` if
+        :returns: ``MayBe`` of reduced value with ``f``, empty ``MayBe`` if
                   queue empty and no starting value given.
 
         """
@@ -257,8 +261,8 @@ class DEQueue[D]:
 
         :param f: Reducing function, second argument is for accumulator.
         :param start: Optional starting value.
-        :returns: ``MayBe`` of reduced value with f, empty ``MayBe`` if
-                  queue empty and no starting value given.
+        :returns: ``MayBe`` of reduced value with ``f``, empty ``MayBe``
+                  if queue empty and no starting value given.
 
         """
         if start is None:

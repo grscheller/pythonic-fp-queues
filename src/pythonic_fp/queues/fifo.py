@@ -39,10 +39,10 @@ class FIFOQueue[D]:
 
     def __init__(self, *dss: Iterable[D]) -> None:
         """
-        :param dss: Takes 0 or 1 iterable parameters. Populates
-                    queue from the iterable in FIFO order.
+        :param dss: Takes 0 or 1 iterable parameters to initially
+                    populate the queue in FIFO order.
+        :raises ValueError: When more than one parameter is provided.
         :raises TypeError: When passed a non-iterable parameter.
-        :raises ValueError: When more than one parameter is given.
 
         """
         if (size := len(dss)) > 1:

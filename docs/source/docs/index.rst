@@ -2,7 +2,9 @@ Queues
 ======
 
 .. automodule:: pythonic_fp.queues
-    :synopsis:
+    :no-members:
+    :ignore-module-all:
+    :no-index:
 
 .. toctree::
     :caption: First In First Out

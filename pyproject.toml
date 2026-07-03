@@ -30,7 +30,7 @@ dependencies = [
   "pythonic-fp-fptools>=5.2.0",
   "pythonic-fp-gadgets>=4.1.0",
 ]
-dynamic = ["description"]
+description = "Queues geared to different use cases."
 
 [project.urls]
 Changelog = "https://github.com/grscheller/pythonic-fp-queues/blob/main/CHANGELOG.rst"
@@ -54,17 +54,8 @@ warn_redundant_casts = true
 warn_return_any = true
 warn_unused_configs = true
 
-[tool.pylsp-mypy]
-enabled = true
-live-mode = true
-dmypy = false
-strict = true
-report_progress = true
-
 [tool.pytest]
-addopts = [
-  "-ra",
-]
+addopts = ["-ra"]
 consider_namespace_packages = true
 testpaths = ["tests/"]
 

@@ -4,7 +4,6 @@ Queue-like datastructures.
 
 PyPI project
 [pythonic-fp-queues](https://pypi.org/project/pythonic-fp-queues).
-
 Part of the
 [pythonic-fp](https://grscheller.github.io/pythonic-fp/)
 PyPI projects.

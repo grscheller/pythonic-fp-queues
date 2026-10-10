@@ -28,9 +28,9 @@ classifiers = [
   "Typing :: Typed",
 ]
 dependencies = [
-  "pythonic-fp-circulararray>=6.0.4",
-  "pythonic-fp-fptools>=5.2.0",
-  "pythonic-fp-gadgets>=4.1.0",
+  "pythonic-fp-circulararray>=6.2.2,<6.4",
+  "pythonic-fp-fptools>=6.1,<6.2",
+  "pythonic-fp-gadgets>=4.5,<6",
 ]
 
 [project.urls]

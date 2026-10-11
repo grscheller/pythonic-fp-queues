@@ -2,23 +2,34 @@
 
 PyPI **pythonic-fp.queues** project. FIFO, LIFO, and DE queues.
 
-## Semantic Versioning
+## Release Versioning
 
-Strict 3 digit semantic versioning adopted 2025-05-19.
+A tiered strict 3 digit semantic versioning will be used
 
-- **MAJOR** version incremented for incompatible API changes
-- **MINOR** version incremented for backward compatible added functionality
-- **PATCH** version incremented for backward compatible bug fixes
+- **MAJOR** incremented for incompatible API changes across Pythonic FP libraries
+- **MINOR** incremented for backward compatible added functionality
+- **PATCH** incremented for backward compatible bug fixes
 
-See [Semantic Versioning 2.0.0](https://semver.org).
+All versions with the same major release numbers should be consistent
+with each other. Note that lower floors will still be used.
 
 ## Releases and Important Milestones
 
+### PyPI release 6.0.0 - 2026-10-TBA
+
+At this time no substantive changes were made to this library.
+Considering making the queues more thread safe. The underlying circular
+array datastructure is thread tolerant, but not thread safe.
+
+Going forward, consistent releases of the Pythonic FP libraries will
+share a common major release number. Will use caps to keep the major
+release lines from mixing.
+
 ### PyPI release 5.2.0 - 2026-10-10
 
-Put <6 caps on dependencies, all pythonic-fp projects will be bumped
-up to the 6.0.0 release level, if not already at the 6.x.y level.
-The next pythonic-fp release will be 6.0.0 to track these for
+Put `<6` caps on dependencies, all pythonic-fp projects will be bumped
+up to the `6.0.0` release level, if not already at the `6.x.y` level.
+The next pythonic-fp release will be `6.0.0` to track these for
 integration testing.
 
 ### Development Status Reappraisal - 2026-05-05
@@ -100,18 +111,18 @@ Changed flatMap to bind thru out project
 - Got back to a state maintainer is happy with
 - Many dependencies needed updating first
 
-### Version 0.20.5.1 - 2024-08-19 (Devel environment only)
+### Version 0.20.5.1 - 2024-08-19
 
 - Datastructures coming back together 
   - works with all the current versions of fp and circular-array
   - preparing for PyPI 0.21.0 release
 
-### Version 0.20.2.0 - 2024-08-03 (Devel environment only)
+### Version 0.20.2.0 - 2024-08-03
 
 Going down a typing rabbit hole.
 
-- updated to use grscheller.circular-array version 3.3.0 (3.2.3.0)
-- updated to use grscheller.fp version 0.3.0 (0.2.3.0)
+- updated to use grscheller.circular-array version 3.3.0
+- updated to use grscheller.fp version 0.3.0
 - removed grscheller.circular-array dependency from datastructures.SplitEnd
 - still preparing for the 1.0.0 datastructures release
   - as I tighten up typing, I find I must do so for dependencies too
@@ -121,21 +132,21 @@ Going down a typing rabbit hole.
 
 ### PyPI 0.19.0 - 2024-07-15
 
-Continuing to prepare for PyPI release 1.0.0
-- cleaned up docstrings for a 1.0.0 release
-- considering requiring grscheller.fp as a dependency
+Continuing to prepare for PyPI release `1.0.0`. Cleaned up docstrings
+for a `1.0.0` release. Considering requiring grscheller.fp as
+a dependency.
 
 ### Version 0.18.0.0 - Devel environment only
 
-Beginning to prepare for PyPI release 1.0.0
+Beginning to prepare for PyPI release `1.0.0`
 
-- first devel version requiring circular-array 3.1.0
+- first devel version requiring circular-array `3.1.0`
 - still some design work to be done
 - TODO: Verify flatMap family yields results in "natural" order
 
 ### Version 0.17.0.4 - Devel environment only
 
-Devel environment only. Start of effort to relax None restrictions.
+Start of effort to relax None restrictions.
 
 - have begun relaxing the requirement of not storing None as a value
   - completed for queues.py
@@ -144,7 +155,7 @@ Devel environment only. Start of effort to relax None restrictions.
 
 ### Version 0.16.0.0 - Devel environment only
 
-Devel environment only. Preparing to support PEP 695 generics.
+Preparing to support PEP 695 generics.
 
 - Requires Python >= 3.12
 - preparing to support PEP 695 generics
@@ -168,7 +179,7 @@ Preparing to add TypeVars.
 
 - updated dependency on CircularArray class
   - dependencies = ["grscheller.circular-array >= 0.2.0, < 2.1"]
-- minor README.md woodsmithing
+- minor README.md wordsmithing
 - keeping project an Alpha release for now
 
 ### PyPI 0.13.0 - 2024-01-30
@@ -193,14 +204,14 @@ Cutting next PyPI release from development (main)
 
 Considerable future-proofing for first real Beta release
 
-### 0.11.3.4 - Devel environment only
+### Version 0.11.3.4 - Devel environment only
 
 - Finally decided to make next PyPI release Beta
   - Package structure mature and not subject to change beyond additions
   - Will endeavor to keep top level & core module names the same
   - API changes will be deprecated before removed
 
-### 0.10.14.0 - 2023-12-09 (Devel environment only)
+### Version 0.10.14.0 - 2023-12-09
 
 - Finished massive renaming & repackaging effort
 
@@ -219,7 +230,7 @@ Considerable future-proofing for first real Beta release
     - tuple-like
       - FTuple
 
-### 0.10.8.0 - 2023-11-18 (Devel environment only)
+### Version 0.10.8.0 - 2023-11-18
 
 - Bumping requires-python = ">=3.11" in pyproject.toml
   - Currently developing & testing on Python 3.11.5
@@ -228,13 +239,13 @@ Considerable future-proofing for first real Beta release
     - tests pass but are 4X slower
     - LSP almost useless due to more primitive typing module
 
-### 0.10.7.0 - 2023-11-18 (Devel environment only)
+### Version 0.10.7.0 - 2023-11-18
 
 - Overhauled __repr__ & __str__ methods for all classes
   - tests that ds == eval(repr(ds)) for all data structures ds in package
 - Updated markdown overview documentation
 
-### 0.10.1.0 - 2023-11-11 (Devel environment only)
+### Version 0.10.1.0 - 2023-11-11
 
 - Removed flatMap methods from stateful objects
   - FLArray, DQueue, SQueue, PStack
@@ -265,11 +276,11 @@ Considerable future-proofing for first real Beta release
     - cons and consOr
     - head and headOr
 
-### 0.8.3.0 - 2023-11-02 (Devel environment only)
+### Version 0.8.3.0 - 2023-11-02
 
 Major API breaking change, Dqueue renamed DQueue. Tests now work.
 
-### 0.8.0.0 - 2023-10-28 (Devel environment only)
+### Version 0.8.0.0 - 2023-10-28
 
 - API breaking changes
   - did not find everything returning self upon mutation
@@ -277,7 +288,7 @@ Major API breaking change, Dqueue renamed DQueue. Tests now work.
   - decided to use pdoc3 over sphinx to generate API documentation
   - need to resolve tension of package being Pythonic and Functional
 
-### 0.7.5.0 - 2023-10-26 (Devel environment only)
+### Version 0.7.5.0 - 2023-10-26
 
 - Moved pytest test suite to root of the repo
   - src/grscheller/datastructures/tests -> tests/
@@ -291,14 +302,14 @@ Major API breaking change, Dqueue renamed DQueue. Tests now work.
 - Major API changes
 - Still tagging it an Alpha release
 
-### 0.7.2.0 - 2023-10-18 (Devel environment only)
+### Version 0.7.2.0 - 2023-10-18
 
 - Queue & Dqueue no longer return Maybe objects
   - Neither store None as a value
   - Now safe to return None for non-existent values
     - like popping or peaking from an empty queue or dqueue
 
-### 0.7.0.0 - 2023-10-16 (Devel environment only)
+### Version 0.7.0.0 - 2023-10-16
 
 - Added Queue data structure representing a FIFO queue
 - Renamed two Dqueue methods
@@ -327,7 +338,7 @@ Major API breaking change, Dqueue renamed DQueue. Tests now work.
     - also Dqueue does not have a __getitem__ method
   - Circle which implements a circular array with a Python List
 
-### 0.6.8.6 - 2023-10-08 (Devel environment only)
+### Version 0.6.8.6 - 2023-10-08
 
 - three new methods for class Circle and Dqueue
   - mapSelf, flatMapSelf, mergeMapSelf
@@ -337,7 +348,7 @@ Major API breaking change, Dqueue renamed DQueue. Tests now work.
   - one returning new instances
   - the other modifying the object in place
 
-### 0.6.8.3 - 2023-10-06 (Devel environment only)
+### Version 0.6.8.3 - 2023-10-06
 
 - Class Carray renamed to Circle
   - implements a circular array based on a Python List
@@ -351,7 +362,7 @@ Major API breaking change, Dqueue renamed DQueue. Tests now work.
 - Dqueue implemented with Circle class instead of List class directly
 - Ensured that None is never pushed to Stack & Dqueue objects
 
-### 0.6.3.2 - 2023-09-30 (Devel environment only)
+### Version 0.6.3.2 - 2023-09-30
 
 - Improved comments and type annotations
 - Removed isEmpty method from Dqueue class
@@ -360,13 +371,11 @@ Major API breaking change, Dqueue renamed DQueue. Tests now work.
   - Want to make next PyPI release a Beta release
   - Need to improve test suite first
 
-### 0.6.2.0 - 2023-09-25 (Devel environment only)
-
-Devel environment only.
+### Version 0.6.2.0 - 2023-09-25
 
 Removed isEmpty method from Stack class.
 
-### 0.6.1.0 - 2023-09-25 (Devel environment only)
+### Version 0.6.1.0 - 2023-09-25
 
 - Maybe get() and getOrElse() API changes
 - getting a better handle on type annotation
@@ -417,7 +426,7 @@ First version of grscheller.datastructures installed from GitHub with pip.
 
 `$ pip install git+https://github.com/grscheller/datastructures@v0.2.0.2`
 
-### Version 0.2.0.0 - 2023-08-29 (Devel environment only)
+### Version 0.2.0.0 - 2023-08-29
 
 - BREAKING API CHANGE!!!
 - Dqueue pushL & pushR methods now return references to self
@@ -426,13 +435,13 @@ First version of grscheller.datastructures installed from GitHub with pip.
 - Updated tests - before making API changes
 - Preparing first version to be "released" on GitHub
 
-### Version 0.1.1.0 - 2023-08-27 (Devel environment only)
+### Version 0.1.1.0 - 2023-08-27
 
 - grscheller.datastructures moved to its own GitHub repo
 - https://github.com/grscheller/datastructures
   - GitHub and PyPI user names just a happy coincidence
 
-### Version 0.1.0.0 - 2023-08-27 (Devel environment only)
+### Version 0.1.0.0 - 2023-08-27
 
 Initial version.
 

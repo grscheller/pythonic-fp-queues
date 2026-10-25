@@ -7,7 +7,7 @@ name = "pythonic-fp-queues"
 version = "6.0.0"
 description = "Queues useful for different algorithmic use cases."
 readme = "README.md"
-requires-python = ">=3.14"  # floor: PEP 649/749 deferred annotations — class-level self-reference possible NameErrors on <3.14
+requires-python = ">=3.14"  # floor: PEP 649/749 deferred annotations — class-level self-reference NameErrors on <3.14
 authors = [
   { name = "Geoffrey R. Scheller", email = "geoffrey@scheller.com" },
 ]
@@ -28,12 +28,9 @@ classifiers = [
   "Typing :: Typed",
 ]
 dependencies = [
-  # "pythonic-fp-circulararray>=6.4",
-  # "pythonic-fp-fptools>=6.2",
-  # "pythonic-fp-gadgets>=6",
-  "pythonic-fp-circulararray",
-  "pythonic-fp-fptools",
-  "pythonic-fp-gadgets",
+  "pythonic-fp-circulararray>=6.4,<7",
+  "pythonic-fp-fptools>=6.2,<7",
+  "pythonic-fp-gadgets>=6,<7",
 ]
 
 [project.urls]
@@ -96,3 +93,8 @@ docstring-quotes = "double"
 [tool.ruff.format]
 quote-style = "single"
 docstring-code-line-length = 72
+
+[tool.uv.sources]
+pythonic-fp-circulararray = { path = "../pythonic-fp-circulararray", editable = true }
+pythonic-fp-fptools = { path = "../pythonic-fp-fptools", editable = true }
+pythonic-fp-gadgets = { path = "../pythonic-fp-gadgets", editable = true }

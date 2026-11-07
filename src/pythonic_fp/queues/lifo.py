@@ -14,6 +14,7 @@
 
 from collections.abc import Callable, Iterable, Iterator
 from typing import cast, overload
+
 from pythonic_fp.circulararray.auto import CA
 from pythonic_fp.fptools.function import swap
 from pythonic_fp.fptools.maybe import MayBe
@@ -126,7 +127,7 @@ class LIFOQueue[D]:
         """
         return '|| ' + ' > '.join(map(str, self)) + ' ><'
 
-    def copy(self) -> 'LIFOQueue[D]':
+    def copy(self) -> LIFOQueue[D]:
         """
         .. admonition:: Copy
 
@@ -198,7 +199,7 @@ class LIFOQueue[D]:
             return MayBe(cast(T, self._ca.foldl(cast(Callable[[D, D], D], f))))   # T = D
         return MayBe(self._ca.foldr(swap(f), start))
 
-    def map[U](self, f: Callable[[D], U]) -> 'LIFOQueue[U]':
+    def map[U](self, f: Callable[[D], U]) -> LIFOQueue[U]:
         """
         .. admonition:: Map
 

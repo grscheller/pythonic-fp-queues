@@ -14,6 +14,7 @@
 
 from collections.abc import Callable, Iterable, Iterator
 from typing import cast, overload
+
 from pythonic_fp.circulararray.auto import CA
 from pythonic_fp.fptools.maybe import MayBe
 
@@ -138,7 +139,7 @@ class DEQueue[D]:
         """
         return '>< ' + ' | '.join(map(str, self)) + ' ><'
 
-    def copy(self) -> 'DEQueue[D]':
+    def copy(self) -> DEQueue[D]:
         """
         .. admonition:: Copy
 
@@ -273,7 +274,7 @@ class DEQueue[D]:
             return MayBe(cast(R, self._ca.foldr(cast(Callable[[D, D], D], f))))  # R = D
         return MayBe(self._ca.foldr(f, start))
 
-    def map[U](self, f: Callable[[D], U]) -> 'DEQueue[U]':
+    def map[U](self, f: Callable[[D], U]) -> DEQueue[U]:
         """
         .. admonition:: Map
 

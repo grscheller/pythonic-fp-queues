@@ -61,11 +61,6 @@ exclude = [
   "**/.dmypy.json",
 ]
 
-[tool.pytest]
-addopts = ["-ra"]
-consider_namespace_packages = true
-testpaths = ["tests/"]
-
 [tool.mypy]
 explicit_package_bases = true
 local_partial_types = true
@@ -78,6 +73,11 @@ warn_unused_configs = true
 [[tool.mypy.overrides]]
 module = ["tests.*"]
 strict_equality = false
+
+[tool.pytest]
+addopts = ["-ra"]
+consider_namespace_packages = true
+testpaths = ["tests/"]
 
 [tool.ruff]
 target-version = "py314"
